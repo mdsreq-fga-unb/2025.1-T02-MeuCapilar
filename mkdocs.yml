@@ -1,0 +1,26 @@
+repo_url: https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar
+repo_name: 2025.1-T02-MeuCapilar
+
+
+site_name: Meu Capilar
+
+nav:
+   - Home: index.md
+   - Visão do produto e projeto:
+      - Cenário atual do cliente e do negócio: unidade1/sessao1.md
+      - Solução proposta: unidade1/sessao2.md
+      
+
+theme:
+   name: material 
+   palette:
+    - scheme: default
+      toggle: 
+         icon: material/toggle-switch-off-outline
+         name: Dark mode
+      primary: pink
+    - scheme: slate
+      toggle:
+         icon: material/toggle-switch
+         name: Light mode
+      primary: pink
