@@ -75,7 +75,7 @@
 <h4>Métodos e frequências de Reuniões</h4>
 
 <ul style="text-align: justify;">
-  <li><strong>Reuniões quase Diárias (Daily Scrum Adaptado)</strong>: A equipe técnica realizará encontros rápidos de até 15 a 20 minutos 4 vezes por semana, em dias úteis, via Discord, com o objetivo de compartilhar o progresso individual, discutir obstáculos e alinhar prioridades semanais do projeto.</li>
+  <li><strong>Reuniões quase Diárias (Daily Scrum Adaptado)</strong>: A equipe técnica realizará encontros rápidos de até 15 a 20 minutos 4 vezes por semana, em dias úteis, via Discord, com o objetivo de compartilhar o progresso individual, discutir obstáculos e alinhar prioridades(técnicas) semanais do projeto.</li>
   <li><strong>Reunião de Revisão de Sprint (a cada 2 semanas)</strong>: Ao final de cada sprint, haverá uma reunião de revisão com a cliente via Microsoft Teams. A equipe apresentará as funcionalidades desenvolvidas, coletará feedbacks e discutirá eventuais ajustes a serem realizados no produto.</li>
   <li><strong>Reunião de Planejamento de Sprint</strong>: Será realizada logo após a revisão de sprint, com foco em reorganizar o backlog, definir as funcionalidades da próxima iteração e alinhar as expectativas com base no feedback da cliente.</li>
   <li><strong>Reunião de Retrospectiva</strong>: A equipe técnica fará uma retrospectiva a cada final de sprint, discutindo o que funcionou bem, os pontos de melhoria e as lições aprendidas. Essa prática visa a melhoria contínua do processo e da colaboração entre os membros.</li>
