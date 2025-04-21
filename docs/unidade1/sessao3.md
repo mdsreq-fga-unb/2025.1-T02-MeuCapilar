@@ -7,12 +7,12 @@
 - **Processo**: Scrum/XP
 
 ## **3.2 Quadro Comparativo**
-<p>
+<p style="text-align: justify;"> 
 O Quadro, a seguir, apresenta algumas características que podem ser relacionadas ao <strong>RAD</strong> e ao <strong>ScrumXP</strong>,  visando auxiliar no entendimento e justificativa da escolha do processo mais adequado ao caso da Meu Capilar, já que os dois são “parecidos” em certos aspectos.
 </p>
 
 <table border="1">
-  <thead style="background-color: #D3D3D3;">
+  <thead style="background-color: #f02464;">
     <tr>
       <th><strong>Características</strong></th>
       <th><strong>RAD</strong></th>
@@ -91,10 +91,10 @@ O Quadro, a seguir, apresenta algumas características que podem ser relacionada
 
 ## **3.3 Justificativa**
 
-<p>Com base na análise comparativa entre os modelos RAD e Scrum XP, optamos pela utilização do Scrum XP para o desenvolvimento do produto Meu Capilar, considerando os seguintes pontos:</p>
+<p style="text-align: justify;">Com base na análise comparativa entre os modelos RAD e Scrum XP, optamos pela utilização do Scrum XP para o desenvolvimento do produto Meu Capilar, considerando os seguintes pontos:</p>
 
 <ul>
-    <li><strong>Adaptação Contínua e Entregas Frequentes:</strong> O <strong>ScrumXP</strong> foi escolhido por sua abordagem ágil, que permite entregas rápidas por meio de sprints curtos e constantes ciclos de feedback com o cliente. Essa característica é essencial para o projeto Meu Capilar, que pode sofrer alterações frequentes conforme o uso e a percepção dos usuários. Ao final de cada sprint, é possível validar funcionalidades, identificar melhorias e adaptar o sistema com agilidade, garantindo que o produto esteja sempre alinhado às necessidades reais do público.</li>
-    <li><strong>Qualidade Técnica e Eficiência no Desenvolvimento:</strong> Diferentemente do RAD, que prioriza a prototipação rápida com menor foco em práticas técnicas estruturadas, o <strong>ScrumXP</strong> incorpora ferramentas como TDD (Test-Driven Development), integração contínua, refatoração e pair programming. Essas práticas não apenas elevam o nível de qualidade do código desde os primeiros ciclos de desenvolvimento, como também contribuem para a redução de erros, melhoria da manutenibilidade e robustez do sistema a longo prazo. No prazo atual do trabalho, entregar um MVP e código rodando é mais importante que design.</li>
-    <li><strong>Compatibilidade com a Estrutura do Projeto:</strong><strong> ScrumXP</strong> se mostra mais compatível com a natureza do projeto Meu Capilar, tanto pelo seu suporte a equipes pequenas e colaborativas quanto pela flexibilidade na gestão de requisitos. A leveza do processo, aliada a uma estrutura clara de papeis e entregas, facilita o trabalho do time e promove uma comunicação mais eficiente com o cliente. Além disso, sua escalabilidade o torna uma opção viável mesmo em cenários de crescimento futuro.</li>
+    <li style="text-align: justify;"><strong>Adaptação Contínua e Entregas Frequentes:</strong> O <strong>ScrumXP</strong> foi escolhido por sua abordagem ágil, que permite entregas rápidas por meio de sprints curtos e constantes ciclos de feedback com o cliente. Essa característica é essencial para o projeto Meu Capilar, que pode sofrer alterações frequentes conforme o uso e a percepção dos usuários. Ao final de cada sprint, é possível validar funcionalidades, identificar melhorias e adaptar o sistema com agilidade, garantindo que o produto esteja sempre alinhado às necessidades reais do público.</li>
+    <li style="text-align: justify;"><strong>Qualidade Técnica e Eficiência no Desenvolvimento:</strong> Diferentemente do RAD, que prioriza a prototipação rápida com menor foco em práticas técnicas estruturadas, o <strong>ScrumXP</strong> incorpora ferramentas como TDD (Test-Driven Development), integração contínua, refatoração e pair programming. Essas práticas não apenas elevam o nível de qualidade do código desde os primeiros ciclos de desenvolvimento, como também contribuem para a redução de erros, melhoria da manutenibilidade e robustez do sistema a longo prazo. No prazo atual do trabalho, entregar um MVP e código rodando é mais importante que design.</li>
+    <li style="text-align: justify;"><strong>Compatibilidade com a Estrutura do Projeto:</strong><strong> ScrumXP</strong> se mostra mais compatível com a natureza do projeto Meu Capilar, tanto pelo seu suporte a equipes pequenas e colaborativas quanto pela flexibilidade na gestão de requisitos. A leveza do processo, aliada a uma estrutura clara de papeis e entregas, facilita o trabalho do time e promove uma comunicação mais eficiente com o cliente. Além disso, sua escalabilidade o torna uma opção viável mesmo em cenários de crescimento futuro.</li>
 </ul>
