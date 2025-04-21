@@ -12,7 +12,7 @@ O Quadro, a seguir, apresenta algumas características que podem ser relacionada
 </p>
 
 <table border="1">
-  <thead style="background-color: #D3D3D3;">
+  <thead style="background-color: #f02464;">
     <tr>
       <th><strong>Características</strong></th>
       <th><strong>RAD</strong></th>
