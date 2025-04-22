@@ -7,10 +7,13 @@ Somos um grupo da disciplina de Requisitos de Software, oferecida pela Universid
 
 ## Vídeo da Unidade I
 
-Video da nossa apresentação da unidade 1 [Aqui](link_aqui).
+Video da nossa apresentação da unidade 1.
 <center>
 
-<iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<video width="560" height="315" controls preload="auto">
+<source src="video/apresentacao.mp4" type="video/mp4">
+Seu navegador não suporta o vídeo. Acesse ele manualmente no caminho /docs/video/apresentacao.mp4
+</video>
 </center>
 
 ## Equipe
