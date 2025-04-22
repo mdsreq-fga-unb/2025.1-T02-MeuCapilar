@@ -9,7 +9,11 @@ nav:
    - Visão do produto e projeto:
       - Cenário atual do cliente e do negócio: unidade1/sessao1.md
       - Solução proposta: unidade1/sessao2.md
-      
+      - Estrategias de Engenharia de Software: unidade1/sessao3.md
+      - Cronogramas e Entregas: unidade1/sessao4.md
+      - Interação entre Equipe e Cliente: unidade1/sessao5.md
+   - Lições Aprendidas: 
+         - Unidade I: unidade1/licoesAprendidas.md
 
 theme:
    name: material 

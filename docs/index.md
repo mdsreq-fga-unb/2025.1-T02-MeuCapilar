@@ -1,7 +1,20 @@
-<div align="center"><img src="" height=auto width=auto></div>
+# 2025.1-T02-MeuCapilar
+
+![Meu_Capilar](imagens/logo1_page-0001.jpg)
 
 ## Quem Somos?
 Somos um grupo da disciplina de Requisitos de Software, oferecida pela Universidade de Brasília e ministrada pelo Professor Dr. George Marsicano. A disciplina tem como foco principal a compreensão detalhada das necessidades de um sistema de software, buscando garantir que todos os envolvidos no projeto compartilhem uma visão clara e alinhada desde as etapas iniciais do desenvolvimento.
+
+## Vídeo da Unidade I
+
+Video da nossa apresentação da unidade 1.
+<center>
+
+<video width="560" height="315" controls preload="auto">
+<source src="video/apresentacao.mp4" type="video/mp4">
+Seu navegador não suporta o vídeo. Acesse ele manualmente no caminho /docs/video/apresentacao.mp4
+</video>
+</center>
 
 ## Equipe
 
