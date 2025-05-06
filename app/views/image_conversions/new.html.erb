@@ -1,0 +1,19 @@
+<h1>Converter Imagem BMP para PNG</h1>
+
+<%= form_with(model: @image_conversion, local: true) do |form| %>
+  <div>
+    <%= form.label :uploaded_image, "Selecione a imagem BMP" %>
+    <%= form.file_field :uploaded_image, accept: 'image/bmp' %>
+  </div>
+  <div>
+    <%= form.submit "Converter" %>
+  </div>
+<% end %>
+
+<% if @image_conversion.errors.any? %>
+  <ul>
+    <% @image_conversion.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

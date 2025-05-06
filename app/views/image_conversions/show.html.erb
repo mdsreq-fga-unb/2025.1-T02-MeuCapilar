@@ -1,0 +1,18 @@
+<h1>Conversão Concluída</h1>
+
+<p><strong>Imagem original (BMP):</strong></p>
+<% if @image_conversion.uploaded_image.attached? %>
+  <%= image_tag url_for(@image_conversion.uploaded_image), width: 300 %>
+<% end %>
+
+<p><strong>Imagem convertida (PNG):</strong></p>
+<% if @image_conversion.converted_image.attached? %>
+  <%= image_tag url_for(@image_conversion.converted_image), width: 300 %>
+  <br>
+  <%= link_to "Baixar PNG", download_image_conversion_path(@image_conversion), class: "button" %>
+<% else %>
+  <p>Conversão falhou.</p>
+<% end %>
+
+<br>
+<%= link_to "Converter outra imagem", new_image_conversion_path %>
