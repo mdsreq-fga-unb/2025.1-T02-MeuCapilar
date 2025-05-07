@@ -7,6 +7,10 @@ gem "rails", "~> 7.1.5", ">= 7.1.5.1"
 
 gem 'dotenv-rails'
 
+# Gemas para manipularmos imagens
+gem 'activestorage'
+gem 'activestorage-validator'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
