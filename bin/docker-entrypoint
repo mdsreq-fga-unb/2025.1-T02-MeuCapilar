@@ -2,7 +2,12 @@
 
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  # Prepare the database
   ./bin/rails db:prepare
+  
+  # Build Tailwind CSS assets
+  echo "Compiling Tailwind CSS assets..."
+  ./bin/rails tailwindcss:build
 fi
 
 exec "${@}"
