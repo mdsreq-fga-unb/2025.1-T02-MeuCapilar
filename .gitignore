@@ -36,3 +36,7 @@
 
 /node_modules/
 .vscode/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+/app/assets/tailwind/*
