@@ -39,4 +39,3 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-/app/assets/tailwind/*
