@@ -107,16 +107,31 @@ Siga estas etapas para iniciar o ambiente de desenvolvimento do projeto:
 
     * O flag `--build` garante que a imagem da aplicação web seja construída utilizando as instruções do `Dockerfile`. Isso é necessário na primeira vez que você executa o comando ou sempre que o `Dockerfile` for modificado.
 
-4.  **Criar e Migrar o Banco de Dados:**
+4.  **Criar o Banco de Dados:**
 
-    Após a conclusão do processo, entre no container da aplicação web para executar os comandos do Rails que criarão o banco de dados e executarão as migrations:
+    Após subir os containers, você precisa criar o banco local com base no schema.rb já versionado:
 
     ```bash
-    docker-compose exec web bin/rails db:create db:migrate
+    docker-compose exec web bin/rails db:setup
     ```
 
-    Este comando primeiro cria o banco de dados PostgreSQL (se ainda não existir) e depois executa as migrations definidas no seu projeto Rails para configurar as tabelas.
+    Esse comando:
 
+    - Cria o banco de dados (db:create)
+
+    - Carrega o schema (db:schema:load)
+
+    - E, se existir, roda os seeds (db:seed)
+
+    Alternativamente, você pode usar:
+
+    ```bash
+    docker-compose exec web bin/rails db:prepare
+    ```
+
+   Esse comando detecta automaticamente se deve carregar o schema.rb ou executar as migrations, tornando o setup mais flexível.
+
+    
 5.  **Acessar a Aplicação Rails:**
 
     Após a conclusão das migrations, a aplicação Rails estará acessível no seu navegador através do seguinte endereço:
