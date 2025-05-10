@@ -9,7 +9,7 @@ WORKDIR /rails
 
 # Set production environment
 ENV RAILS_ENV="development" \
-    BUNDLE_DEPLOYMENT="0" \ 
+    BUNDLE_DEPLOYMENT="0" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
@@ -18,9 +18,9 @@ ENV RAILS_ENV="development" \
 FROM base as build
 
 # Install packages needed to build gems
-# --- ADICIONADO libyaml-dev AQUI ---
+# --- ADICIONADO libyaml-dev E imagemagick AQUI ---
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config libyaml-dev && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config libyaml-dev imagemagick && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
@@ -44,7 +44,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libvips postgresql-client && \
+    apt-get install --no-install-recommends -y curl libvips postgresql-client imagemagick && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application

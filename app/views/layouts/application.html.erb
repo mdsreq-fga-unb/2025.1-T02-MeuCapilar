@@ -11,9 +11,33 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-100 min-h-screen">
+    <header class="bg-indigo-600 text-white shadow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <%= link_to root_path, class: "font-bold text-xl" do %>
+                MeuCapilar
+              <% end %>
+            </div>
+            <nav class="ml-10 flex space-x-4">
+              <%= link_to "Início", root_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500" %>
+              <%= link_to "Conversor de Imagens", image_converters_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500" %>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <main>
       <%= yield %>
     </main>
+
+    <footer class="bg-white border-t mt-auto py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-gray-500 text-sm">&copy; <%= Date.today.year %> MeuCapilar - Solução para Terapeutas Capilares</p>
+      </div>
+    </footer>
   </body>
 </html>

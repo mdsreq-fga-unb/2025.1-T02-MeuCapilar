@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    errors:
+      models:
+        image_converter:
+          attributes:
+            original_images:
+              content_type: "deve ser no formato BMP"
+              limit: "limite máximo de 10 imagens excedido"
+  
+  errors:
+    messages:
+      content_type: "formato não é válido"
+      attached: "deve estar anexado" 
