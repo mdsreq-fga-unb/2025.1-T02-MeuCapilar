@@ -1,0 +1,70 @@
+<div class="max-w-7xl mx-auto my-8 px-4 sm:px-6 lg:px-8">
+  <% if notice %>
+    <div class="mb-6 bg-green-50 border-l-4 border-green-400 p-4 rounded-md">
+      <p class="text-green-700"><%= notice %></p>
+    </div>
+  <% end %>
+
+  <div class="mb-6 flex items-center justify-between">
+    <h1 class="text-2xl font-bold"><%= @image_converter.name.presence || "Conversão ##{@image_converter.id}" %></h1>
+    <div class="flex space-x-2">
+      <%= link_to "Voltar para lista", image_converters_path, class: "px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200" %>
+      <%= link_to "Nova conversão", new_image_converter_path, class: "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700" %>
+    </div>
+  </div>
+
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="p-6">
+      <h2 class="text-lg font-bold mb-4">Detalhes da conversão</h2>
+      
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div>
+          <p class="text-sm text-gray-500">Data da conversão</p>
+          <p class="font-medium"><%= @image_converter.created_at.strftime("%d/%m/%Y às %H:%M") %></p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Quantidade de imagens</p>
+          <p class="font-medium"><%= @image_converter.original_images.count %> imagens</p>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <h3 class="text-md font-semibold mb-3">Imagens originais (BMP)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <% @image_converter.original_images.each do |image| %>
+            <div class="border border-gray-200 rounded-md overflow-hidden">
+              <div class="aspect-w-1 aspect-h-1 w-full bg-gray-100">
+                <%= image_tag(url_for(image), alt: image.filename, class: "object-contain w-full h-full") %>
+              </div>
+              <div class="p-2 text-xs truncate" title="<%= image.filename %>">
+                <%= image.filename %>
+              </div>
+              <div class="px-2 pb-2">
+                <%= link_to "Download", rails_blob_path(image, disposition: "attachment"), class: "text-xs text-indigo-600 hover:underline" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-md font-semibold mb-3">Imagens convertidas (PNG)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <% @image_converter.converted_images.each do |image| %>
+            <div class="border border-gray-200 rounded-md overflow-hidden">
+              <div class="aspect-w-1 aspect-h-1 w-full bg-gray-100">
+                <%= image_tag(url_for(image), alt: image.filename, class: "object-contain w-full h-full") %>
+              </div>
+              <div class="p-2 text-xs truncate" title="<%= image.filename %>">
+                <%= image.filename %>
+              </div>
+              <div class="px-2 pb-2">
+                <%= link_to "Download", rails_blob_path(image, disposition: "attachment"), class: "text-xs text-indigo-600 hover:underline" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

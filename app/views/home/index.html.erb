@@ -32,9 +32,7 @@
               <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-pink-600 hover:bg-pink-700">
                 Começar análise
               </a>
-              <a href="#" class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                Ver produtos
-              </a>
+              <%= link_to "Conversor de Imagens", image_converters_path, class: "inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
             </div>
           </div>
           <div class="mt-10 lg:mt-0 lg:w-1/2">
@@ -58,6 +56,12 @@
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                   </svg>
                   <span>Dicas de tratamento capilar</span>
+                </li>
+                <li class="flex items-center">
+                  <svg class="h-5 w-5 text-pink-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Conversor de imagens BMP para PNG</span>
                 </li>
               </ul>
             </div>
@@ -99,6 +103,26 @@
             <p class="text-gray-600">
               Acompanhe a evolução do seu cabelo com nosso histórico de tratamentos.
             </p>
+          </div>
+        </div>
+        
+        <!-- New Feature Highlight -->
+        <div class="mt-12 bg-indigo-50 p-6 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-2/3 mb-6 md:mb-0 md:pr-6">
+              <h3 class="text-2xl font-bold text-indigo-700 mb-3">Conversor de Imagens BMP para PNG</h3>
+              <p class="text-gray-600 mb-4">
+                Experimente nossa nova ferramenta de conversão de imagens. Faça upload de até 10 imagens BMP e receba-as convertidas para o formato PNG, ideal para relatórios e análises capilares.
+              </p>
+              <%= link_to "Acessar conversor", image_converters_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700" %>
+            </div>
+            <div class="md:w-1/3 flex justify-center">
+              <div class="w-32 h-32 rounded-full bg-indigo-200 flex items-center justify-center">
+                <svg class="h-16 w-16 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
