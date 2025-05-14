@@ -1,0 +1,8 @@
+tmp/*
+log/*
+config/*
+storage/
+tmp/
+.env
+.env.example
+app/
