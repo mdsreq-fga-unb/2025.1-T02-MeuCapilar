@@ -14,6 +14,9 @@ nav:
       - Interação entre Equipe e Cliente: unidade1/sessao5.md
    - Lições Aprendidas: 
          - Unidade I: unidade1/licoesAprendidas.md
+   - Sprints:
+      - Sprint 2: 
+        - Planning: sprints/sprint02/planning.md
 
 theme:
    name: material 
