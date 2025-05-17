@@ -1,10 +1,13 @@
 # **5. INTERAÇÃO ENTRE EQUIPE E CLIENTE**
 
 ## **5.1 Composição da Equipe**
-<p style="text-align: justify;">Nossa equipe é formada por 6 pessoas, e como estamos utilizando do processo de ScrumXP separamos a equipe da seguinte maneira:</p>
+<p style="text-align: justify;">
+Nossa equipe é composta por seis integrantes e, como estamos adotando o processo ScrumXP, optamos por implementar um modelo de Product Owner (PO) rotativo — ou seja, o PO será diferente a cada sprint. Essa abordagem foi escolhida para que todos tenham a oportunidade de se envolver ativamente com os requisitos, que são o foco principal da disciplina. Além do papel rotativo de PO,os membros terão papéis ativos/passivos nas entregas relacionadas a requisitos, de forma que todos estejam cientes do que está sendo produzido e tenham contribuições nessa disciplina. A equipe foi organizada da seguinte forma para esta sprint:
+</p>
+
 
 <ol>
-  <li style="text-align: justify;">José Rabelo: Product Owner(PO), será aquele responsável por representar o cliente e priorizar o backlog, além de garantir que a equipe esteja focada.</li>
+  <li style="text-align: justify;">José Rabelo: Infraestrutura, será aquele responsável por criar toda a infraestrutura do projeto, manter nosso ambiente de desenvolvimento uniforme e as pipelines funcionais para garantir qualidade nas entregas durante todo o andamento do projeto. É nosso maior elo com o cliente, apesar disso, ele não será o PO permanente.</li>
   <li style="text-align: justify;">Ian Costa: Scrum Master, o responsável por facilitar o processo ágil. É aquele que organiza e conduz as reuniões e garante um bom uso do framework.</li>
   <li style="text-align: justify;">Miguel Pires, Cauã Araujo, Pedro Luciano, Wallyson Souza: Time de desenvolvimento.</li>
 </ol>
@@ -20,8 +23,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>Product Owner(PO)</td>
-      <td>Responsável por maximizar o valor do produto e gerenciar o backlog do produto, definindo prioridades com base no valor de negócio.</td>
+      <td>Infraestrutura/Devops</td>
+      <td>Responsável por configurar o ambiente que será utilizado, configurar pipelines, consequentemente, agir como facilitador do trabalho dos outros membros da equipe.</td>
       <td>José Rabelo</td>
       <td>-</td>
     </tr>

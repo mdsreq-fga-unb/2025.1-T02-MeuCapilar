@@ -17,7 +17,7 @@
     <tr>
       <td><strong>Sprint 1</strong></td>
       <td>15/04/2025</td>
-      <td>28/04/2025</td>
+      <td>12/05/2025</td>
       <td>Construção do Backlog e configuração dos ambientes</td>
         <td>- Definição do backlog  inicial.  
             - Configuração da  
@@ -30,8 +30,8 @@
     </tr>
     <tr>
       <td><strong>Sprint 2</strong></td>
-      <td>29/04/2025</td>
-      <td>12/05/2025</td>
+      <td>13/05/2025</td>
+      <td>26/05/2025</td>
       <td>Cadastro de Agendamentos clientes</td>
         <td>
             - Funcionalidade de cadastro de cliente.
@@ -42,21 +42,23 @@
     </tr>
     <tr>
       <td><strong>Sprint 3</strong></td>
-      <td>13/04/2025</td>
-      <td>26/04/2025</td>
-      <td>Geração de Relatórios</td>
-        <td>- Geração automática de relatórios com campos editáveis.
+      <td>27/05/2025</td>
+      <td>09/06/2025</td>
+      <td><strong>Entrega Parcial 1(Release): </strong>Geração de Relatórios</td>
+        <td>
+            - Geração automática de relatórios com campos editáveis.
             - Upload de imagens organizadas por cliente.
             - Armazenamento seguro.
         </td>
-      <td>O cliente valida a praticidade e organização dos relatórios.</td>
+      <td>O cliente valida a praticidade e organização dos relatórios. Subimos para produção</td>
     </tr>
     <tr>
       <td><strong>Sprint 4</strong></td>
-      <td>27/05/2025</td>
-      <td>09/06/2025</td>
-      <td>Primeira Entrega Parcial (Checkout) .Histórico e consulta dos atendimentos</td>
-        <td><strong>Entrega Parcial 1:</strong> - Visualização do histórico de sessões por cliente.
+      <td>10/06/2025</td>
+      <td>23/06/2025</td>
+      <td><strong>Entrega Parcial 2(Release): </strong> - Histórico e consulta dos atendimentos</td>
+        <td>
+            - Visualização do histórico de sessões por cliente.
             - Edição e reenvio de relatórios anteriores.
             - Integração com armazenamento externo (AWS/Firebase).
         </td>
@@ -64,10 +66,10 @@
     </tr>
     <tr>
       <td><strong>Sprint 5</strong></td>
-      <td>10/06/2025</td>
-      <td>23/06/2025</td>
-      <td>Módulo Financeiro e Relatórios Gerenciais</td>
-        <td><strong>Entrega Parcial 2:</strong>
+      <td>24/06/2025</td>
+      <td>07/07/2025</td>
+      <td><strong>Entrega Parcial 3(Release): </strong>Módulo Financeiro e Relatórios Gerenciais</td>
+        <td>
             - Registro de pacotes e sessões.
             - Lançamentos financeiros separados da terapia capilar.
             - Relatórios de faturamento por cliente e período.
@@ -76,13 +78,13 @@
     </tr>
     <tr>
       <td><strong>Sprint 6</strong></td>
-      <td>24/06/2025</td>
-      <td>07/07/2025</td>
+      <td>08/07/2025</td>
+      <td>14/07/2025</td>
       <td>Ajustes Finais e Preparação para Homologação</td>
         <td>- Correções gerais com base nos feedbacks.
-            - Testes de usabilidade.
+            - Testes de requisitos não funcionais.
             - Refatoração.
-            - Preparação do ambiente de homologação.
+      
         </td>
       <td>Validação das recomendações, ajustes baseados em feedbacks.</td>
     </tr>
