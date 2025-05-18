@@ -68,4 +68,8 @@
 
 ## **2.6 Impacto da Solução**
 
-<p style="text-align: justify;">A solução proposta trará ganho significativo de produtividade para a profissional, tendo em vista que a mesma gasta bastante tempo criando, entregando manualmente os relatórios e a parte financeira desta área da terapia capilar, eliminará retrabalho, padronizará os diagnósticos, e profissionalizará a entrega dos relatórios. Para os clientes, permitirá acesso ao seu histórico de forma segura, visualmente organizada e consultável a qualquer momento, aumentando a percepção de valor do serviço e favorecendo a fidelização. Além disso, abre espaço para futuras expansões e comercialização como produto SaaS para outras terapeutas capilares.</p>
+<p style="text-align: justify;">Espera-se que a solução proposta traga um ganho significativo de produtividade para a profissional, considerando que atualmente é despendido um tempo considerável na criação e entrega manual dos relatórios, bem como no controle da parte financeira da terapia capilar. A solução poderá eliminar retrabalhos, padronizar os diagnósticos e profissionalizar a entrega dos relatórios.
+
+Para os clientes, espera-se que a plataforma proporcione acesso ao histórico de atendimentos de forma segura, visualmente organizada e disponível para consulta a qualquer momento, o que pode aumentar a percepção de valor do serviço e favorecer a fidelização.
+
+Adicionalmente, a solução poderá abrir espaço para futuras expansões e comercialização como um produto SaaS voltado para outras profissionais da área de terapia capilar.</p>
