@@ -33,8 +33,8 @@
 <ul>
     <li><strong>Frontend:</strong> React.js / HTML e CSS</li>
     <li><strong>Backend:</strong> Ruby on Rails</li>
-    <li><strong>Banco de Dados:</strong> PostgreSQL</li>
-    <li><strong>SGDB:</strong> DBeaver</li>
+    <li><strong>SGDB:</strong> PostgreSQL</li>
+    <li><strong>Interface Gráfica do Banco:</strong> DBeaver</li>
     <li><strong>Armazenamento de Imagens:</strong> Firebase Storage</li>
     <li><strong>Geração de PDF:</strong> Biblioteca como PDFMake</li>
     <li><strong>Integração com IA:</strong> API da OpenAI (ChatGPT)</li>
