@@ -11,6 +11,10 @@ gem 'dotenv-rails'
 gem 'activestorage'
 gem 'activestorage-validator'
 
+# Autenticação e autorização
+gem 'devise'
+gem 'cancancan'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

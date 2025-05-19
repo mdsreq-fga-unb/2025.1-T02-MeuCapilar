@@ -1,0 +1,122 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <span class="text-2xl font-bold text-pink-600">MeuCapilar</span>
+          <span class="ml-4 text-gray-500">| Painel do Paciente</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700"><%= current_user.name %></span>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" %>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="px-4 py-6 sm:px-0">
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-6">
+        <div class="px-4 py-5 sm:px-6">
+          <h2 class="text-lg leading-6 font-medium text-gray-900">Painel do Paciente</h2>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500">Bem-vindo ao seu painel de acompanhamento.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <!-- Informações do Terapeuta -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Meu Terapeuta</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500">Informações do profissional.</p>
+          </div>
+          <div class="border-t border-gray-200">
+            <% if @therapist.present? %>
+              <div class="px-4 py-5 sm:p-6">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0 h-12 w-12 bg-pink-100 rounded-full flex items-center justify-center">
+                    <svg class="h-8 w-8 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-medium text-gray-900"><%= @therapist.name %></h4>
+                    <p class="text-sm text-gray-500"><%= @therapist.specialty %></p>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="px-4 py-5 sm:px-6 text-center">
+                <p class="text-sm text-gray-500">Nenhum terapeuta atribuído.</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Próximos Agendamentos -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+          <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Próximos Atendimentos</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500">Seus agendamentos futuros.</p>
+          </div>
+          <div class="border-t border-gray-200">
+            <% if @upcoming_appointments.present? %>
+              <ul class="divide-y divide-gray-200">
+                <% @upcoming_appointments.each do |appointment| %>
+                  <li class="px-4 py-4 sm:px-6 hover:bg-gray-50">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <p class="text-sm font-medium text-gray-900"><%= appointment.date.strftime("%d/%m/%Y") %></p>
+                        <p class="text-sm text-gray-500"><%= appointment.date.strftime("%H:%M") %></p>
+                      </div>
+                      <div>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          Confirmado
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="px-4 py-5 sm:px-6 text-center">
+                <p class="text-sm text-gray-500">Nenhum agendamento próximo.</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Histórico de Sessões -->
+      <div class="mt-6 bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Histórico de Sessões</h3>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500">Consultas anteriores e relatórios.</p>
+        </div>
+        <div class="border-t border-gray-200">
+          <% if @sessions.present? %>
+            <ul class="divide-y divide-gray-200">
+              <% @sessions.each do |session| %>
+                <li class="px-4 py-4 sm:px-6 hover:bg-gray-50">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-gray-900"><%= session.created_at.strftime("%d/%m/%Y") %></p>
+                      <p class="text-sm text-gray-500 truncate"><%= session.notes.truncate(100) if session.notes.present? %></p>
+                    </div>
+                    <div>
+                      <a href="#" class="text-pink-600 hover:text-pink-900">Ver detalhes</a>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div class="px-4 py-5 sm:px-6 text-center">
+              <p class="text-sm text-gray-500">Nenhuma sessão registrada ainda.</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 

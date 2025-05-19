@@ -66,6 +66,67 @@
       </div>
     </div>
 
+    <!-- Login Section -->
+    <div class="py-12 bg-white">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-pink-50 rounded-xl p-6 sm:p-8 shadow-lg">
+          <h3 class="text-2xl font-semibold text-pink-700 mb-6 text-center">Acesso ao Sistema</h3>
+          
+          <div id="user-type-selector" class="flex items-center justify-center gap-4 mb-6">
+            <button id="therapist-btn" class="user-type-btn flex flex-col items-center p-4 rounded-lg border-2 border-transparent hover:border-pink-500 focus:outline-none focus:border-pink-500 w-1/2 transition-all shadow-sm <%= 'border-pink-500 bg-pink-100' if session[:user_type] == 'therapist' %>" data-type="therapist">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pink-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span class="text-sm font-medium text-gray-700">Sou Terapeuta</span>
+            </button>
+            
+            <button id="patient-btn" class="user-type-btn flex flex-col items-center p-4 rounded-lg border-2 border-transparent hover:border-pink-500 focus:outline-none focus:border-pink-500 w-1/2 transition-all shadow-sm <%= 'border-pink-500 bg-pink-100' if session[:user_type] == 'patient' %>" data-type="patient">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pink-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <span class="text-sm font-medium text-gray-700">Sou Paciente</span>
+            </button>
+          </div>
+          
+          <!-- Formulário de Login -->
+          <div id="login-form" class="<%= 'hidden' unless session[:user_type].present? %>">
+            <%= form_with url: user_session_path, method: :post, class: "space-y-4", data: { turbo: false } do |f| %>
+              <%= hidden_field_tag :user_type, params[:user_type] || session[:user_type] %>
+              
+              <div>
+                <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.email_field :email, name: "user[email]", autofocus: true, autocomplete: "email", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm" %>
+              </div>
+              
+              <div>
+                <%= f.label :password, "Senha", class: "block text-sm font-medium text-gray-700" %>
+                <%= f.password_field :password, name: "user[password]", autocomplete: "current-password", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm" %>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <%= f.check_box :remember_me, name: "user[remember_me]", class: "h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded" %>
+                  <%= f.label :remember_me, "Lembrar de mim", class: "ml-2 block text-sm text-gray-900" %>
+                </div>
+                <div class="text-sm">
+                  <%= link_to "Esqueci minha senha", new_user_password_path, class: "font-medium text-pink-600 hover:text-pink-500" %>
+                </div>
+              </div>
+              
+              <div>
+                <%= f.submit "Entrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
+              </div>
+            <% end %>
+          </div>
+          
+          <!-- Mensagem informativa quando nenhum tipo está selecionado -->
+          <div id="select-type-message" class="text-center py-6 <%= 'hidden' if session[:user_type].present? %>">
+            <p class="text-gray-500">Por favor, selecione seu tipo de usuário para fazer login.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Features Section -->
     <div class="bg-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,7 +194,7 @@
       </div>
       <div class="mt-8 border-t border-gray-700 pt-8 flex items-center justify-between">
         <p class="text-gray-400 text-sm">
-          &copy; 2024 MeuCapilar. Todos os direitos reservados.
+          &copy; 2025 MeuCapilar. Todos os direitos reservados.
         </p>
         <div class="flex space-x-6">
           <a href="#" class="text-gray-400 hover:text-white">
@@ -145,7 +206,7 @@
           <a href="#" class="text-gray-400 hover:text-white">
             <span class="sr-only">Instagram</span>
             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683-.748 1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
             </svg>
           </a>
           <a href="#" class="text-gray-400 hover:text-white">
@@ -159,3 +220,90 @@
     </div>
   </footer>
 </div>
+
+<!-- JavaScript para alternar entre os tipos de usuário -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const therapistBtn = document.getElementById('therapist-btn');
+    const patientBtn = document.getElementById('patient-btn');
+    const loginForm = document.getElementById('login-form');
+    const selectTypeMessage = document.getElementById('select-type-message');
+    const userTypeField = document.querySelector('input[name="user_type"]');
+    
+    function setActiveUserType(type) {
+      // Remover classes ativas de todos os botões
+      document.querySelectorAll('.user-type-btn').forEach(btn => {
+        btn.classList.remove('border-pink-500', 'bg-pink-100');
+        btn.classList.add('border-transparent'); // Garante que a borda padrão seja transparente
+      });
+      
+      // Adicionar classe ativa ao botão selecionado e remover transparente
+      if (type === 'therapist' && therapistBtn) {
+        therapistBtn.classList.add('border-pink-500', 'bg-pink-100');
+        therapistBtn.classList.remove('border-transparent');
+      } else if (type === 'patient' && patientBtn) {
+        patientBtn.classList.add('border-pink-500', 'bg-pink-100');
+        patientBtn.classList.remove('border-transparent');
+      }
+      
+      // Mostrar ou esconder o formulário de login e a mensagem
+      if (type && loginForm && selectTypeMessage && userTypeField) {
+        loginForm.classList.remove('hidden');
+        selectTypeMessage.classList.add('hidden');
+        userTypeField.value = type; // Atualizar o campo oculto do formulário
+        
+        // Atualizar a URL para incluir o parâmetro user_type sem redirecionar
+        const url = new URL(window.location);
+        url.searchParams.set('user_type', type);
+        window.history.pushState({}, '', url);
+      } else if (loginForm && selectTypeMessage) {
+        loginForm.classList.add('hidden');
+        selectTypeMessage.classList.remove('hidden');
+      }
+    }
+    
+    // Event listeners para os botões
+    if (therapistBtn) {
+      therapistBtn.addEventListener('click', () => setActiveUserType('therapist'));
+    }
+    if (patientBtn) {
+      patientBtn.addEventListener('click', () => setActiveUserType('patient'));
+    }
+    
+    // Verificar se já existe um tipo selecionado na URL ou na sessão para definir o estado inicial
+    const urlParams = new URLSearchParams(window.location.search);
+    let initialUserType = urlParams.get('user_type');
+    
+    // Se não estiver na URL, verificar a sessão do Rails (se o campo oculto já foi populado por ela)
+    if (!initialUserType && userTypeField && userTypeField.value) {
+      initialUserType = userTypeField.value;
+    }
+
+    // Se o Devise retornou um erro (flash.alert está presente) e session[:user_type] existe,
+    // isso indica uma falha de login, então priorizamos session[:user_type].
+    <% if flash[:alert].present? && session[:user_type].present? %>
+      // Verificamos se a mensagem de erro é de fato uma falha de login.
+      const alertMessage = "<%= j flash[:alert] %>";
+      if (alertMessage.includes("Invalid Email or password.") || alertMessage.includes("Usuário ou senha inválidos")) {
+        initialUserType = '<%= session[:user_type] %>';
+      }
+    <% end %>
+
+    if (initialUserType) {
+      setActiveUserType(initialUserType);
+      // Focar no campo de email se o formulário estiver visível
+      if (loginForm && !loginForm.classList.contains('hidden')) {
+        const emailInput = loginForm.querySelector('input[name="user[email]"]');
+        if (emailInput) {
+          emailInput.focus();
+        }
+      }
+    } else {
+      // Garante que o formulário esteja oculto se nenhum tipo estiver selecionado inicialmente
+       if (loginForm && selectTypeMessage) {
+        loginForm.classList.add('hidden');
+        selectTypeMessage.classList.remove('hidden');
+      }
+    }
+  });
+</script>
