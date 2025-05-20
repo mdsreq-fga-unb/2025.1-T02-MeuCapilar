@@ -58,6 +58,12 @@ Nossa equipe é composta por seis integrantes e, como estamos adotando o process
       <td>Miguel Pires</td>
       <td>Pedro, José, Ian</td>
     </tr>
+    <tr>
+      <td>Analista de Requisitos</td>
+      <td>Responsável por coletar, documentar e gerenciar requisitos de software, traduzindo as necessidades dos stakeholders em especificações claras e priorizadas para garantir que o produto final atenda aos objetivos do negócio com qualidade e consistência.</td>
+      <td>José Rabelo</td>
+      <td>-</td>
+    </tr>
   </tbody>
 </table>
 
