@@ -1,12 +1,15 @@
 # Gravação da Planning
 
-
+[Clique Aqui (Dísponível apenas para pessoas em UnB.br).](https://unbbr.sharepoint.com/:v:/s/MeuCapilar-Requisitos/EZrvf1QtDRNAoSpjGVQYbUgB-Ni9tupJKi2_lTczfSHjpg?e=lzMDP0&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
 # 📝 Ata de Planejamento – Sprint 02
 
 **Data:** 13/05/2025  
+
 **Horário:** 20:30 – 21:00
+
 **Local:** Microsoft Teams
+
 **Participantes:**  
 - José André  
 - Cauan Araujo(Product Owner)  
@@ -25,30 +28,43 @@
 
 ## 📌 Itens selecionados do Product Backlog
 
-| ID | Descrição                                        | Prioridade | Estimativa (Story Points) |
-|----|--------------------------------------------------|------------|----------------------------|
-| #08 | Criar tela de login                             | Alta       | 3                          |
-| #09 | Criar tela de cadastro                          | Alta       | 3                          |
-| #10 | Validar campos de e-mail e senha                | Alta       | 2                          |
-| #11 | Conectar formulário ao banco de dados (SQLite)  | Média      | 5                          |
-| #12 | Autenticar usuário e redirecionar para dashboard| Alta       | 5                          |
+| ID        | Descrição                                       | Prioridade | Estimativa (Story Points) | Link da Issue       |
+|-----------|-------------------------------------------------|------------|----------------------------|----------------------|
+| #US1.1.1  | Cadastrar novo paciente                         | Alta       | 3                          | [US1.1.1](https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar/issues/16)    |
+| #US1.1.2  | Buscar e visualizar informações do paciente     | Alta       | 3                          | [US1.1.2](https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar/issues/17)    |
+| #US1.1.3  | Editar os dados do paciente                     | Alta       | 2                          | [US1.1.3](https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar/issues/18)    |
+| #US1.1.4  | Deletar um paciente                             | Média      | 2                          | [US1.1.4](https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar/issues/19)    |
+
+
 
 ---
 
 ## 🛠️ Plano de Execução
 
-Os itens acima foram decompostos em tarefas técnicas e distribuídos entre os membros da equipe. O time acordou a seguinte divisão inicial:
+Os itens selecionados do backlog foram decompostos em tarefas técnicas e distribuídos entre os membros da equipe da seguinte forma:
 
-- **João Lima**: Tela de login + autenticação.
-- **Maria Castro**: Tela de cadastro + validação de campos.
-- **Lucas Oliveira**: Integração com banco de dados e testes funcionais.
+ **José André**:  
+  - Implementar a funcionalidade de cadastro de novo paciente (#US1.1.1)  
+  - Validação geral das funcionalidades e revisão de código
+
+**Ian Costa (Scrum Master)**:  
+  - Implementar a funcionalidade de busca e visualização das informações do paciente (#US1.1.2)
+
+**Miguel Pires e Wallyson Souza**:  
+  - Implementar a edição dos dados do paciente (#US1.1.3)  
+  
+**Pedro Luciano**:  
+  - Implementar a exclusão de paciente (#US1.1.4)  
+
+**Cauã Araujo**:  
+  - Prototipação de média e alta fidelidade no Figma.
 
 ---
 
 ## 📅 Duração da Sprint
 
 - **Início:** 13/05/2025  
-- **Término:** 27/05/2025  
+- **Término:** 26/05/2025  
 - **Duração:** 14 dias
 
 ---
@@ -62,9 +78,7 @@ Os itens acima foram decompostos em tarefas técnicas e distribuídos entre os m
 
 ## 📝 Observações
 
-- A equipe acordou manter os dailies às 9h via Discord.
-- O PO reforçou a importância da responsividade nas telas.
-- Próxima cerimônia agendada: **Daily 14/05 às 9h**
+- Próxima cerimônia agendada: **Daily 19/05 às 21h30**
 
 ---
 

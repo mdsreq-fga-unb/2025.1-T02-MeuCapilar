@@ -17,6 +17,7 @@ nav:
    - Sprints:
       - Sprint 2: 
         - Planning: sprints/sprint02/planning.md
+        - Daily 1: sprints/sprint02/daily1.md
 
 theme:
    name: material 
