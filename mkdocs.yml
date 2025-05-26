@@ -10,8 +10,13 @@ nav:
       - Cenário atual do cliente e do negócio: unidade1/sessao1.md
       - Solução proposta: unidade1/sessao2.md
       - Estrategias de Engenharia de Software: unidade1/sessao3.md
-      - Cronogramas e Entregas: unidade1/sessao4.md
-      - Interação entre Equipe e Cliente: unidade1/sessao5.md
+      - Engenharia de Requisitos: unidade2/engeRequisitos.md
+      - Cronogramas e Entregas: unidade1/sessao5.md
+      - Interação entre Equipe e Cliente: unidade1/sessao6.md
+   - Backlog:
+      - Lista de Requisitos: backlog/sessao7.md
+      - User Stories: backlog/userStories.md
+      - DoR e DoD: backlog/sessao8.md
    - Lições Aprendidas: 
          - Unidade I: unidade1/licoesAprendidas.md
    - Sprints:
