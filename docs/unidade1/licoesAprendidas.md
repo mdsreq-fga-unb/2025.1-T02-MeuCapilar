@@ -26,4 +26,4 @@ A Unidade 2 transcorreu **sem conflitos internos**. O time conseguiu **aplicar o
 
 ### Papéis bem definidos
 - Atribuir um **responsável por história de usuário** (PO) **diminuiu dúvidas** sobre “quem faz o quê”.
-- Na próxima unidade **manteremos essa**
+- Na próxima unidade **manteremos essa organização** 
