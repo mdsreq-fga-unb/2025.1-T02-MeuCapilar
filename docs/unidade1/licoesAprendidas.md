@@ -14,3 +14,16 @@
 </ul>
 
 <p>Com essas mudanças, ficamos mais entrosados e organizados, o que deve contribuir bastante para melhorar o andamento das próximas entregas do nosso projeto.</p>
+
+
+## **6.2 Unidade 2**
+
+A Unidade 2 transcorreu **sem conflitos internos**. O time conseguiu **aplicar o feedback recebido**, manter **boa comunicação** e **entregar todas as histórias planejadas**.
+
+### Processo de trabalho
+- As **dailies curtas** (≤ 10 min) criadas deram **visibilidade ao andamento das tarefas** e **reduziram retrabalho**.
+- Continuaremos com o mesmo formato.
+
+### Papéis bem definidos
+- Atribuir um **responsável por história de usuário** (PO) **diminuiu dúvidas** sobre “quem faz o quê”.
+- Na próxima unidade **manteremos essa**
