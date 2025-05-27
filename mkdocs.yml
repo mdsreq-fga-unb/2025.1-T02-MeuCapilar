@@ -19,6 +19,11 @@ nav:
    - Lições Aprendidas: 
          - Unidade I: unidade1/licoesAprendidas.md
    - Sprints:
+      - Sprint 1: 
+        - Planning: sprints/sprint01/planning.md
+        - Daily 1: sprints/sprint01/daily1.md
+        - Daily 2: sprints/sprint01/daily2.md
+        - Retrospectiva: sprints/sprint01/retrospective.md
       - Sprint 2: 
         - Planning: sprints/sprint02/planning.md
         - Daily 1: sprints/sprint02/daily1.md

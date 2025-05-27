@@ -1,8 +1,8 @@
-# Gravação da Daily
+# Gravação da Daily 01
 
 [Clique Aqui (Disponível apenas para pessoas em UnB.br).](https://unbbr.sharepoint.com/:v:/s/MeuCapilar-Requisitos/EVOeShGZ1_1Kuy7YiGmDOt8BiIabCWBxrnSX6IHQvF1saQ?e=cKcsC0&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
-# 📝 Ata da Daily – Sprint 02
+# 📝 Ata da Daily 01 – Sprint 02
 
 **Data:** 19/05/2025  
 **Horário:** 21:30 – 21:55  

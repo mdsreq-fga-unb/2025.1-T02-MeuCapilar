@@ -5,11 +5,8 @@
 # 📝 Ata de Planejamento – Sprint 02
 
 **Data:** 13/05/2025  
-
 **Horário:** 20:30 – 21:00
-
 **Local:** Microsoft Teams
-
 **Participantes:**  
 - José André  
 - Cauan Araujo(Product Owner)  
