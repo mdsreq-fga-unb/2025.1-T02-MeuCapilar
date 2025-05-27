@@ -1,4 +1,4 @@
-# 📝 Ata da Daily 1 – Sprint 01
+# Ata da Daily 1 – Sprint 01
 
 **Data:** 18/04/2025  
 **Horário:** 20:30 – 20:45  
@@ -13,13 +13,13 @@
 
 ---
 
-## 🎯 Objetivo da Reunião
+## Objetivo da Reunião
 
 > Compartilhar o progresso inicial da sprint, alinhar atividades em andamento e identificar possíveis impedimentos.
 
 ---
 
-## ✅ O que cada membro fez 
+## O que cada membro fez 
 
 - **José André**: Organizou estrutura inicial da documentação no Google Docs.
 - **Pedro Luciano**: Criou e configurou o repositório do projeto no GitHub.
@@ -30,13 +30,13 @@
 
 ---
 
-## ⚠️ Impedimentos
+## Impedimentos
 
 - Nenhum impedimento reportado até o momento.
 
 ---
 
-## 🗓️ Próximos Passos
+## Próximos Passos
 
 - Finalizar inclusão dos tópicos combinados na documentação.
 - Refino do backlog para planejamento da Sprint 02.

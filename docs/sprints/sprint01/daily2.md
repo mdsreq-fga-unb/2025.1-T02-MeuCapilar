@@ -1,4 +1,4 @@
-# 📝 Ata da Daily 2 – Sprint 01
+# Ata da Daily 2 – Sprint 01
 
 **Data:** 23/04/2025  
 **Horário:** 20:30 – 20:45  
@@ -13,13 +13,13 @@
 
 ---
 
-## 🎯 Objetivo da Reunião
+## Objetivo da Reunião
 
 > Acompanhar o andamento da documentação, revisar progresso individual e coletar possíveis bloqueios.
 
 ---
 
-## ✅ O que cada membro fez ontem
+## O que cada membro fez ontem
 
 - **José André**: Inseriu os tópicos 1.1, 1.2, 1.3 e 1.4 no Google Docs.
 - **Pedro Luciano**: Estruturou os diretórios principais do repositório e criou a gitpage.
@@ -31,13 +31,13 @@
 ---
 
 
-## ⚠️ Impedimentos
+## Impedimentos
 
 - **Pedro Luciano** relatou dúvida sobre padrão de escrita nos documentos (solucionado durante a daily).
 
 ---
 
-## 🗓️ Próximos Passos
+## Próximos Passos
 
 - Finalizar inclusão de todos os tópicos planejados (até 2.6).
 - Revisar e aprovar o backlog inicial com o time.

@@ -2,7 +2,7 @@
 
 [Clique Aqui (Dísponível apenas para pessoas em UnB.br).](https://unbbr.sharepoint.com/:v:/s/MeuCapilar-Requisitos/EZrvf1QtDRNAoSpjGVQYbUgB-Ni9tupJKi2_lTczfSHjpg?e=lzMDP0&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
-# 📝 Ata de Planejamento – Sprint 02
+# Ata de Planejamento – Sprint 02
 
 **Data:** 13/05/2025  
 **Horário:** 20:30 – 21:00
@@ -17,13 +17,13 @@
 
 ---
 
-## 🎯 Objetivo da Sprint (Sprint Goal)
+## Objetivo da Sprint (Sprint Goal)
 
 > Entregar a funcionalidade de login e cadastro de usuários, com validação de dados e armazenamento em banco de dados, permitindo o início da navegação autenticada na aplicação.
 
 ---
 
-## 📌 Itens selecionados do Product Backlog
+## Itens selecionados do Product Backlog
 
 | ID        | Descrição                                       | Prioridade | Estimativa (Story Points) | Link da Issue       |
 |-----------|-------------------------------------------------|------------|----------------------------|----------------------|
@@ -36,7 +36,7 @@
 
 ---
 
-## 🛠️ Plano de Execução
+## Plano de Execução
 
 Os itens selecionados do backlog foram decompostos em tarefas técnicas e distribuídos entre os membros da equipe da seguinte forma:
 
@@ -58,7 +58,7 @@ Os itens selecionados do backlog foram decompostos em tarefas técnicas e distri
 
 ---
 
-## 📅 Duração da Sprint
+## Duração da Sprint
 
 - **Início:** 13/05/2025  
 - **Término:** 26/05/2025  
@@ -66,14 +66,14 @@ Os itens selecionados do backlog foram decompostos em tarefas técnicas e distri
 
 ---
 
-## ⚠️ Riscos Identificados
+## Riscos Identificados
 
 - Integração com banco de dados pode apresentar lentidão por limitações no ambiente de desenvolvimento.
 - Possível acúmulo de tarefas em um único membro (redistribuição prevista caso necessário).
 
 ---
 
-## 📝 Observações
+## Observações
 
 - Próxima cerimônia agendada: **Daily 19/05 às 21h30**
 
