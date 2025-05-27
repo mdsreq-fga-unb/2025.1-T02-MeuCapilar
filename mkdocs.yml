@@ -29,7 +29,6 @@ nav:
         - Daily 1: sprints/sprint02/daily1.md
         - Review: sprints/sprint02/review.md
         - Retrospectiva: sprints/sprint02/retrospective.md
-   - Apresentações: apresentacoes.md
 
 theme:
    name: material 
