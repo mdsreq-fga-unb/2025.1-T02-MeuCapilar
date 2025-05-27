@@ -98,20 +98,6 @@
       <td>Estruturar os requisitos de forma hierárquica e compreensível</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Elicitação e Descoberta</td>
-      <td>Conversa com a cliente</td>
-      <td>Entrevistas semi-estruturadas</td>
-      <td>Coletar insumos para escrever temas, épicos e histórias de usuário</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Elicitação e Descoberta</td>
-      <td>Sessão de brainstorm</td>
-      <td>Brainstorm</td>
-      <td>Explorar, com a equipe, formas de abordar o problema e redigir histórias</td>
-    </tr>
-    <tr>
       <td>Priorização e Refinamento</td>
       <td>Análise e Consenso</td>
       <td>Revisão do Requisito</td>
