@@ -1,5 +1,5 @@
 ## **4.1 Atividades e Técnicas de ER**
-## Elicitação e Descoberta
+### Elicitação e Descoberta
 
 - **Entrevistas semi-estruturadas**: Utilizada nas conversas com a cliente para entender suas dores e necessidades, coletando insumos para escrever temas, épicos e histórias de usuário.
 
@@ -9,7 +9,7 @@
 
 ---
 
-## Análise e Consenso
+### Análise e Consenso
 
 - **Walkthrough**: Utilizado na revisão dos requisitos, apresentando temas, épicos e histórias à equipe para validação e consenso, assegurando o alinhamento de todos com os objetivos definidos.
 
@@ -17,7 +17,7 @@
 
 ---
 
-## Declaração de Requisitos
+### Declaração de Requisitos
 
 - **Temas, Épicos e Histórias de Usuário**: Estruturação dos requisitos de forma hierárquica e compreensível, organizando-os para facilitar o planejamento e o desenvolvimento.
 
@@ -25,7 +25,7 @@
 
 ---
 
-## Representação de Requisitos
+### Representação de Requisitos
 
 - **Wireframes**: Produção de esboços para apresentar à cliente uma visão antecipada das funcionalidades planejadas para as próximas sprints, facilitando alinhamento e validação prévia.
 
@@ -33,7 +33,7 @@
 
 ---
 
-## Verificação e Validação de Requisitos
+### Verificação e Validação de Requisitos
 
 - **Definition of Ready (DoR)**: Aplicada para confirmar que os itens do backlog estão bem definidos e prontos para serem desenvolvidos durante o Sprint Planning.
 
@@ -49,7 +49,7 @@
 
 ---
 
-## Organização e Atualização de Requisitos
+### Organização e Atualização de Requisitos
 
 - **Reuniões de Revisão**: Aplicadas para coletar feedback da equipe sobre os requisitos, ajustando e melhorando o backlog conforme necessário ao longo do desenvolvimento.
 
