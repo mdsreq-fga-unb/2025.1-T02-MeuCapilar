@@ -9,7 +9,7 @@
 | 12/04/2025 | 0.3    | Revisão e adaptação dos pontos destacados pelo feedback do professor.  | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
 | 14/04/2025 | 0.4    | Revisão e adaptação de pontos destacados pelo professor.  | Ian , José e Pedro    |
 | 19/05/2025 | 0.5    | Alterando pages para fechamento das Issues  | Pedro    |
-| 26/05/2025 | 1.0    | Adição dos tópicos da entrega da unidade 2 | equipe inteira    |
+| 26/05/2025 | 1.0    | Adição dos tópicos da entrega da unidade 2 | Equipe inteira    |
 
 
 ## 1.1 Introdução ao Negócio e Contexto 

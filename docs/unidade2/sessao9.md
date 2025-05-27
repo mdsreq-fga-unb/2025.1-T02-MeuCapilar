@@ -4,9 +4,15 @@
 
 ### **9.1 Backlog Geral** 
 
+Nosso backlog é mantido no *Github Projects*, onde especificamos **critérios de aceitação** e **regras de negócio** em cada US, além de utilizarmos tags para:
+
+  - Priorizar as User Stories (US).
+  - Identificar a qual funcionalidade ou agrupamento cada US pertence.
+  - Classificar o nível de granularidade: Tema, Épico ou User Story.
+
+Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no desenvolvimento e alinhamento com os objetivos do projeto. 
 
 #### **9.1.1 Objetivo Específico: Agendamento completo dos tratamentos capilares**
-
 
 <strong>Tema 1:</strong>: Gestão de Pacientes e Atendimento
 

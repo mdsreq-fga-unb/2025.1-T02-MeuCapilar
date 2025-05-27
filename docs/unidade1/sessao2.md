@@ -6,9 +6,9 @@
 
 <p style="text-align: justify;"><strong>Objetivos específicos:</strong></p>  
     <ul> 
+        <li><p style="text-align: justify;"><strong>Automatização e profissionalização dos relatórios da terapeuta:</strong> gerar documentos padronizados a partir dos dados coletados, incorporando imagens e recomendações personalizadas com poucos cliques, e disponibilizar versões finais em um portal seguro, mantendo o histórico arquivado para consulta.</p></li>
         <li><p style="text-align: justify;"><strong>Agendamento completo dos tratamentos capilares:</strong> disponibilizar horários, facilitar o agendamento desta área da terapia capilar e ter controle sobre os agendamentos.</p></li> 
         <li><p style="text-align: justify;"><strong>Separação do controle financeiro da terapia capilar:</strong> criar um módulo dedicado que registre valores dos tratamentos e procedimentos realizados por cada cliente.</p></li> 
-        <li><p style="text-align: justify;"><strong>Automatização e profissionalização dos relatórios da terapeuta:</strong> gerar documentos padronizados a partir dos dados coletados, incorporando imagens e recomendações personalizadas com poucos cliques, e disponibilizar versões finais em um portal seguro, mantendo o histórico arquivado para consulta.</p></li>
     </ul> 
     <p style="text-align: justify;">Com esses aprimoramentos, a solução proporcionará precisão operacional, transparência financeira e uma experiência de alto valor para o cliente, fortalecendo ainda mais a eficiência do serviço e a reputação da clínica como referência em terapia capilar.</p>
 <p style="text-align: justify;"></p>

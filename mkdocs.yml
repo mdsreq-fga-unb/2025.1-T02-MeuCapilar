@@ -7,15 +7,15 @@ site_name: Meu Capilar
 nav:
    - Home: index.md
    - Visão do produto e projeto:
-      - Cenário atual do cliente e do negócio: unidade1/sessao1.md
-      - Solução proposta: unidade1/sessao2.md
-      - Estrategias de Engenharia de Software: unidade1/sessao3.md
-      - Engenharia de Requisitos: unidade2/sessao4.md
-      - Cronogramas e Entregas: unidade1/sessao5.md
-      - Interação entre Equipe e Cliente: unidade1/sessao6.md
-      - Lista de Requisitos: unidade2/sessao7.md
-      - DoR e DoD: unidade2/sessao8.md
-      - User Stories: unidade2/sessao9.md
+      - 1.Cenário atual do cliente e do negócio: unidade1/sessao1.md
+      - 2.Solução proposta: unidade1/sessao2.md
+      - 3.Estrategias de Engenharia de Software: unidade1/sessao3.md
+      - 4.Engenharia de Requisitos: unidade2/sessao4.md
+      - 5.Cronogramas e Entregas: unidade1/sessao5.md
+      - 6.Interação entre Equipe e Cliente: unidade1/sessao6.md
+      - 7.Lista de Requisitos: unidade2/sessao7.md
+      - 8.DoR e DoD: unidade2/sessao8.md
+      - 9.Product Backlog: unidade2/sessao9.md
    - Lições Aprendidas: unidade1/licoesAprendidas.md
    - Sprints:
       - Sprint 1: 
@@ -29,6 +29,7 @@ nav:
         - Daily 1: sprints/sprint02/daily1.md
         - Review: sprints/sprint02/review.md
         - Retrospectiva: sprints/sprint02/retrospective.md
+   - Apresentações: apresentacoes.md
 
 theme:
    name: material 
