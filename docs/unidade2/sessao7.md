@@ -1,8 +1,8 @@
-## Lista de Requisitos
+## **7.Lista de Requisitos**
 
 <p style="text-align: justify;">A seguir, apresenta-se a lista detalhada dos requisitos do projeto, dividida entre requisitos funcionais e não funcionais. Essa lista serve como referência para orientar o desenvolvimento, garantir o atendimento das necessidades dos usuários e assegurar a qualidade do sistema.</p>
 
-## 📋 Tabela de Requisitos Funcionais
+## **7.1.Tabela de Requisitos Funcionais**
 
 <table border="1">
   <thead style="background-color: #F02464;">
@@ -118,7 +118,7 @@
   </tbody>
 </table>
 
-### 📋 Tabela de Requisitos Não Funcionais
+## **7.2 Tabela de Requisitos Não Funcionais**
 
 <table border="1">
   <thead style="background-color: #F02464;">

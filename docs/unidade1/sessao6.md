@@ -1,6 +1,6 @@
-# **5. INTERAÇÃO ENTRE EQUIPE E CLIENTE**
+# **6. INTERAÇÃO ENTRE EQUIPE E CLIENTE**
 
-## **5.1 Composição da Equipe**
+## **6.1 Composição da Equipe**
 <p style="text-align: justify;">
 Nossa equipe é composta por seis integrantes e, como estamos adotando o processo ScrumXP, optamos por implementar um modelo de Product Owner (PO) rotativo — ou seja, o PO será diferente a cada sprint. Essa abordagem foi escolhida para que todos tenham a oportunidade de se envolver ativamente com os requisitos, que são o foco principal da disciplina. Além do papel rotativo de PO,os membros terão papéis ativos/passivos nas entregas relacionadas a requisitos, de forma que todos estejam cientes do que está sendo produzido e tenham contribuições nessa disciplina. A equipe foi organizada da seguinte forma para esta sprint:
 </p>
@@ -67,7 +67,7 @@ Nossa equipe é composta por seis integrantes e, como estamos adotando o process
   </tbody>
 </table>
 
-## **5.2 Comunicação**
+## **6.2 Comunicação**
 
 <p style="text-align: justify;">A comunicação será conduzida de forma estruturada, clara e contínua, garantindo o alinhamento entre a equipe de desenvolvimento e a cliente ao longo de todo o projeto. Abaixo estão descritas as ferramentas, métodos e frequência das interações previstas.</p>
 
@@ -97,7 +97,7 @@ Nossa equipe é composta por seis integrantes e, como estamos adotando o process
   <li><strong>Interações Adicionais via WhatsApp</strong>: A cliente poderá acionar a equipe de forma informal e rápida através do WhatsApp, especialmente em casos que envolvam dúvidas imediatas, validações pontuais ou mudanças urgentes nas demandas.</li>
 </ul>
 
-## **5.3 Processo de Validação**
+## **6.3 Processo de Validação**
 
 <p style="text-align: justify;">A validação do produto será realizada de forma contínua, com o objetivo de garantir que a solução final atenda às expectativas da cliente e resolva, de fato, os problemas identificados no cenário atual. O processo envolverá etapas práticas de verificação e feedback, conforme descrito abaixo:</p>
 
