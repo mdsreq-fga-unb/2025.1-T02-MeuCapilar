@@ -16,7 +16,7 @@
   <tbody>
     <!-- Gestão do Paciente -->
     <tr>
-      <td rowspan="6">Gestão do Paciente</td>
+      <td rowspan="7">Gestão do Paciente</td>
       <td>RF1.1</td>
       <td>Cadastrar novo paciente</td>
       <td>Permitir cadastro de novos pacientes no sistema.</td>
@@ -45,6 +45,11 @@
       <td>RF1.6</td>
       <td>Validar dados do paciente</td>
       <td>Garantir que os dados inseridos estejam completos e corretos.</td>
+    </tr>
+    <tr>
+      <td>RF1.7</td>
+      <td>Exibir lista de pacientes à terapeuta</td>
+      <td>Permitir que o perfil de terapeuta visualize uma lista com todos os pacientes cadastrados.</td>
     </tr>
     <!-- Gestão de Atendimentos -->
     <tr>
@@ -75,8 +80,8 @@
     </tr>
     <tr>
       <td>RF2.6</td>
-      <td>Exibir disponibilidade em tempo real</td>
-      <td>Mostrar em tempo real as vagas disponíveis para agendamento.</td>
+      <td>Exibir horários vagos para atendimento</td>
+      <td>Mostrar os horários disponíveis para agendamento de atendimentos.</td>
     </tr>
     <tr>
       <td>RF2.7</td>
@@ -87,33 +92,28 @@
     <tr>
       <td rowspan="6">Gerar Relatório Clínico do Paciente</td>
       <td>RF3.1</td>
-      <td>Gerar relatório clínico</td>
-      <td>Produzir relatório clínico com base nas informações do diagnóstico.</td>
+      <td>Criar relatório clínico</td>
+      <td>Permitir a terapeuta gerar um relatório clínico com base nas informações do diagnóstico do paciente.</td>
     </tr>
     <tr>
       <td>RF3.2</td>
       <td>Editar relatório clínico</td>
-      <td>Permitir correção e complementação dos relatórios clínicos.</td>
+      <td>Permitir a correção, complementação e inclusão de evidências visuais (como imagens) nos relatórios clínicos.</td>
     </tr>
     <tr>
       <td>RF3.3</td>
-      <td>Anexar imagens ao relatório clínico</td>
-      <td>Incluir evidências visuais nos relatórios.</td>
+      <td>Visualizar relatórios clínicos</td>
+      <td>Permitir que a terapeuta visualize todos os relatórios clínicos gerados para cada paciente.</td>
     </tr>
     <tr>
       <td>RF3.4</td>
-      <td>Visualizar histórico de relatórios clínicos</td>
-      <td>Exibir lista completa dos relatórios já gerados para o paciente.</td>
+      <td>Disponibilizar relatório ao paciente</td>
+      <td>Permitir que o paciente acesse o histórico de relatório clínico via plataforma, após liberação pela terapeuta.</td>
     </tr>
     <tr>
       <td>RF3.5</td>
-      <td>Disponibilizar relatório ao cliente</td>
-      <td>Oferecer acesso digital ao relatório para o paciente via plataforma.</td>
-    </tr>
-    <tr>
-      <td>RF3.6</td>
       <td>Exportar relatório clínico em PDF</td>
-      <td>Gerar arquivo PDF do relatório clínico para impressão ou envio.</td>
+      <td>Permitir a exportação do relatório clínico em formato PDF para impressão ou envio.</td>
     </tr>
   </tbody>
 </table>
@@ -132,22 +132,30 @@
     <tr>
       <td>RNF01</td>
       <td>Usabilidade</td>
-      <td>Facilidade e prazer para aprender e usar o sistema, incluindo ergonomia, estética, consistência visual, mensagens de ajuda e materiais de treinamento.</td>
+      <td>
+        A interface deve permitir que o usuário acesse as funcionalidades principais em no máximo três cliques a partir da tela inicial. Mensagens de erro devem ser exibidas com instruções claras de correção, visíveis em até 2 segundos após a ocorrência da falha.
+      </td>
     </tr>
     <tr>
       <td>RNF02</td>
       <td>Confiabilidade</td>
-      <td>Capacidade do sistema de funcionar sem falhas e se recuperar quando ocorrerem problemas, considerando frequência, gravidade e tempo médio entre falhas.</td>
+      <td>
+        Em caso de falhas críticas que causem indisponibilidade do sistema web, o ambiente de produção deve ser reiniciado automaticamente e restaurado com base nos dados persistidos no banco, sem perda de registros confirmados. O processo de reinicialização deve ser concluído em até 5 minutos.
+      </td>
     </tr>
     <tr>
       <td>RNF03</td>
       <td>Desempenho</td>
-      <td>Rapidez e eficiência da resposta e uso de recursos, abrangendo tempo de resposta, throughput, disponibilidade e uso de CPU/memória.</td>
+      <td>
+        O tempo de resposta para qualquer funcionalidade não deve exceder 2 segundos em cenários de carga normal. O sistema deve suportar no mínimo 20 acessos simultâneos sem interrupções ou travamentos. A execução de consultas ao banco de dados deve ocorrer em no máximo 1 segundo para conjuntos de até 200 registros.
+      </td>
     </tr>
     <tr>
       <td>RNF04</td>
       <td>Suportabilidade</td>
-      <td>Facilidade para testar, manter, estender, configurar ou instalar o software, incluindo extensibilidade, compatibilidade e capacidade de localização.</td>
+      <td>
+        O site deve funcionar corretamente nos navegadores Google Chrome (versão 90 ou superior), Mozilla Firefox (versão 88 ou superior), Safari (versão 14 ou superior) e Microsoft Edge (versão 90 ou superior), mantendo o layout e as funcionalidades consistentes. A interface do site deve se ajustar automaticamente a diferentes tamanhos de tela, incluindo smartphones, tablets e desktops, sem perda de conteúdo ou funcionalidade, garantindo navegação fluida em todos os dispositivos.
+      </td>
     </tr>
   </tbody>
 </table>
