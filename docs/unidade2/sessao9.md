@@ -253,8 +253,6 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 <ul>
   <li>US 1.2.1 (MUST)</li>
   <li>US 1.2.2 (MUST)</li>
-  <li>US 1.2.3 (SHOULD)</li>
-  <li>US 1.2.4 (SHOULD)</li>
 </ul>
 
 <h3>Objetivo Específico:</h3>
@@ -271,6 +269,5 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 
 <strong>Épico 2.2:</strong> Compartilhamento e Exportação de Registros<br>
 <ul>
-  <li>US 2.2.1 (SHOULD)</li>
   <li>US 2.2.2 (MUST)</li>
 </ul>
