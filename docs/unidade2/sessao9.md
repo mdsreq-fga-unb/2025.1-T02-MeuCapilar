@@ -211,16 +211,16 @@ Quanto maior a pontuação, maior a prioridade da US.
     <tr><td>US 1.1.4</td><td>MUST</td><td>8</td><td>4/4</td></tr>
     <tr><td>US 1.2.1</td><td>MUST</td><td>8</td><td>4/4</td></tr>
     <tr><td>US 1.2.2</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.2.3</td><td>SHOULD</td><td>6</td><td>3/4</td></tr>
+    <tr><td>US 1.2.3</td><td>SHOULD</td><td>6</td><td>3/3</td></tr>
     <tr><td>US 1.2.4</td><td>SHOULD</td><td>7</td><td>3/4</td></tr>
-    <tr><td>US 2.1.1</td><td>MUST</td><td>4</td><td>4/4</td></tr>
-    <tr><td>US 2.1.2</td><td>MUST</td><td>7</td><td>4/4</td></tr>
-    <tr><td>US 2.1.3</td><td>MUST</td><td>4</td><td>4/4</td></tr>>
+    <tr><td>US 2.1.1</td><td>MUST</td><td>4</td><td>4/0</td></tr>
+    <tr><td>US 2.1.2</td><td>MUST</td><td>7</td><td>4/3</td></tr>
+    <tr><td>US 2.1.3</td><td>MUST</td><td>4</td><td>4/0</td></tr>>
     <tr><td>US 2.2.1</td><td>SHOULD</td><td>7</td><td>3/4</td></tr>
-    <tr><td>US 2.2.2</td><td>MUST</td><td>7</td><td>4/4</td></tr>
+    <tr><td>US 2.2.2</td><td>MUST</td><td>7</td><td>4/3</td></tr>
   </tbody>
 </table>
-<p><em>Legenda: O primeiro número em "Critérios Atendidos" refere-se aos critérios de negócio, o segundo aos critérios técnicos.</em></p>
+<p><em>Legenda: O primeiro número em "Critérios Atendidos" refere-se aos critérios de negócio, o segundo aos critérios de esforço.</em></p>
 
 
 A priorização foi feita somando os pontos de cada US. As US com maior pontuação foram classificadas como "Must Have" (MUST), seguidas por "Should Have" (SHOULD) e "Could Have" (COULD). Critérios técnicos foram considerados para garantir que funcionalidades essenciais também sejam viáveis e sustentáveis do ponto de vista de desenvolvimento.
@@ -258,7 +258,7 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 <h3>Objetivo Específico:</h3>
 <p>Automatização e profissionalização dos relatórios da terapeuta.</p>
 
-<strong>Tema 2:</strong> Relatórios e Documentação Clínica<br>
+<strong>Tema 2:</strong> Registro e Documentação Clínica<br>
 
 <strong>Épico 2.1:</strong> Geração e Consulta de Relatórios Clínicos<br>
 <ul>
