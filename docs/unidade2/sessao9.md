@@ -164,34 +164,45 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
 
 ### **9.2 Priorização do Backlog Geral**
 
-A priorização do backlog foi realizada utilizando o modelo **MoSCoW** (*Must Have*, *Should Have*, *Could Have* e *Won't Have*), que auxilia na identificação das funcionalidades essenciais, desejáveis e opcionais. Esse modelo orienta o desenvolvimento de acordo com os objetivos do projeto, garantindo que as entregas mais importantes sejam priorizadas.
+A priorização do backlog foi realizada com base no modelo **MoSCoW** (*Must Have*, *Should Have*, *Could Have* e *Won't Have*), que auxilia na identificação e categorização das funcionalidades como essenciais, desejáveis ou opcionais. Esse modelo orienta o desenvolvimento conforme os objetivos do projeto, garantindo que as entregas mais importantes sejam priorizadas.
 
-Com base nos critérios de negócio definidos abaixo, temos as seguintes categorias do MoSCoW, conforme a pontuação obtida:
+Cada User Story (US) foi avaliada segundo dois grupos de critérios: **Negócio** e **Esforço**.
 
-- **4 pontos** — **MUST**
-- **3 pontos** — **SHOULD**
-- **2 a 1 pontos** — **COULD**
-- **0 pontos** — **WON'T HAVE**
-#### <strong>9.2.1 Critérios de Priorização</strong>
+### 9.2.1 Critérios de Priorização
 
+**Critérios de Negócio:**  
+O checklist abaixo foi utilizado para determinar a importância da US para o negócio:
 
-A pontuação de cada User Story (US) foi definida a partir de um checklist de critérios de negócio e critérios de esforço:
+- (+1) O projeto não é concluído sem essa US? → Se sim, +1 ponto.  
+- (+1) Não pode ser adiada? → Se sim, +1 ponto.  
+- (+1) Agrega valor de negócio? → Se sim, +1 ponto.  
 
-<strong>Critérios de Negócio:</strong>
-<ul>
-  <li>(+1) O projeto não é concluído sem essa US? - Se não, +1 ponto.</li>
-  <li>(+1) Não pode ser adiado? - Se não, +1 ponto </li>
-  <li>(+1) Pode não ser entregue? - Se não, +1 ponto</li>
-  <li>(+1) Agrega valor de negócio? - Se sim, +1 ponto</li>
-</ul>
-<strong>Critérios de Esforço:</strong>
-<ul>
-  <li>(+1) Habilidade Técnica: Membro da Equipe já fez algo semelhante? - se sim +1 ponto</li>
-  <li>(+1) Volume de Trabalho: Menos de quatro horas? - Se sim +1 ponto</li>
-  <li>(+1) Complexidade Técnica:  A solução é tecnicamente simples, sem necessidade de pesquisa ou uso de tecnologias desconhecidas? - Se sim +1 ponto</li>
-  <li>(+1) A tarefa está alinhada aos padrões técnicos e arquiteturais do projeto? - Se sim, +1 ponto</li>
-</ul>
-Quanto maior a pontuação, maior a prioridade da US.
+Com base na quantidade de pontos obtidos nesse checklist, a US é classificada conforme o modelo MoSCoW:
+
+- Se atender a **3 critérios** → **MUST**  
+- Se atender a **2 critérios** → **SHOULD**  
+- Se atender a **1 critério** → **COULD**  
+- Se atender a **0 critérios** → **WON'T HAVE**
+
+Após essa classificação, é atribuído um peso específico para a pontuação de negócio:
+
+- **MUST** → peso **9**  
+- **SHOULD** → peso **4**  
+- **COULD** → peso **2**
+
+---
+
+**Critérios de Esforço:**  
+Adicionalmente, a US foi avaliada sob o aspecto técnico, com os seguintes pontos:
+
+- (+1) Habilidade Técnica: a equipe já realizou algo semelhante? → Se sim, +1 ponto.  
+- (+1) Volume de Trabalho: demanda menos de quatro horas? → Se sim, +1 ponto.  
+- (+1) Complexidade Técnica: é uma solução simples, sem necessidade de pesquisa ou novas tecnologias? → Se sim, +1 ponto.  
+- (+1) A tarefa está alinhada aos padrões técnicos e arquiteturais do projeto? → Se sim, +1 ponto.
+
+---
+
+Por fim, a pontuação total obtida — combinando critérios de negócio e esforço — determina a prioridade de desenvolvimento da User Story: **quanto maior a pontuação, maior a prioridade**.
 
 #### <strong>9.2.2 Tabela de Priorização e Pontuação</strong>
 
@@ -205,22 +216,23 @@ Quanto maior a pontuação, maior a prioridade da US.
     </tr>
   </thead>
   <tbody>
-    <tr><td>US 1.1.1</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.1.2</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.1.3</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.1.4</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.2.1</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.2.2</td><td>MUST</td><td>8</td><td>4/4</td></tr>
-    <tr><td>US 1.2.3</td><td>SHOULD</td><td>6</td><td>3/3</td></tr>
-    <tr><td>US 1.2.4</td><td>SHOULD</td><td>7</td><td>3/4</td></tr>
-    <tr><td>US 2.1.1</td><td>MUST</td><td>4</td><td>4/0</td></tr>
-    <tr><td>US 2.1.2</td><td>MUST</td><td>7</td><td>4/3</td></tr>
-    <tr><td>US 2.1.3</td><td>MUST</td><td>4</td><td>4/0</td></tr>>
-    <tr><td>US 2.2.1</td><td>SHOULD</td><td>7</td><td>3/4</td></tr>
-    <tr><td>US 2.2.2</td><td>MUST</td><td>7</td><td>4/3</td></tr>
+    <tr><td>US 1.1.1</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.1.2</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.1.3</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.1.4</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.2.1</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.2.2</td><td>MUST</td><td>13</td><td>9/4</td></tr>
+    <tr><td>US 1.2.3</td><td>SHOULD</td><td>7</td><td>4/3</td></tr>
+    <tr><td>US 1.2.4</td><td>SHOULD</td><td>8</td><td>4/4</td></tr>
+    <tr><td>US 2.1.1</td><td>MUST</td><td>9</td><td>9/0</td></tr>
+    <tr><td>US 2.1.2</td><td>MUST</td><td>12</td><td>9/3</td></tr>
+    <tr><td>US 2.1.3</td><td>MUST</td><td>9</td><td>9/0</td></tr>>
+    <tr><td>US 2.2.1</td><td>SHOULD</td><td>8</td><td>4/4</td></tr>
+    <tr><td>US 2.2.2</td><td>MUST</td><td>12</td><td>9/3</td></tr>
   </tbody>
 </table>
 <p><em>Legenda: O primeiro número em "Critérios Atendidos" refere-se aos critérios de negócio, o segundo aos critérios de esforço.</em></p>
+
 
 
 Dessa forma, a priorização foi realizada de maneira estruturada, transparente e alinhada tanto com os interesses de negócio quanto com a viabilidade técnica do projeto, promovendo uma gestão eficiente do backlog.
@@ -228,8 +240,6 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 
 
 ---
-
-
 
 
 ### **9.3 MVP**
@@ -257,13 +267,6 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 <p>Automatização e profissionalização dos relatórios da terapeuta.</p>
 
 <strong>Tema 2:</strong> Registro e Documentação Clínica<br>
-
-<strong>Épico 2.1:</strong> Geração e Consulta de Relatórios Clínicos<br>
-<ul>
-  <li>US 2.1.1 (MUST)</li>
-  <li>US 2.1.2 (MUST)</li>
-  <li>US 2.1.3 (MUST)</li>
-</ul>
 
 <strong>Épico 2.2:</strong> Compartilhamento e Exportação de Registros<br>
 <ul>
