@@ -53,7 +53,7 @@
     </tr>
     <!-- Gestão de Atendimentos -->
     <tr>
-      <td rowspan="7">Gestão de Atendimentos</td>
+      <td rowspan="6">Gestão de Atendimentos</td>
       <td>RF2.1</td>
       <td>Cadastrar novos atendimentos</td>
       <td>Registrar atendimentos com serviço, profissional e horário definidos.</td>
@@ -80,40 +80,35 @@
     </tr>
     <tr>
       <td>RF2.6</td>
-      <td>Exibir horários vagos para atendimento</td>
-      <td>Mostrar os horários disponíveis para agendamento de atendimentos.</td>
-    </tr>
-    <tr>
-      <td>RF2.7</td>
       <td>Exportar histórico de atendimentos</td>
       <td>Gerar arquivo PDF com o histórico de atendimentos de um paciente.</td>
     </tr>
     <!-- Relatório Clínico do Paciente -->
     <tr>
-      <td rowspan="6">Gerar Relatório Clínico do Paciente</td>
+      <td rowspan="5">Registros Clínicos do Paciente</td>
       <td>RF3.1</td>
-      <td>Criar relatório clínico</td>
-      <td>Permitir a terapeuta gerar um relatório clínico com base nas informações do diagnóstico do paciente.</td>
+      <td>Registrar informações clínicas</td>
+      <td>Permitir que a terapeuta registre informações clínicas e diagnósticos do paciente.</td>
     </tr>
     <tr>
       <td>RF3.2</td>
-      <td>Editar relatório clínico</td>
-      <td>Permitir a correção, complementação e inclusão de evidências visuais (como imagens) nos relatórios clínicos.</td>
+      <td>Atualizar registros clínicos</td>
+      <td>Permitir a atualização e inclusão de novas informações e evidências visuais nos registros clínicos.</td>
     </tr>
     <tr>
       <td>RF3.3</td>
-      <td>Visualizar relatórios clínicos</td>
-      <td>Permitir que a terapeuta visualize todos os relatórios clínicos gerados para cada paciente.</td>
+      <td>Consultar registros clínicos</td>
+      <td>Permitir que a terapeuta consulte o histórico de registros clínicos de cada paciente.</td>
     </tr>
     <tr>
       <td>RF3.4</td>
-      <td>Disponibilizar relatório ao paciente</td>
-      <td>Permitir que o paciente acesse o histórico de relatório clínico via plataforma, após liberação pela terapeuta.</td>
+      <td>Compartilhar registros clínicos</td>
+      <td>Permitir que a terapeuta libere o acesso aos registros clínicos para o paciente.</td>
     </tr>
     <tr>
       <td>RF3.5</td>
-      <td>Exportar relatório clínico em PDF</td>
-      <td>Permitir a exportação do relatório clínico em formato PDF para impressão ou envio.</td>
+      <td>Gerar documento dos registros</td>
+      <td>Permitir a geração de documento em formato PDF com os registros clínicos do paciente.</td>
     </tr>
   </tbody>
 </table>
