@@ -133,7 +133,7 @@
       <td>RNF01</td>
       <td>Usabilidade</td>
       <td>
-        A interface deve permitir que o usuário acesse as funcionalidades principais em no máximo três cliques a partir da tela inicial. Mensagens de erro devem ser exibidas com instruções claras de correção, visíveis em até 2 segundos após a ocorrência da falha.
+        A interface deve permitir que o usuário acesse as funcionalidades principais (cadastrar paciente, cadastrar consulta, criar o relatório clínico…) em no mínimo três cliques, desde a tela inicial. Mensagens de erro devem ser exibidas com instruções claras de correção, visíveis em até 2 segundos após a falha.
       </td>
     </tr>
     <tr>
@@ -147,14 +147,14 @@
       <td>RNF03</td>
       <td>Desempenho</td>
       <td>
-        O tempo de resposta para qualquer funcionalidade não deve exceder 2 segundos em cenários de carga normal. O sistema deve suportar no mínimo 20 acessos simultâneos sem interrupções ou travamentos. A execução de consultas ao banco de dados deve ocorrer em no máximo 1 segundo para conjuntos de até 200 registros.
+        O tempo de resposta para qualquer funcionalidade não deve exceder 2 segundos em cenários de carga normal (a situação em que ele atende as demandas usuais do negócio, sem picos sazonais nem testes de estresse). O sistema deve suportar no mínimo 20 acessos simultâneos sem interrupções ou travamentos. A execução de consultas ao banco de dados deve ocorrer em no máximo 1 segundo para conjuntos de até 200 registros.
       </td>
     </tr>
     <tr>
       <td>RNF04</td>
       <td>Suportabilidade</td>
       <td>
-        O site deve funcionar corretamente nos navegadores Google Chrome (versão 90 ou superior), Mozilla Firefox (versão 88 ou superior), Safari (versão 14 ou superior) e Microsoft Edge (versão 90 ou superior), mantendo o layout e as funcionalidades consistentes. A interface do site deve se ajustar automaticamente a diferentes tamanhos de tela, incluindo smartphones, tablets e desktops, sem perda de conteúdo ou funcionalidade, garantindo navegação fluida em todos os dispositivos.
+        O site deve funcionar nos navegadores Google Chrome (versão 137 ou mais), Mozilla Firefox (versão 139 ou mais), Safari (versão 18 ou mais) e Microsoft Edge (versão 137 ou mais), mantendo layout e funcionalidades. A interface do site deve ajustar-se a tamanhos de tela de smartphones, tablets, desktops modernos, sem perda de conteúdo ou funcionalidade.
       </td>
     </tr>
   </tbody>
