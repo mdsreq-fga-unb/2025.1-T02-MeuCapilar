@@ -98,7 +98,7 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
 
 #### <strong>9.1.2 Objetivo Específico: Automatização e profissionalização dos relatórios da terapeuta</strong>
 
-<strong>Tema 2:</strong> Relatórios e Documentação Clínica
+<strong>Tema 2:</strong> Registro e Documentação Clínica
 
 <strong>Épico 2.1:</strong> Geração e Consulta de Registro Clínicos
 
@@ -222,8 +222,6 @@ Quanto maior a pontuação, maior a prioridade da US.
 </table>
 <p><em>Legenda: O primeiro número em "Critérios Atendidos" refere-se aos critérios de negócio, o segundo aos critérios de esforço.</em></p>
 
-
-A priorização foi feita somando os pontos de cada US. As US com maior pontuação foram classificadas como "Must Have" (MUST), seguidas por "Should Have" (SHOULD) e "Could Have" (COULD). Critérios técnicos foram considerados para garantir que funcionalidades essenciais também sejam viáveis e sustentáveis do ponto de vista de desenvolvimento.
 
 Dessa forma, a priorização foi realizada de maneira estruturada, transparente e alinhada tanto com os interesses de negócio quanto com a viabilidade técnica do projeto, promovendo uma gestão eficiente do backlog.
 
