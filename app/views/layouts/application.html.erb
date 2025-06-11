@@ -6,14 +6,65 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
   </head>
 
-  <body>
-    <main>
-      <%= yield %>
-    </main>
+  <body class="bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen">
+    <!-- Flash Messages -->
+    <% if notice %>
+      <div class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm border border-emerald-200 text-emerald-700 px-6 py-4 rounded-2xl shadow-lg mb-4 max-w-md transform transition-all duration-300 ease-in-out hover:shadow-xl" role="alert">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="block sm:inline"><%= notice %></span>
+        </div>
+      </div>
+    <% end %>
+    
+    <% if alert %>
+      <div class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm border border-rose-200 text-rose-700 px-6 py-4 rounded-2xl shadow-lg mb-4 max-w-md transform transition-all duration-300 ease-in-out hover:shadow-xl" role="alert">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="block sm:inline"><%= alert %></span>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Navigation Bar -->
+    <% if user_signed_in? %>
+      <nav class="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4 shadow-lg sticky top-0 z-40 backdrop-blur-sm bg-opacity-90">
+        <div class="container mx-auto flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+            <h1 class="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">MeuCapilar</h1>
+          </div>
+          <div class="flex items-center space-x-6">
+            <span class="text-purple-100">Olá, <%= current_user.display_name %></span>
+            <%= link_to "Sair", destroy_user_session_path, method: :delete, 
+                class: "bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full font-medium transition-all duration-200 flex items-center space-x-2", 
+                data: { confirm: "Tem certeza que deseja sair?" } do %>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              <span>Sair</span>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
+    <%= yield %>
   </body>
 </html>
