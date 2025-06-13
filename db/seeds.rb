@@ -30,11 +30,10 @@ if admin_user.persisted?
   admin_user.add_role(:terapeuta)
   
   admin_terapeuta = Terapeuta.find_or_create_by(user: admin_user) do |terapeuta|
-    terapeuta.nome = 'Dra. Maria Silva'
+    terapeuta.nome = 'Dr. José Silva'
     terapeuta.cpf = '12345678901'
-    terapeuta.telefone = '61999999999'
+    terapeuta.telefone = '11987654321'
     terapeuta.especialidade = 'Tricologia'
-    terapeuta.cref = 'CREF001'
     terapeuta.status = true
   end
   

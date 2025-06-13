@@ -10,7 +10,6 @@ class Terapeuta < ApplicationRecord
   validates :nome, :cpf, :telefone, :especialidade, presence: true
   validates :cpf, uniqueness: true, format: { with: /\A\d{11}\z/, message: "deve conter 11 dígitos" }
   validates :telefone, format: { with: /\A\d{10,11}\z/, message: "deve conter 10 ou 11 dígitos" }
-  validates :cref, presence: true, uniqueness: true
 
   # Scopes
   scope :ativos, -> { where(status: true) }

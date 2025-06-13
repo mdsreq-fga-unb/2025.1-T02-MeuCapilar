@@ -1,86 +1,70 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
-  <div class="container mx-auto px-4 py-8">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Dashboard - Terapeuta</h1>
-      <p class="text-gray-600 mt-2">Bem-vindo(a), <%= current_user.display_name %>!</p>
+  <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+    <!-- Page Title -->
+    <div class="px-4 py-6 sm:px-0 mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Dashboard Terapeuta</h1>
+      <p class="mt-2 text-gray-600">Gerencie seus pacientes, atendimentos e registros clínicos</p>
     </div>
 
-    <!-- Quick Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
       <!-- Total Pacientes -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM9 9a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Pacientes</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"><%= @total_pacientes %></p>
-          </div>
+      <div class="bg-white rounded-lg shadow p-4 aspect-square flex flex-col justify-center items-center">
+        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM9 9a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
         </div>
+        <h3 class="text-xs font-medium text-gray-500 mb-1 text-center">Total Pacientes</h3>
+        <p class="text-2xl font-bold text-gray-900"><%= @total_pacientes %></p>
       </div>
 
       <!-- Atendimentos Hoje -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Hoje</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent"><%= @atendimentos_hoje %></p>
-          </div>
+      <div class="bg-white rounded-lg shadow p-4 aspect-square flex flex-col justify-center items-center">
+        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
         </div>
+        <h3 class="text-xs font-medium text-gray-500 mb-1 text-center">Atendimentos Hoje</h3>
+        <p class="text-2xl font-bold text-gray-900"><%= @atendimentos_hoje %></p>
       </div>
 
       <!-- Próximos 7 dias -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Próximos 7 dias</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent"><%= @proximos_atendimentos %></p>
-          </div>
+      <div class="bg-white rounded-lg shadow p-4 aspect-square flex flex-col justify-center items-center">
+        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
         </div>
+        <h3 class="text-xs font-medium text-gray-500 mb-1 text-center">Próximos 7 dias</h3>
+        <p class="text-2xl font-bold text-gray-900"><%= @proximos_atendimentos %></p>
       </div>
 
       <!-- Total Registros -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
-        <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Registros</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"><%= @total_registros %></p>
-          </div>
+      <div class="bg-white rounded-lg shadow p-4 aspect-square flex flex-col justify-center items-center">
+        <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
         </div>
+        <h3 class="text-xs font-medium text-gray-500 mb-1 text-center">Total Registros</h3>
+        <p class="text-2xl font-bold text-gray-900"><%= @total_registros %></p>
       </div>
     </div>
 
     <!-- Action Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
       <!-- Gerenciar Pacientes -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-lg font-medium text-gray-800 mb-2">Gerenciar Pacientes</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Gerenciar Pacientes</h3>
             <p class="text-sm text-gray-600 mb-4">Cadastre novos pacientes e gerencie informações</p>
             <%= link_to "Ver Pacientes", terapeuta_pacientes_path, 
-                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all" %>
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
-          <div class="text-blue-600">
+          <div class="text-pink-600">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM9 9a2 2 0 11-4 0 2 2 0 014 0z"></path>
             </svg>
@@ -89,15 +73,15 @@
       </div>
 
       <!-- Novo Atendimento -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-lg font-medium text-gray-800 mb-2">Novo Atendimento</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Novo Atendimento</h3>
             <p class="text-sm text-gray-600 mb-4">Agende um novo atendimento para seus pacientes</p>
             <%= link_to "Agendar", "#", 
-                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-md hover:shadow-lg transition-all" %>
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
-          <div class="text-green-600">
+          <div class="text-pink-600">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
@@ -106,15 +90,15 @@
       </div>
 
       <!-- Registros Clínicos -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-lg font-medium text-gray-800 mb-2">Registros Clínicos</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Registros Clínicos</h3>
             <p class="text-sm text-gray-600 mb-4">Visualize e crie novos registros clínicos</p>
             <%= link_to "Ver Registros", "#", 
-                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-md hover:shadow-lg transition-all" %>
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
-          <div class="text-purple-600">
+          <div class="text-pink-600">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
@@ -124,22 +108,22 @@
     </div>
 
     <!-- Recent Activity -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Atendimentos de Hoje -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
+      <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-medium text-gray-800">Atendimentos de Hoje</h3>
+          <h3 class="text-lg font-medium text-gray-900">Atendimentos de Hoje</h3>
         </div>
         <div class="p-6">
           <% if @atendimentos_hoje_lista.any? %>
             <div class="space-y-4">
               <% @atendimentos_hoje_lista.each do |atendimento| %>
-                <div class="flex items-center justify-between p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                   <div>
-                    <p class="font-medium text-gray-800"><%= atendimento.paciente.nome %></p>
-                    <p class="text-sm text-gray-600"><%= atendimento.horario.strftime("%H:%M") %></p>
+                    <p class="font-medium text-gray-900"><%= atendimento.paciente.nome %></p>
+                    <p class="text-sm text-gray-600"><%= atendimento.data.strftime("%H:%M") %></p>
                   </div>
-                  <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
                     <%= atendimento.status.humanize %>
                   </span>
                 </div>
@@ -152,22 +136,22 @@
       </div>
 
       <!-- Próximos Atendimentos -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
+      <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-medium text-gray-800">Próximos Atendimentos</h3>
+          <h3 class="text-lg font-medium text-gray-900">Próximos Atendimentos</h3>
         </div>
         <div class="p-6">
           <% if @proximos_atendimentos_lista.any? %>
             <div class="space-y-4">
               <% @proximos_atendimentos_lista.each do |atendimento| %>
-                <div class="flex items-center justify-between p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                   <div>
-                    <p class="font-medium text-gray-800"><%= atendimento.paciente.nome %></p>
+                    <p class="font-medium text-gray-900"><%= atendimento.paciente.nome %></p>
                     <p class="text-sm text-gray-600">
-                      <%= atendimento.data.strftime("%d/%m") %> às <%= atendimento.horario.strftime("%H:%M") %>
+                      <%= atendimento.data.strftime("%d/%m às %H:%M") %>
                     </p>
                   </div>
-                  <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800">
+                  <span class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
                     <%= atendimento.status.humanize %>
                   </span>
                 </div>
@@ -179,5 +163,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </div>

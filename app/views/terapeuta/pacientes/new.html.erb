@@ -43,56 +43,56 @@
       <% end %>
 
       <!-- Seção: Dados Pessoais -->
-      <div class="border-b border-gray-200 pb-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Dados Pessoais</h2>
+      <div class="border-b border-gray-200 pb-8 mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Dados Pessoais</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- Nome -->
           <div class="md:col-span-2">
-            <%= f.label :nome, "Nome Completo", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :nome, raw("Nome Completo <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
             <%= f.text_field :nome, 
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Digite o nome completo do paciente" %>
           </div>
           
           <!-- CPF -->
           <div>
-            <%= f.label :cpf, "CPF", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :cpf, raw("CPF <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
             <%= f.text_field :cpf, 
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "000.000.000-00" %>
           </div>
           
           <!-- Data de Nascimento -->
           <div>
-            <%= f.label :data_nascimento, "Data de Nascimento", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :data_nascimento, raw("Data de Nascimento <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
             <%= f.date_field :data_nascimento, 
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
           </div>
           
           <!-- Telefone -->
           <div>
-            <%= f.label :telefone, "Telefone", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :telefone, raw("Telefone <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
             <%= f.text_field :telefone, 
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "(61) 99999-9999" %>
           </div>
           
           <!-- Endereço -->
           <div class="md:col-span-2">
-            <%= f.label :endereco, "Endereço", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :endereco, "Endereço", class: "block text-base font-medium text-gray-700" %>
             <%= f.text_area :endereco, rows: 2,
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Endereço completo do paciente" %>
           </div>
         </div>
       </div>
 
       <!-- Seção: Credenciais de Acesso -->
-      <div class="border-b border-gray-200 pb-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Credenciais de Acesso ao Sistema</h2>
+      <div class="border-b border-gray-200 pb-8 mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Credenciais de Acesso ao Sistema</h2>
         
-        <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-4">
+        <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
           <div class="flex">
             <div class="flex-shrink-0">
               <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
@@ -111,28 +111,28 @@
         </div>
         
         <%= f.fields_for :user_attributes do |user_form| %>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Email -->
             <div class="md:col-span-2">
-              <%= label_tag "paciente[user_attributes][email]", "E-mail de Acesso", class: "block text-sm font-medium text-gray-700" %>
+              <%= label_tag "paciente[user_attributes][email]", raw("E-mail de Acesso <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
               <%= email_field_tag "paciente[user_attributes][email]", params.dig(:paciente, :user_attributes, :email),
-                  class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                   placeholder: "email@exemplo.com" %>
             </div>
             
             <!-- Senha -->
             <div>
-              <%= label_tag "paciente[user_attributes][password]", "Senha", class: "block text-sm font-medium text-gray-700" %>
+              <%= label_tag "paciente[user_attributes][password]", raw("Senha <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
               <%= password_field_tag "paciente[user_attributes][password]", "",
-                  class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                   placeholder: "Mínimo 6 caracteres" %>
             </div>
             
             <!-- Confirmar Senha -->
             <div>
-              <%= label_tag "paciente[user_attributes][password_confirmation]", "Confirmar Senha", class: "block text-sm font-medium text-gray-700" %>
+              <%= label_tag "paciente[user_attributes][password_confirmation]", "Confirmar Senha", class: "block text-base font-medium text-gray-700" %>
               <%= password_field_tag "paciente[user_attributes][password_confirmation]", "",
-                  class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                   placeholder: "Repita a senha" %>
             </div>
           </div>
@@ -140,39 +140,39 @@
       </div>
 
       <!-- Seção: Informações Clínicas (Opcional) -->
-      <div class="pb-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Informações Clínicas (Opcional)</h2>
+      <div class="pb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Informações Clínicas (Opcional)</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- Histórico Familiar -->
           <div>
-            <%= f.label :historico_familiar, "Histórico Familiar", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :historico_familiar, "Histórico Familiar", class: "block text-base font-medium text-gray-700" %>
             <%= f.text_area :historico_familiar, rows: 3,
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Histórico familiar relevante..." %>
           </div>
           
           <!-- Medicamentos em Uso -->
           <div>
-            <%= f.label :medicamentos_uso, "Medicamentos em Uso", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :medicamentos_uso, "Medicamentos em Uso", class: "block text-base font-medium text-gray-700" %>
             <%= f.text_area :medicamentos_uso, rows: 3,
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Medicamentos atuais..." %>
           </div>
           
           <!-- Alergias -->
           <div>
-            <%= f.label :alergias, "Alergias Conhecidas", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :alergias, "Alergias Conhecidas", class: "block text-base font-medium text-gray-700" %>
             <%= f.text_area :alergias, rows: 3,
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Alergias conhecidas..." %>
           </div>
           
           <!-- Observações -->
           <div>
-            <%= f.label :observacoes, "Observações Gerais", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.label :observacoes, "Observações Gerais", class: "block text-base font-medium text-gray-700" %>
             <%= f.text_area :observacoes, rows: 3,
-                class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
                 placeholder: "Observações adicionais..." %>
           </div>
         </div>
@@ -181,9 +181,10 @@
       <!-- Buttons -->
       <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
         <%= link_to "Cancelar", terapeuta_pacientes_path, 
-            class: "px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+            class: "px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
+            style: "background-color: #ef4444;" %>
         <%= f.submit "Cadastrar Paciente", 
-            class: "px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+            class: "px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
       </div>
     <% end %>
   </div>

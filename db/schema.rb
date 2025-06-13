@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_11_045830) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_13_030525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_11_045830) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "historico_familiar"
+    t.text "medicamentos_uso"
+    t.text "alergias"
+    t.text "observacoes"
     t.index ["user_id"], name: "index_pacientes_on_user_id"
   end
 
@@ -69,7 +73,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_11_045830) do
     t.string "cpf"
     t.string "telefone"
     t.string "especialidade"
-    t.string "cref"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

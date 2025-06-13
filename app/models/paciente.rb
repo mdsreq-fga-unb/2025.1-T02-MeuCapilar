@@ -1,10 +1,10 @@
 class Paciente < ApplicationRecord
   belongs_to :user
-  belongs_to :terapeuta
   
   # Associações
   has_many :atendimentos, dependent: :destroy
-  has_many :registros_clinicos, dependent: :destroy
+  has_many :terapeutas, through: :atendimentos
+  has_many :registro_clinicos, dependent: :destroy
 
   # Validações
   validates :nome, presence: true, length: { minimum: 2 }
@@ -64,13 +64,13 @@ class Paciente < ApplicationRecord
 
   def proximo_atendimento
     atendimentos.where('data >= ?', Date.current)
-               .order(:data, :horario)
+               .order(:data)
                .first
   end
 
   def ultimo_atendimento
     atendimentos.where('data < ?', Date.current)
-               .order(data: :desc, horario: :desc)
+               .order(data: :desc)
                .first
   end
 

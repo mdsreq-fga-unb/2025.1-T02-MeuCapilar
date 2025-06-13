@@ -4,16 +4,17 @@ class Terapeuta::PacientesController < ApplicationController
   load_and_authorize_resource :paciente, class: 'Paciente'
 
   def index
-    @pacientes = current_user.terapeuta.pacientes.includes(:user)
-                            .order(created_at: :desc)
-                            .page(params[:page])
+    # Buscar todos os pacientes do sistema (o terapeuta pode ver todos para agendar atendimentos)
+    @pacientes = Paciente.includes(:user)
+                        .order(created_at: :desc)
+                        .page(params[:page]).per(10)
   end
 
   def show
     @paciente = current_user.terapeuta.pacientes.find(params[:id])
     @atendimentos = @paciente.atendimentos.includes(:terapeuta)
                              .order(data: :desc).limit(10)
-    @registros_clinicos = @paciente.registros_clinicos.includes(:terapeuta)
+    @registros_clinicos = @paciente.registro_clinicos.includes(:terapeuta)
                                    .order(data_registro: :desc).limit(5)
   end
 

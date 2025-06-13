@@ -1,39 +1,42 @@
 class TerapeutaDashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_terapeuta
+  before_action :ensure_terapeuta_profile
 
   def index
+    authorize! :read, :terapeuta_dashboard
+    
     @terapeuta = current_user.terapeuta
     
     # Estatísticas gerais
-    @total_pacientes = @terapeuta.pacientes.count
-    @total_registros = RegistroClinico.joins(:terapeuta).where(terapeutas: { user_id: current_user.id }).count
+    @total_pacientes = @terapeuta.pacientes.distinct.count
+    @total_registros = RegistroClinico.joins(:terapeuta).where(terapeuta: { user_id: current_user.id }).count
     
     # Atendimentos
     hoje = Date.current
     @atendimentos_hoje = Atendimento.joins(:terapeuta)
-                                   .where(terapeutas: { user_id: current_user.id })
-                                   .where(data: hoje)
+                                   .where(terapeuta: { user_id: current_user.id })
+                                   .where(data: hoje.beginning_of_day..hoje.end_of_day)
                                    .count
     
     @proximos_atendimentos = Atendimento.joins(:terapeuta)
-                                       .where(terapeutas: { user_id: current_user.id })
+                                       .where(terapeuta: { user_id: current_user.id })
                                        .where(data: hoje..(hoje + 7.days))
                                        .count
     
     # Listas para exibição
     @atendimentos_hoje_lista = Atendimento.joins(:terapeuta)
                                          .includes(:paciente)
-                                         .where(terapeutas: { user_id: current_user.id })
-                                         .where(data: hoje)
-                                         .order(:horario)
+                                         .where(terapeuta: { user_id: current_user.id })
+                                         .where(data: hoje.beginning_of_day..hoje.end_of_day)
+                                         .order(:data)
                                          .limit(5)
     
     @proximos_atendimentos_lista = Atendimento.joins(:terapeuta)
                                              .includes(:paciente)
-                                             .where(terapeutas: { user_id: current_user.id })
+                                             .where(terapeuta: { user_id: current_user.id })
                                              .where(data: (hoje + 1.day)..(hoje + 7.days))
-                                             .order(:data, :horario)
+                                             .order(:data)
                                              .limit(5)
   end
 
@@ -42,6 +45,12 @@ class TerapeutaDashboardController < ApplicationController
   def ensure_terapeuta
     unless current_user.terapeuta?
       redirect_to root_path, alert: 'Acesso restrito a terapeutas.'
+    end
+  end
+
+  def ensure_terapeuta_profile
+    if current_user.terapeuta.nil?
+      redirect_to new_terapeuta_profile_path, alert: 'Você precisa completar seu perfil antes de acessar o dashboard.'
     end
   end
 end

@@ -1,32 +1,29 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
-  <div class="container mx-auto px-4 py-8">
-    <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">Meu Dashboard</h1>
-      <p class="text-gray-600">
-        Olá, <span class="font-semibold"><%= @paciente&.nome || current_user.email %></span>!
-        Acompanhe aqui seus atendimentos e informações.
-      </p>
+  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <!-- Page Title -->
+    <div class="px-4 py-6 sm:px-0">
+      <h1 class="text-3xl font-bold text-gray-900">Meu Dashboard</h1>
+      <p class="mt-2 text-gray-600">Acompanhe seus atendimentos e informações</p>
     </div>
 
-    <!-- Card do Próximo Atendimento -->
+    <!-- Próximo Atendimento Card -->
     <% if @proximo_atendimento %>
-      <div class="bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl shadow-lg p-6 mb-8">
+      <div class="bg-pink-600 text-white rounded-lg shadow-lg p-6 mb-8">
         <div class="flex items-center justify-between">
           <div>
             <h2 class="text-xl font-semibold mb-2">Próximo Atendimento</h2>
-            <p class="text-white/90 mb-1">
+            <p class="text-pink-100 mb-1">
               <%= @proximo_atendimento.data.strftime("%A, %d de %B de %Y às %H:%M") %>
             </p>
-            <p class="text-white/90">
+            <p class="text-pink-100">
               Serviço: <%= @proximo_atendimento.servico %>
             </p>
-            <p class="text-white/90">
+            <p class="text-pink-100">
               Terapeuta: <%= @proximo_atendimento.terapeuta.nome %>
             </p>
           </div>
           <div class="text-right">
-            <div class="bg-white/20 backdrop-blur-sm rounded-full p-4">
+            <div class="bg-white bg-opacity-20 rounded-full p-4">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
@@ -35,7 +32,7 @@
         </div>
       </div>
     <% else %>
-      <div class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 mb-8 text-center">
+      <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8 text-center">
         <div class="text-gray-400 mb-2">
           <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -46,161 +43,173 @@
       </div>
     <% end %>
 
-    <!-- Cards de Informações -->
+    <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <!-- Atendimentos Agendados -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="p-3 rounded-md bg-blue-100">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
           </div>
           <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Agendados</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"><%= @atendimentos_agendados.count %></p>
+            <h3 class="text-sm font-medium text-gray-500">Agendados</h3>
+            <p class="text-2xl font-semibold text-gray-900"><%= @atendimentos_agendados.count %></p>
           </div>
         </div>
       </div>
 
       <!-- Histórico -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="p-3 rounded-md bg-green-100">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
           <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Realizados</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent"><%= @historico_atendimentos.count %></p>
+            <h3 class="text-sm font-medium text-gray-500">Realizados</h3>
+            <p class="text-2xl font-semibold text-gray-900"><%= @historico_atendimentos.count %></p>
           </div>
         </div>
       </div>
 
       <!-- Registros Clínicos -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 p-6">
+      <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center">
-          <div class="p-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="p-3 rounded-md bg-pink-100">
+            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
           <div class="ml-4">
-            <h3 class="text-lg font-medium text-gray-800">Registros</h3>
-            <p class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"><%= @registros_clinicos.count %></p>
+            <h3 class="text-sm font-medium text-gray-500">Registros</h3>
+            <p class="text-2xl font-semibold text-gray-900"><%= @registros_clinicos.count %></p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Seções Principais -->
+    <!-- Main Content -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Próximos Atendimentos -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Meus Próximos Atendimentos</h2>
-        <% if @atendimentos_agendados.any? %>
-          <div class="space-y-4">
-            <% @atendimentos_agendados.each do |atendimento| %>
-              <div class="bg-white/50 backdrop-blur-sm rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
-                <div class="flex justify-between items-start mb-2">
-                  <h3 class="font-medium text-gray-800"><%= atendimento.servico %></h3>
-                  <span class="inline-block px-3 py-1 text-xs rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800">
-                    <%= atendimento.status.humanize %>
-                  </span>
+      <div class="bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-medium text-gray-900">Meus Próximos Atendimentos</h2>
+        </div>
+        <div class="p-6">
+          <% if @atendimentos_agendados.any? %>
+            <div class="space-y-4">
+              <% @atendimentos_agendados.each do |atendimento| %>
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-medium text-gray-900"><%= atendimento.servico %></h3>
+                    <span class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                      <%= atendimento.status.humanize %>
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-600 mb-1">
+                    <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %>
+                  </p>
+                  <p class="text-sm text-gray-600">
+                    <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
+                  </p>
                 </div>
-                <p class="text-sm text-gray-600 mb-1">
-                  <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %>
-                </p>
-                <p class="text-sm text-gray-600">
-                  <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
-                </p>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="text-gray-500 italic">Nenhum atendimento agendado no momento.</p>
-        <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="text-gray-500 text-center py-4">Nenhum atendimento agendado no momento.</p>
+          <% end %>
+        </div>
       </div>
 
       <!-- Histórico Recente -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Histórico Recente</h2>
-        <% if @historico_atendimentos.any? %>
-          <div class="space-y-4">
-            <% @historico_atendimentos.each do |atendimento| %>
-              <div class="bg-white/50 backdrop-blur-sm rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
-                <div class="flex justify-between items-start mb-2">
-                  <h3 class="font-medium text-gray-800"><%= atendimento.servico %></h3>
-                  <span class="inline-block px-3 py-1 text-xs rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800">
-                    <%= atendimento.status.humanize %>
-                  </span>
-                </div>
-                <p class="text-sm text-gray-600 mb-1">
-                  <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y") %>
-                </p>
-                <p class="text-sm text-gray-600">
-                  <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
-                </p>
-                <% if atendimento.observacoes.present? %>
-                  <p class="text-sm text-gray-500 mt-2 italic">
-                    <%= truncate(atendimento.observacoes, length: 100) %>
+      <div class="bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-medium text-gray-900">Histórico Recente</h2>
+        </div>
+        <div class="p-6">
+          <% if @historico_atendimentos.any? %>
+            <div class="space-y-4">
+              <% @historico_atendimentos.each do |atendimento| %>
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-medium text-gray-900"><%= atendimento.servico %></h3>
+                    <span class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                      <%= atendimento.status.humanize %>
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-600 mb-1">
+                    <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y") %>
                   </p>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="text-gray-500 italic">Nenhum atendimento realizado ainda.</p>
-        <% end %>
+                  <p class="text-sm text-gray-600">
+                    <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
+                  </p>
+                  <% if atendimento.observacoes.present? %>
+                    <p class="text-sm text-gray-500 mt-2 italic">
+                      <%= truncate(atendimento.observacoes, length: 100) %>
+                    </p>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="text-gray-500 text-center py-4">Nenhum atendimento realizado ainda.</p>
+          <% end %>
+        </div>
       </div>
     </div>
 
     <!-- Registros Clínicos -->
     <% if @registros_clinicos.any? %>
-      <div class="mt-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Registros Clínicos Recentes</h2>
-        <div class="space-y-4">
-          <% @registros_clinicos.each do |registro| %>
-            <div class="bg-white/50 backdrop-blur-sm rounded-xl p-4 shadow-sm hover:shadow-md transition-all">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="font-medium text-gray-800">
-                  Registro de <%= registro.data_registro.strftime("%d/%m/%Y") %>
-                </h3>
-                <span class="text-sm text-gray-500">
-                  <%= registro.terapeuta.nome %>
-                </span>
+      <div class="mt-8 bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="text-lg font-medium text-gray-900">Registros Clínicos Recentes</h2>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <% @registros_clinicos.each do |registro| %>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-medium text-gray-900">
+                    Registro de <%= registro.data_registro.strftime("%d/%m/%Y") %>
+                  </h3>
+                  <span class="text-sm text-gray-500">
+                    <%= registro.terapeuta.nome %>
+                  </span>
+                </div>
+                <% if registro.diagnostico.present? %>
+                  <p class="text-sm text-gray-600 mb-2">
+                    <strong>Diagnóstico:</strong> <%= truncate(registro.diagnostico, length: 150) %>
+                  </p>
+                <% end %>
+                <% if registro.tratamento.present? %>
+                  <p class="text-sm text-gray-600">
+                    <strong>Tratamento:</strong> <%= truncate(registro.tratamento, length: 150) %>
+                  </p>
+                <% end %>
               </div>
-              <% if registro.diagnostico.present? %>
-                <p class="text-sm text-gray-600 mb-2">
-                  <strong>Diagnóstico:</strong> <%= truncate(registro.diagnostico, length: 150) %>
-                </p>
-              <% end %>
-              <% if registro.tratamento.present? %>
-                <p class="text-sm text-gray-600">
-                  <strong>Tratamento:</strong> <%= truncate(registro.tratamento, length: 150) %>
-                </p>
-              <% end %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
 
     <!-- Informações de Contato -->
-    <div class="mt-8 bg-gradient-to-r from-purple-600 to-pink-500 rounded-2xl p-6 text-white">
+    <div class="mt-8 bg-pink-600 rounded-lg p-6 text-white">
       <h2 class="text-xl font-semibold mb-4">Precisa de Ajuda?</h2>
-      <p class="text-white/90 mb-4">
+      <p class="text-pink-100 mb-4">
         Para agendar novos atendimentos ou esclarecer dúvidas, entre em contato com sua terapeuta.
       </p>
       <div class="flex space-x-4">
-        <a href="#" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-full text-sm transition-all">
+        <a href="#" class="bg-white hover:bg-gray-100 text-pink-600 px-4 py-2 rounded-md text-sm transition-all">
           Contato
         </a>
-        <a href="#" class="bg-white hover:bg-white/90 text-purple-600 px-4 py-2 rounded-full text-sm transition-all">
+        <a href="#" class="bg-white hover:bg-gray-100 text-pink-600 px-4 py-2 rounded-md text-sm transition-all">
           Ver Todos os Atendimentos
         </a>
       </div>
     </div>
-  </div>
+  </main>
 </div>
