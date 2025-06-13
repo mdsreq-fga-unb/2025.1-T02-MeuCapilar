@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4>Complete seu Perfil de Paciente</h4>
+          <p class="text-muted">Para acessar o sistema, você precisa completar seu perfil.</p>
+        </div>
+        <div class="card-body">
+          <%= form_with model: @paciente, url: paciente_profiles_path, local: true do |form| %>
+            <% if @paciente.errors.any? %>
+              <div class="alert alert-danger">
+                <strong><%= pluralize(@paciente.errors.count, "erro") %> encontrado(s):</strong>
+                <ul class="mb-0">
+                  <% @paciente.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <%= form.label :nome, "Nome Completo *", class: "form-label" %>
+                  <%= form.text_field :nome, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <%= form.label :cpf, "CPF *", class: "form-label" %>
+                  <%= form.text_field :cpf, class: "form-control", required: true, 
+                      placeholder: "000.000.000-00" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <%= form.label :telefone, "Telefone *", class: "form-label" %>
+                  <%= form.text_field :telefone, class: "form-control", required: true, 
+                      placeholder: "(00) 00000-0000" %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <%= form.label :data_nascimento, "Data de Nascimento *", class: "form-label" %>
+                  <%= form.date_field :data_nascimento, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= form.label :endereco, "Endereço", class: "form-label" %>
+              <%= form.text_area :endereco, class: "form-control", rows: 2, 
+                  placeholder: "Endereço completo" %>
+            </div>
+
+            <div class="form-check mb-3">
+              <%= form.check_box :status, { checked: true, class: "form-check-input" } %>
+              <%= form.label :status, "Perfil ativo", class: "form-check-label" %>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= form.submit "Completar Perfil", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
