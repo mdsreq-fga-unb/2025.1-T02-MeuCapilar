@@ -1,0 +1,127 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <!-- Header simples -->
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <%= link_to root_path do %>
+            <span class="text-2xl font-bold text-pink-600">MeuCapilar</span>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to "Voltar ao início", root_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" %>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <div class="py-12">
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Título -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900">
+          Cadastro de Terapeuta
+        </h1>
+        <p class="mt-2 text-gray-600">
+          Crie sua conta profissional para gerenciar seus pacientes
+        </p>
+        <p class="mt-1 text-sm text-gray-600">
+          Já tem uma conta? 
+          <%= link_to "Faça login aqui", terapeuta_login_path, class: "text-pink-600 hover:text-pink-500 font-medium" %>
+        </p>
+      </div>
+
+      <!-- Formulário -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+          
+          <!-- Campo oculto para definir tipo como terapeuta -->
+          <%= f.hidden_field :user_type, value: 'terapeuta' %>
+          
+          <!-- Mensagens de erro -->
+          <% if resource.errors.any? %>
+            <div class="bg-red-50 border border-red-200 rounded-md p-4">
+              <h3 class="text-sm font-medium text-red-800 mb-2">
+                <%= pluralize(resource.errors.count, "erro") %> <%= resource.errors.count == 1 ? "impediu" : "impediram" %> o cadastro:
+              </h3>
+              <ul class="text-sm text-red-700 list-disc pl-5 space-y-1">
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Info sobre conta profissional -->
+          <div class="bg-pink-50 border border-pink-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-pink-800">
+                  Conta Profissional
+                </h3>
+                <p class="mt-1 text-sm text-pink-700">
+                  Esta conta será criada como <strong>Terapeuta Capilar</strong>. Após o cadastro, você poderá gerenciar seus pacientes e atendimentos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div>
+            <%= f.label :email, "E-mail Profissional", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= f.email_field :email, 
+                autofocus: true, 
+                autocomplete: "email", 
+                class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500",
+                placeholder: "Digite seu e-mail profissional" %>
+          </div>
+
+          <!-- Senha -->
+          <div>
+            <%= f.label :password, "Senha", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <% if @minimum_password_length %>
+              <p class="text-xs text-gray-500 mb-1">Mínimo de <%= @minimum_password_length %> caracteres</p>
+            <% end %>
+            <%= f.password_field :password, 
+                autocomplete: "new-password", 
+                class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500",
+                placeholder: "Digite uma senha segura" %>
+          </div>
+
+          <!-- Confirmar senha -->
+          <div>
+            <%= f.label :password_confirmation, "Confirmar Senha", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= f.password_field :password_confirmation, 
+                autocomplete: "new-password", 
+                class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500",
+                placeholder: "Confirme sua senha" %>
+          </div>
+
+          <!-- Botão de cadastro -->
+          <div>
+            <%= f.submit "Criar Conta Profissional", 
+                class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
+          </div>
+
+          <!-- Links adicionais -->
+          <div class="text-center space-y-2">
+            <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              <%= link_to "Esqueci minha senha", new_password_path(resource_name), 
+                  class: "text-sm text-pink-600 hover:text-pink-500" %>
+            <% end %>
+            <div class="text-xs text-gray-500 mt-4">
+              <p><strong>Importante:</strong> Este cadastro é exclusivo para terapeutas capilares.</p>
+              <p>Pacientes recebem credenciais de seus terapeutas.</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

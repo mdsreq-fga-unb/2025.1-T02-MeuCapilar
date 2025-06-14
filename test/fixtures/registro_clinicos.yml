@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente: one
+  terapeuta: one
+  diagnostico: MyText
+  tratamento: MyText
+  observacoes: MyText
+  data_registro: 2025-06-11 04:58:30
+
+two:
+  paciente: two
+  terapeuta: two
+  diagnostico: MyText
+  tratamento: MyText
+  observacoes: MyText
+  data_registro: 2025-06-11 04:58:30
