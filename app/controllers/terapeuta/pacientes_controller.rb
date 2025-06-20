@@ -55,17 +55,36 @@ class Terapeuta::PacientesController < ApplicationController
 
   def edit
     @paciente = current_user.terapeuta.pacientes.find(params[:id])
+    @user = @paciente.user
   end
 
   def update
     @paciente = current_user.terapeuta.pacientes.find(params[:id])
-    
-    if @paciente.update(paciente_params)
-      redirect_to terapeuta_paciente_path(@paciente), 
-                  notice: 'Dados do paciente atualizados com sucesso.'
-    else
-      render :edit, status: :unprocessable_entity
+    @user = @paciente.user
+
+    params[:paciente].delete(:cpf)
+    if params[:paciente][:user_attributes]
+      params[:paciente][:user_attributes].delete(:password)
+      params[:paciente][:user_attributes].delete(:password_confirmation)
     end
+    if params[:paciente][:user]
+      params[:paciente][:user].delete(:password)
+      params[:paciente][:user].delete(:password_confirmation)
+    end
+
+    Paciente.transaction do
+      if @paciente.update(paciente_params)
+        if user_params.present?
+          @user.email = user_params[:email] if user_params[:email].present?
+          @user.save!
+        end
+        redirect_to terapeuta_pacientes_path, notice: 'Dados do paciente atualizados com sucesso.'
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+  rescue ActiveRecord::RecordInvalid
+    render :edit, status: :unprocessable_entity
   end
 
   def destroy
@@ -94,4 +113,8 @@ class Terapeuta::PacientesController < ApplicationController
       :historico_familiar, :medicamentos_uso, :alergias, :observacoes
     )
   end
-end 
+
+  def user_params
+    params.dig(:paciente, :user_attributes) || params.dig(:paciente, :user) || {}
+  end
+end
