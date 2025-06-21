@@ -1,0 +1,219 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <main class="max-w-4xl mx-auto py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="px-4 py-6 sm:px-0 mb-8">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Detalhes do Atendimento</h1>
+          <p class="mt-2 text-gray-600">Informações completas sobre o agendamento</p>
+        </div>
+        <div class="flex space-x-3">
+          <%= link_to edit_terapeuta_atendimento_path(@atendimento), 
+              class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            Editar
+          <% end %>
+          <%= link_to terapeuta_atendimentos_path, 
+              class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Voltar
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2">
+        <!-- Atendimento Details -->
+        <div class="bg-white rounded-lg shadow mb-6">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Informações do Atendimento</h2>
+          </div>
+          <div class="p-6">
+            <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Data e Hora</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @atendimento.data.strftime("%d/%m/%Y às %H:%M") %>
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Status</dt>
+                <dd class="mt-1">
+                  <% status_classes = case @atendimento.status
+                     when 'agendado'
+                       'bg-blue-100 text-blue-800'
+                     when 'confirmado'
+                       'bg-yellow-100 text-yellow-800'
+                     when 'realizado'
+                       'bg-green-100 text-green-800'
+                     when 'cancelado'
+                       'bg-red-100 text-red-800'
+                     else
+                       'bg-gray-100 text-gray-800'
+                     end %>
+                  <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full <%= status_classes %>">
+                    <%= @atendimento.status.humanize %>
+                  </span>
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Serviço</dt>
+                <dd class="mt-1 text-sm text-gray-900"><%= @atendimento.servico %></dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Criado em</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @atendimento.created_at.strftime("%d/%m/%Y às %H:%M") %>
+                </dd>
+              </div>
+            </dl>
+            
+            <% if @atendimento.observacoes.present? %>
+              <div class="mt-6">
+                <dt class="text-sm font-medium text-gray-500">Observações</dt>
+                <dd class="mt-1 text-sm text-gray-900 bg-gray-50 p-3 rounded-md">
+                  <%= @atendimento.observacoes %>
+                </dd>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Registros Clínicos Recentes -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Registros Clínicos Recentes</h2>
+          </div>
+          <div class="p-6">
+            <% if @registros_clinicos.any? %>
+              <div class="space-y-4">
+                <% @registros_clinicos.each do |registro| %>
+                  <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-start mb-2">
+                      <h3 class="text-sm font-medium text-gray-900">
+                        Registro de <%= registro.data_registro.strftime("%d/%m/%Y") %>
+                      </h3>
+                      <span class="text-xs text-gray-500">
+                        <%= time_ago_in_words(registro.created_at) %> atrás
+                      </span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">
+                      <strong>Diagnóstico:</strong> <%= truncate(registro.diagnostico, length: 150) %>
+                    </p>
+                    <% if registro.tratamento.present? %>
+                      <p class="text-sm text-gray-600">
+                        <strong>Tratamento:</strong> <%= truncate(registro.tratamento, length: 150) %>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-gray-500 text-center py-4">Nenhum registro clínico encontrado para este paciente.</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <!-- Paciente Info -->
+        <div class="bg-white rounded-lg shadow mb-6">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Informações do Paciente</h2>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <div class="flex-shrink-0 h-12 w-12">
+                <div class="h-12 w-12 rounded-full bg-pink-100 flex items-center justify-center">
+                  <span class="text-lg font-medium text-pink-800">
+                    <%= @paciente.iniciais %>
+                  </span>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900"><%= @paciente.nome %></h3>
+                <p class="text-sm text-gray-500">Paciente</p>
+              </div>
+            </div>
+            
+            <dl class="space-y-3">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Telefone</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.telefone_formatado %>
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Idade</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.idade %> anos
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">CPF</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.cpf_formatado %>
+                </dd>
+              </div>
+              
+              <% if @paciente.endereco.present? %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Endereço</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= @paciente.endereco %>
+                  </dd>
+                </div>
+              <% end %>
+            </dl>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <%= link_to terapeuta_paciente_path(@paciente), 
+                  class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" do %>
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                Ver Perfil Completo
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Ações Rápidas</h2>
+          </div>
+          <div class="p-6 space-y-3">
+            <%= link_to new_terapeuta_paciente_registro_clinico_path(@paciente), 
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700" do %>
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Novo Registro Clínico
+            <% end %>
+            
+            <%= link_to terapeuta_atendimentos_path, 
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              Ver Todos os Atendimentos
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 

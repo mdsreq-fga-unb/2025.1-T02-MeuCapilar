@@ -12,9 +12,9 @@ class Atendimento < ApplicationRecord
 
   # Validações
   validates :data, :servico, :status, presence: true
-  validates :data, uniqueness: { scope: :terapeuta_id, message: "já possui atendimento agendado neste horário" }
   validate :data_futura_ou_presente
   validate :horario_comercial
+  validate :verificar_disponibilidade
 
   # Scopes
   scope :por_data, ->(data) { where(data: data.beginning_of_day..data.end_of_day) }
@@ -37,6 +37,20 @@ class Atendimento < ApplicationRecord
     hora = data.hour
     if hora < 8 || hora > 18
       errors.add(:data, "deve estar entre 8h e 18h")
+    end
+  end
+
+  def verificar_disponibilidade
+    return unless data.present? && terapeuta_id.present?
+    
+    # Verificar se já existe outro atendimento no mesmo horário para o terapeuta
+    atendimentos_existentes = Atendimento.where(terapeuta_id: terapeuta_id)
+                                        .where('DATE(data) = ? AND EXTRACT(hour FROM data) = ?', 
+                                               data.to_date, data.hour)
+                                        .where.not(id: id) # Excluir o próprio registro se estiver editando
+    
+    if atendimentos_existentes.exists?
+      errors.add(:data, "já possui atendimento agendado neste horário")
     end
   end
 end

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       resources :atendimentos
       resources :registros_clinicos
     end
-    resources :atendimentos, only: [:index, :show, :edit, :update, :destroy]
-    resources :registros_clinicos, only: [:index, :show, :edit, :update, :destroy]
+    resources :atendimentos, only: [:index, :show, :edit, :update, :destroy, :new, :create]
+    resources :registros_clinicos, only: [:index, :show, :edit, :update, :destroy, :new]
   end
 
   namespace :paciente do
