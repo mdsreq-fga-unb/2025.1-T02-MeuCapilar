@@ -10,7 +10,7 @@
         <div class="flex space-x-4">
           <%= link_to "Voltar ao Dashboard", terapeuta_dashboard_path, 
               class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 shadow-sm" %>
-          <%= link_to "Cadastrar Novo Paciente", new_terapeuta_paciente_path, 
+          <%= link_to "Cadastrar Novo Paciente", new_terapeuta_paciente_path,
               class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 shadow-sm" %>
         </div>
       </div>
@@ -127,11 +127,46 @@
                 <%= link_to "Gerenciar", edit_terapeuta_paciente_path(paciente),
                     class: "inline-flex items-center px-4 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition font-semibold shadow-sm" %>
               </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+                <td class="px-4 py-4 text-left text-sm font-medium">
+                  <button
+                    onclick="document.getElementById('modal-<%= paciente.id %>').classList.remove('hidden')"
+                    class="inline-flex items-center px-4 py-2 rounded-md bg-red-600 text-black hover:bg-red-700 transition font-semibold shadow-sm"
+                  >
+                    Excluir
+                  </button>
+
+                  <div
+                    id="modal-<%= paciente.id %>"
+                    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+                  >
+                    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
+                      <h2 class="text-lg font-semibold text-gray-800 mb-4">Confirmar Exclusão</h2>
+                      <p class="mb-4 text-gray-700">
+                        Tem certeza que deseja excluir o paciente <strong><%= paciente.nome %></strong>?
+                      </p>
+
+                      <div class="flex justify-end gap-3">
+                        <button
+                          onclick="document.getElementById('modal-<%= paciente.id %>').classList.add('hidden')"
+                          class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                        >
+                          Cancelar
+                        </button>
+
+                        <%= button_to 'Excluir',
+                            terapeuta_paciente_path(paciente),
+                            method: :delete,
+                            form_class: "inline",
+                            class: "px-4 py-2 bg-red-600 text-black rounded hover:bg-red-700" %>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
     <% if respond_to?(:paginate) %>
       <div class="px-4 py-4 border-t border-gray-200">

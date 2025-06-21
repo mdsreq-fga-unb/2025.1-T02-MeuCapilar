@@ -16,6 +16,7 @@ class Terapeuta::PacientesController < ApplicationController
                              .order(data: :desc).limit(10)
     @registros_clinicos = @paciente.registro_clinicos.includes(:terapeuta)
                                    .order(data_registro: :desc).limit(5)
+    redirect_to terapeuta_paciente_path(@paciente)
   end
 
   def new
@@ -88,13 +89,13 @@ class Terapeuta::PacientesController < ApplicationController
   end
 
   def destroy
-    @paciente = current_user.terapeuta.pacientes.find(params[:id])
+    @paciente = Paciente.find(params[:id])
     
     if @paciente.destroy
       redirect_to terapeuta_pacientes_path, 
                   notice: 'Paciente removido com sucesso.'
     else
-      redirect_to terapeuta_paciente_path(@paciente), 
+      redirect_to terapeuta_paciente_path(@paciente),
                   alert: 'Não foi possível remover o paciente.'
     end
   end
