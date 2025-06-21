@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/paciente/profile/new', to: 'paciente_profiles#new', as: 'new_paciente_profile'
   post '/paciente/profile', to: 'paciente_profiles#create', as: 'paciente_profiles'
 
+  # Rotas para deletar paciente
+  get '/paciente/:id', to: 'terapeuta/pacientes#destroy', as: 'delete_paciente'
+
   # Namespaces organizados para futuras implementações
   namespace :terapeuta do
     resources :pacientes do
