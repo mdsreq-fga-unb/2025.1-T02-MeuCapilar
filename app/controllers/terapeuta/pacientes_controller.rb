@@ -55,12 +55,12 @@ class Terapeuta::PacientesController < ApplicationController
   end
 
   def edit
-    @paciente = current_user.terapeuta.pacientes.find(params[:id])
+    @paciente = Paciente.find(params[:id])
     @user = @paciente.user
   end
 
   def update
-    @paciente = current_user.terapeuta.pacientes.find(params[:id])
+    @paciente = Paciente.find(params[:id])
     @user = @paciente.user
 
     params[:paciente].delete(:cpf)

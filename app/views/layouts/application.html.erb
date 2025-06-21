@@ -123,5 +123,20 @@
         </div>
       </footer>
     <% end %>
+
+    <script>
+      document.addEventListener('turbo:load', () => {
+        const flashMessages = document.querySelectorAll('[role="alert"]');
+        
+        flashMessages.forEach((flash) => {
+          setTimeout(() => {
+            flash.classList.add('opacity-0', 'translate-x-8');
+            setTimeout(() => {
+              flash.remove();
+            }, 300); // tempo para a animação de saída
+          }, 4000); // 4 segundos antes de começar a desaparecer
+        });
+      });
+    </script>
   </body>
 </html>
