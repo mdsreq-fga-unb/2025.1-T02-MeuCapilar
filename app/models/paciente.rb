@@ -1,5 +1,6 @@
 class Paciente < ApplicationRecord
   belongs_to :user
+  accepts_nested_attributes_for :user, update_only: true
   
   # Associações
   has_many :atendimentos, dependent: :destroy
@@ -7,9 +8,9 @@ class Paciente < ApplicationRecord
   has_many :registro_clinicos, dependent: :destroy
 
   # Validações
-  validates :nome, presence: true, length: { minimum: 2 }
+  validates :nome, presence: true, length: { minimum: 2 }, format: { with: /\A[a-zA-ZÀ-ÿ'\s]+\z/, message: "deve conter apenas letras" }
   validates :cpf, presence: true, uniqueness: true, cpf: true
-  validates :telefone, presence: true
+  validates :telefone, presence: true, format: { with: /\A\d{10,11}\z/, message: "deve conter 10 ou 11 dígitos válidos (apenas números)" }
   validates :data_nascimento, presence: true
   validate :data_nascimento_valida
 
