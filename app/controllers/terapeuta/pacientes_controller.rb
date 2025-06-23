@@ -7,16 +7,39 @@ class Terapeuta::PacientesController < ApplicationController
     # Buscar todos os pacientes do sistema (o terapeuta pode ver todos para agendar atendimentos)
     @pacientes = Paciente.includes(:user)
                         .order(created_at: :desc)
-                        .page(params[:page]).per(10)
+    
+    # Aplicar filtro de busca se fornecido
+    if params[:search].present?
+      search_term = params[:search].strip
+      
+      # Se o termo de busca parece ser um CPF (contém números, pontos ou hífens),
+      # também buscar pela versão sem formatação
+      if search_term.match?(/[\d\.\-]/)
+        cpf_clean = search_term.gsub(/\D/, '') # Remove tudo que não é dígito
+        @pacientes = @pacientes.where(
+          "pacientes.nome ILIKE ? OR pacientes.cpf ILIKE ? OR pacientes.cpf ILIKE ?", 
+          "%#{search_term}%", 
+          "%#{search_term}%",
+          "%#{cpf_clean}%"
+        )
+      else
+        @pacientes = @pacientes.where(
+          "pacientes.nome ILIKE ? OR pacientes.cpf ILIKE ?", 
+          "%#{search_term}%", 
+          "%#{search_term}%"
+        )
+      end
+    end
+    
+    @pacientes = @pacientes.page(params[:page]).per(10)
   end
 
   def show
     @paciente = current_user.terapeuta.pacientes.find(params[:id])
     @atendimentos = @paciente.atendimentos.includes(:terapeuta)
                              .order(data: :desc).limit(10)
-    @registros_clinicos = @paciente.registro_clinicos.includes(:terapeuta)
+    @registros_clinicos = @paciente.registros_clinicos.includes(:terapeuta)
                                    .order(data_registro: :desc).limit(5)
-    redirect_to terapeuta_paciente_path(@paciente)
   end
 
   def new

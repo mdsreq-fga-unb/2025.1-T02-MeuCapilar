@@ -24,14 +24,6 @@
 - **Senha:** 123456
 - **Dashboard:** http://localhost:3000/paciente/dashboard
 
-## 🌐 URLs Principais
-
-- **Home:** http://localhost:3000/
-- **Login:** http://localhost:3000/users/sign_in
-- **Registro (Apenas Terapeutas):** http://localhost:3000/users/sign_up
-- **Gerenciar Pacientes:** http://localhost:3000/terapeuta/pacientes
-- **Cadastrar Paciente:** http://localhost:3000/terapeuta/pacientes/new
-- **Logout:** http://localhost:3000/users/sign_out
 
 ## 🚀 Como Usar
 
@@ -69,20 +61,6 @@
 - **Botão Consistente**: Azul sólido com hover
 - **Links Discretos**: Azul simples sem gradientes
 
-## 📊 Regras de Negócio Implementadas
-
-### ✅ **US 1.1.1 - MUST**: Cadastro de Pacientes por Terapeutas
-- ✅ Apenas terapeutas podem cadastrar pacientes
-- ✅ Sistema cria automaticamente credenciais de acesso para o paciente
-- ✅ Formulário completo com dados pessoais e clínicos
-- ✅ Validações de CPF, telefone e data de nascimento
-
-### ✅ Regras de Autenticação
-- ✅ Pacientes **NÃO** podem se auto-cadastrar
-- ✅ Apenas terapeutas podem criar contas no sistema
-- ✅ Cada paciente é associado à sua terapeuta
-- ✅ Sistema de roles bem definido
-- ✅ **NOVO**: Botões distintos para login de terapeutas e pacientes
 
 ## 🛠️ Funcionalidades Implementadas
 
@@ -178,9 +156,3 @@ Sistema rodando em containers Docker para facilitar desenvolvimento e deploy.
 - Código CSS mais simples
 - Padrão consistente
 - Fácil de atualizar
-
----
-
-**Sistema agora possui interface limpa, elegante e profissional, adequada para um sistema de gestão médica!** 🚀 
-
-**Próximos passos**: Implementar CRUD completo de atendimentos e registros clínicos. 

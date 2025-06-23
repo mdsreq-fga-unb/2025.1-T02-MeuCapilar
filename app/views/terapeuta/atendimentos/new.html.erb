@@ -1,149 +1,324 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
-  <main class="max-w-3xl mx-auto py-8 sm:px-6 lg:px-8">
+  <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
     <!-- Header -->
-    <div class="px-4 py-6 sm:px-0 mb-8">
+    <div class="px-4 py-4 sm:px-0 mb-4">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">Novo Atendimento</h1>
-          <p class="mt-2 text-gray-600">Agende um novo atendimento para seus pacientes</p>
+          <h1 class="text-2xl font-bold text-gray-900">Agendar Atendimento</h1>
+          <p class="mt-1 text-sm text-gray-600">Selecione um horário disponível na agenda da semana</p>
         </div>
-        <%= link_to terapeuta_atendimentos_path, 
-            class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          Voltar
-        <% end %>
+        <div class="flex space-x-3">
+          <%= link_to terapeuta_atendimentos_path, 
+              class: "inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Voltar
+          <% end %>
+        </div>
       </div>
     </div>
 
-    <!-- Form -->
-    <div class="bg-white rounded-lg shadow">
-      <div class="px-6 py-4 border-b border-gray-200">
-        <h2 class="text-lg font-medium text-gray-900">Informações do Atendimento</h2>
-      </div>
-      
-      <%= form_with model: [:terapeuta, @atendimento], local: true, class: "p-6" do |form| %>
-        <% if @atendimento.errors.any? %>
-          <div class="mb-6 bg-red-50 border border-red-200 rounded-md p-4">
-            <div class="flex">
-              <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+    <!-- Calendar Navigation -->
+    <div class="bg-white rounded-lg shadow mb-6">
+      <div class="px-4 py-4 border-b border-gray-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-medium text-gray-900">
+            Semana de <%= @data_inicio_semana.strftime("%d/%m/%Y") %> a <%= @data_fim_semana.strftime("%d/%m/%Y") %>
+          </h2>
+          <div class="flex items-center space-x-4">
+            <!-- Date Picker -->
+            <div class="relative">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
+                <input 
+                  type="date" 
+                  id="date-picker"
+                  value="<%= @data_inicio_semana.strftime('%Y-%m-%d') %>"
+                  class="px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 bg-white"
+                  min="<%= Date.current.strftime('%Y-%m-%d') %>"
+                  title="Clique para selecionar uma data específica"
+                >
               </div>
-              <div class="ml-3">
-                <h3 class="text-sm font-medium text-red-800">
-                  Erro ao salvar atendimento:
-                </h3>
-                <div class="mt-2 text-sm text-red-700">
-                  <ul class="list-disc pl-5 space-y-1">
-                    <% @atendimento.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
+              <div class="absolute -bottom-6 left-0 text-xs text-gray-500 whitespace-nowrap">
+                Selecione qualquer data para ver a semana correspondente
               </div>
             </div>
-          </div>
-        <% end %>
-
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Paciente -->
-          <div>
-            <%= form.label :paciente_id, "Paciente", class: "block text-sm font-medium text-gray-700 mb-2" %>
-            <%= form.collection_select :paciente_id, @pacientes, :id, :nome, 
-                { prompt: "Selecione um paciente" }, 
-                { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md" } %>
-          </div>
-
-          <!-- Data e Hora -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <%= form.label :data, "Data", class: "block text-sm font-medium text-gray-700 mb-2" %>
-              <%= form.date_field :data, 
-                  value: @atendimento.data&.to_date,
-                  min: Date.current,
-                  class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm" %>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex space-x-2">
+              <%= link_to "Semana Anterior", new_terapeuta_atendimento_path(week: @data_inicio_semana - 1.week), 
+                  class: "px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50" %>
+              <%= link_to "Semana Atual", new_terapeuta_atendimento_path, 
+                  class: "px-2 py-1 text-xs bg-pink-600 text-white rounded" %>
+              <%= link_to "Próxima Semana", new_terapeuta_atendimento_path(week: @data_inicio_semana + 1.week), 
+                  class: "px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50" %>
             </div>
-            <div>
-              <%= form.label :hora, "Hora", class: "block text-sm font-medium text-gray-700 mb-2" %>
-              <%= form.time_field :hora, 
-                  value: @atendimento.data&.strftime("%H:%M"),
-                  class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm" %>
-            </div>
-          </div>
-
-          <!-- Serviço -->
-          <div>
-            <%= form.label :servico, "Serviço", class: "block text-sm font-medium text-gray-700 mb-2" %>
-            <%= form.select :servico, 
-                options_for_select([
-                  ['Consulta Inicial', 'Consulta Inicial'],
-                  ['Consulta de Retorno', 'Consulta de Retorno'],
-                  ['Avaliação Capilar', 'Avaliação Capilar'],
-                  ['Tratamento Capilar', 'Tratamento Capilar'],
-                  ['Acompanhamento', 'Acompanhamento'],
-                  ['Outro', 'Outro']
-                ], @atendimento.servico),
-                { prompt: "Selecione o tipo de serviço" },
-                { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md" } %>
-          </div>
-
-          <!-- Status -->
-          <div>
-            <%= form.label :status, "Status", class: "block text-sm font-medium text-gray-700 mb-2" %>
-            <%= form.select :status, 
-                options_for_select([
-                  ['Agendado', 'agendado'],
-                  ['Confirmado', 'confirmado'],
-                  ['Realizado', 'realizado'],
-                  ['Cancelado', 'cancelado']
-                ], @atendimento.status || 'agendado'),
-                {},
-                { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm rounded-md" } %>
-          </div>
-
-          <!-- Observações -->
-          <div>
-            <%= form.label :observacoes, "Observações", class: "block text-sm font-medium text-gray-700 mb-2" %>
-            <%= form.text_area :observacoes, 
-                rows: 4,
-                placeholder: "Informações adicionais sobre o atendimento...",
-                class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm" %>
           </div>
         </div>
-
-        <!-- Form Actions -->
-        <div class="flex justify-end space-x-3 mt-8 pt-6 border-t border-gray-200">
-          <%= link_to "Cancelar", terapeuta_atendimentos_path, 
-              class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
-          <%= form.submit "Agendar Atendimento", 
-              class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
-        </div>
-      <% end %>
+      </div>
     </div>
 
-    <!-- Help Text -->
-    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-md p-4">
-      <div class="flex">
-        <div class="flex-shrink-0">
-          <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <div class="ml-3">
-          <h3 class="text-sm font-medium text-blue-800">Dicas para agendamento</h3>
-          <div class="mt-2 text-sm text-blue-700">
-            <ul class="list-disc pl-5 space-y-1">
-              <li>Os atendimentos devem ser agendados apenas em horário comercial (8h às 18h)</li>
-              <li>Verifique a disponibilidade do horário antes de confirmar</li>
-              <li>Você pode alterar o status do atendimento posteriormente</li>
-              <li>As observações são opcionais e podem ser editadas depois</li>
-            </ul>
+    <!-- Calendar Grid -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <!-- Header with days -->
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-16">
+                Horário
+              </th>
+              <% @dias_semana.each do |dia| %>
+                <th class="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-xs"><%= dia[:nome_curto] %></span>
+                    <span class="text-gray-400 text-xs"><%= dia[:dia] %>/<%= dia[:mes] %></span>
+                  </div>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          
+          <!-- Time slots -->
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @horarios_comerciais.each do |horario| %>
+              <tr class="hover:bg-gray-50">
+                <td class="px-2 py-2 whitespace-nowrap text-xs font-medium text-gray-900 bg-gray-50">
+                  <%= horario %>
+                </td>
+                <% @dias_semana.each do |dia| %>
+                  <% 
+                    data_key = dia[:data].to_s
+                    # Verificar se há algum atendimento neste dia e horário específico
+                    horario_ocupado = @horarios_ocupados[data_key]&.include?(horario)
+                    data_passada = dia[:data] < Date.current
+                    hoje = dia[:data].to_date == Date.current
+                    hora_atual = Time.current.strftime("%H:%M")
+                    # Verificar se o horário já passou hoje (considerando apenas hora e minuto)
+                    horario_passado = hoje && horario < hora_atual
+                  %>
+                  <td class="px-2 py-2 whitespace-nowrap text-center">
+                    <% if data_passada || horario_passado %>
+                      <!-- Horário passado -->
+                      <div class="w-full h-8 bg-gray-100 rounded border border-gray-200 flex items-center justify-center">
+                        <span class="text-xs text-gray-400">-</span>
+                      </div>
+                    <% elsif horario_ocupado %>
+                      <!-- Horário ocupado -->
+                      <% 
+                        # Encontrar o atendimento que ocupa este horário específico
+                        horario_time = Time.parse("#{data_key} #{horario}")
+                        atendimento = @atendimentos_semana.find do |a| 
+                          a.data.to_date.to_s == data_key && 
+                          horario_time >= a.data && 
+                          horario_time < (a.data + (a.duracao || 30).minutes)
+                        end 
+                      %>
+                      <div class="w-full h-8 bg-red-100 rounded border border-red-300 flex items-center justify-center cursor-not-allowed" 
+                           title="Ocupado: <%= atendimento&.paciente&.nome || 'Paciente' %> às <%= atendimento&.data&.strftime('%H:%M') || horario %>">
+                        <span class="text-xs text-red-600 font-medium">●</span>
+                      </div>
+                    <% else %>
+                      <!-- Horário disponível -->
+                      <button
+                        onclick="abrirModalAgendamento('<%= dia[:data].strftime('%Y-%m-%d') %>', '<%= horario %>')"
+                        class="w-full h-8 bg-green-100 hover:bg-green-200 rounded border border-green-300 flex items-center justify-center transition-colors"
+                        title="Clique para agendar"
+                      >
+                        <span class="text-xs text-green-700 font-medium">+</span>
+                      </button>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-4 bg-white rounded-lg shadow p-3">
+      <h3 class="text-xs font-medium text-gray-900 mb-2">Legenda</h3>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center">
+          <div class="w-3 h-3 bg-green-100 border border-green-300 rounded mr-1 flex items-center justify-center">
+            <span class="text-xs text-green-700">+</span>
           </div>
+          <span class="text-xs text-gray-600">Disponível</span>
+        </div>
+        <div class="flex items-center">
+          <div class="w-3 h-3 bg-red-100 border border-red-300 rounded mr-1 flex items-center justify-center">
+            <span class="text-xs text-red-600">●</span>
+          </div>
+          <span class="text-xs text-gray-600">Ocupado</span>
+        </div>
+        <div class="flex items-center">
+          <div class="w-3 h-3 bg-gray-100 border border-gray-200 rounded mr-1 flex items-center justify-center">
+            <span class="text-xs text-gray-400">-</span>
+          </div>
+          <span class="text-xs text-gray-600">Indisponível</span>
         </div>
       </div>
     </div>
   </main>
-</div> 
+</div>
+
+<!-- Modal de Agendamento -->
+<div id="modal-agendamento" class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-lg max-w-[30rem] w-fit mx-4">
+    <div class="px-6 py-4 border-b border-gray-200">
+      <div class="flex justify-between items-center">
+        <h2 class="text-lg font-semibold text-gray-800">Agendar Atendimento</h2>
+        <button
+          onclick="fecharModalAgendamento()"
+          class="text-gray-400 hover:text-gray-600"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <form id="form-agendamento" action="<%= terapeuta_atendimentos_path %>" method="post" class="p-6">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="atendimento[data]" id="data-selecionada">
+      <input type="hidden" name="atendimento[terapeuta_id]" value="<%= current_user.terapeuta.id %>">
+      <input type="hidden" name="atendimento[status]" value="agendado">
+      
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Data e Hora Selecionada</label>
+          <p class="text-sm text-gray-900" id="data-hora-display"></p>
+        </div>
+        
+        <div>
+          <label for="paciente_id" class="block text-sm font-medium text-gray-700 mb-2">Paciente</label>
+          <select name="atendimento[paciente_id]" id="paciente_id" required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500">
+            <option value="">Selecione um paciente</option>
+            <% @pacientes.each do |paciente| %>
+              <option value="<%= paciente.id %>"><%= paciente.nome %></option>
+            <% end %>
+          </select>
+        </div>
+        
+        <div>
+          <label for="servico" class="block text-sm font-medium text-gray-700 mb-2">Serviço</label>
+          <select name="atendimento[servico]" id="servico" required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500">
+            <option value="">Selecione o tipo de serviço</option>
+            <option value="Consulta Inicial">Consulta Inicial</option>
+            <option value="Consulta de Retorno">Consulta de Retorno</option>
+            <option value="Avaliação Capilar">Avaliação Capilar</option>
+            <option value="Tratamento Capilar">Tratamento Capilar</option>
+            <option value="Acompanhamento">Acompanhamento</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="duracao" class="block text-sm font-medium text-gray-700 mb-2">Duração</label>
+          <select name="atendimento[duracao]" id="duracao" required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500">
+            <option value="">Selecione a duração</option>
+            <option value="30">30 minutos</option>
+            <option value="60">1 hora</option>
+            <option value="90">1 hora e 30 minutos</option>
+            <option value="120">2 horas</option>
+            <option value="150">2 horas e 30 minutos</option>
+            <option value="180">3 horas</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="observacoes" class="block text-sm font-medium text-gray-700 mb-2">Observações (opcional)</label>
+          <textarea name="atendimento[observacoes]" id="observacoes" rows="3"
+                    placeholder="Informações adicionais sobre o atendimento..."
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500"></textarea>
+        </div>
+      </div>
+      
+      <div class="mt-6 flex justify-end space-x-3">
+        <button type="button" onclick="fecharModalAgendamento()"
+                class="px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+          Cancelar
+        </button>
+        <button type="submit"
+                class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700">
+          Agendar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function abrirModalAgendamento(data, horario) {
+  const modal = document.getElementById('modal-agendamento');
+  const dataHoraDisplay = document.getElementById('data-hora-display');
+  const dataSelecionada = document.getElementById('data-selecionada');
+  
+  if (!modal || !dataHoraDisplay || !dataSelecionada) {
+    return;
+  }
+  
+  // Formatar data para exibição - usar data local, não UTC
+  const [ano, mes, dia] = data.split('-').map(Number);
+  const dataObj = new Date(ano, mes - 1, dia); // mes - 1 porque JavaScript usa 0-11 para meses
+  const dataFormatada = dataObj.toLocaleDateString('pt-BR');
+  const horaFormatada = horario;
+  
+  dataHoraDisplay.textContent = `${dataFormatada} às ${horaFormatada}`;
+  dataSelecionada.value = `${data} ${horario}:00`;
+  
+  modal.classList.remove('hidden');
+}
+
+function fecharModalAgendamento() {
+  const modal = document.getElementById('modal-agendamento');
+  if (!modal) {
+    return;
+  }
+  
+  modal.classList.add('hidden');
+  
+  // Limpar formulário
+  const form = document.getElementById('form-agendamento');
+  if (form) {
+    form.reset();
+  }
+}
+
+// Inicialização do JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializar date picker
+  const datePicker = document.getElementById('date-picker');
+  if (datePicker) {
+    datePicker.addEventListener('change', function() {
+      const selectedDate = this.value;
+      
+      if (selectedDate) {
+        // Navegar para a semana que contém a data selecionada
+        const url = new URL(window.location);
+        url.searchParams.set('week', selectedDate);
+        window.location.href = url.toString();
+      }
+    });
+  }
+  
+  // Inicializar modal
+  const modal = document.getElementById('modal-agendamento');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        fecharModalAgendamento();
+      }
+    });
+  }
+});
+</script> 

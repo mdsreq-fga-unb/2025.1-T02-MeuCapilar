@@ -179,13 +179,15 @@
             </dl>
             
             <div class="mt-6 pt-6 border-t border-gray-200">
-              <%= link_to terapeuta_paciente_path(@paciente), 
-                  class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" do %>
+              <button
+                onclick="document.getElementById('modal-detalhes-paciente').classList.remove('hidden')"
+                class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700"
+              >
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
                 Ver Perfil Completo
-              <% end %>
+              </button>
             </div>
           </div>
         </div>
@@ -196,14 +198,6 @@
             <h2 class="text-lg font-medium text-gray-900">Ações Rápidas</h2>
           </div>
           <div class="p-6 space-y-3">
-            <%= link_to new_terapeuta_paciente_registro_clinico_path(@paciente), 
-                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700" do %>
-              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-              Novo Registro Clínico
-            <% end %>
-            
             <%= link_to terapeuta_atendimentos_path, 
                 class: "w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
               <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,4 +210,117 @@
       </div>
     </div>
   </main>
+</div>
+
+<!-- Modal de Detalhes do Paciente -->
+<div
+  id="modal-detalhes-paciente"
+  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden"
+>
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-[30rem] w-fit mx-4 max-h-[90vh] overflow-y-auto">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold text-gray-800">Perfil Completo do Paciente</h2>
+      <button
+        onclick="document.getElementById('modal-detalhes-paciente').classList.add('hidden')"
+        class="text-gray-400 hover:text-gray-600"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Informações Básicas -->
+      <div class="space-y-4">
+        <h3 class="text-md font-medium text-gray-900 border-b border-gray-200 pb-2">Informações Básicas</h3>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
+          <p class="mt-1 text-sm text-gray-900"><%= @paciente.nome %></p>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Data de Nascimento</label>
+          <p class="mt-1 text-sm text-gray-900"><%= @paciente.data_nascimento.strftime("%d/%m/%Y") %> (<%= @paciente.idade %> anos)</p>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">CPF</label>
+          <p class="mt-1 text-sm text-gray-900"><%= @paciente.cpf_formatado %></p>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Telefone de Contato</label>
+          <p class="mt-1 text-sm text-gray-900"><%= @paciente.telefone_formatado %></p>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <p class="mt-1 text-sm text-gray-900"><%= @paciente.user.email %></p>
+        </div>
+        
+        <% if @paciente.endereco.present? %>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Endereço</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.endereco %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Informações Médicas -->
+      <div class="space-y-4">
+        <h3 class="text-md font-medium text-gray-900 border-b border-gray-200 pb-2">Informações Médicas</h3>
+        
+        <% if @paciente.alergias.present? %>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Alergias</label>
+            <p class="mt-1 text-sm text-gray-900 bg-red-50 p-2 rounded border-l-4 border-red-400"><%= @paciente.alergias %></p>
+          </div>
+        <% end %>
+        
+        <% if @paciente.medicamentos_uso.present? %>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Medicamentos em Uso</label>
+            <p class="mt-1 text-sm text-gray-900 bg-blue-50 p-2 rounded border-l-4 border-blue-400"><%= @paciente.medicamentos_uso %></p>
+          </div>
+        <% end %>
+        
+        <% if @paciente.historico_familiar.present? %>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Histórico Familiar</label>
+            <p class="mt-1 text-sm text-gray-900 bg-yellow-50 p-2 rounded border-l-4 border-yellow-400"><%= @paciente.historico_familiar %></p>
+          </div>
+        <% end %>
+        
+        <% if @paciente.observacoes.present? %>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Observações Gerais</label>
+            <p class="mt-1 text-sm text-gray-900 bg-gray-50 p-2 rounded border-l-4 border-gray-400"><%= @paciente.observacoes %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Campos vazios -->
+    <% if @paciente.alergias.blank? && @paciente.medicamentos_uso.blank? && @paciente.historico_familiar.blank? && @paciente.observacoes.blank? %>
+      <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm text-gray-600 text-center">
+          <svg class="w-5 h-5 mx-auto mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Nenhuma informação médica adicional registrada para este paciente.
+        </p>
+      </div>
+    <% end %>
+    
+    <div class="mt-6 flex justify-end">
+      <button
+        onclick="document.getElementById('modal-detalhes-paciente').classList.add('hidden')"
+        class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+      >
+        Fechar
+      </button>
+    </div>
+  </div>
 </div> 
