@@ -108,7 +108,8 @@ class AtendimentoTest < ActiveSupport::TestCase
     elsif hora_atual > 18
       @atendimento.data = 1.day.from_now.change(hour: 8, min: 0)
     else
-      @atendimento.data = Time.current.change(min: 0, sec: 0)
+      # Adicionar alguns minutos para garantir que seja futuro
+      @atendimento.data = Time.current + 5.minutes
     end
     assert @atendimento.valid?
   end
