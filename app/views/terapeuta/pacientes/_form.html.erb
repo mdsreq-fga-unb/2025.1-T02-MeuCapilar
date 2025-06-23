@@ -1,0 +1,108 @@
+<style>
+  body {
+    background: linear-gradient(120deg, #f0f4f8 0%, #e0e7ef 100%);
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  .form-container {
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 36px 24px 36px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 32px;
+  }
+  .form-section { border: 1px solid #e5e7eb; padding: 20px 24px; margin-bottom: 24px; border-radius: 8px; background: #f8fafc; box-shadow: 0 2px 8px rgba(233,30,99,0.03); }
+  .form-section legend { font-weight: 700; color: #e91e63; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.5px; }
+  .form-group { margin-bottom: 18px; }
+  .form-label { display: block; font-weight: 600; color: #374151; margin-bottom: 4px; letter-spacing: 0.2px; }
+  .form-input, .form-textarea { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; background: #f9fafb; transition: border 0.2s; }
+  .form-input:focus, .form-textarea:focus { border: 1.5px solid #e91e63; outline: none; background: #fff; }
+  .form-input[readonly] { background: #f3f4f6; color: #6b7280; }
+  .form-error { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; padding: 14px; border-radius: 6px; margin-bottom: 22px; font-size: 1.05em; }
+  .form-actions { display: flex; gap: 16px; margin-top: 28px; justify-content: flex-end; }
+  .btn-cancel { padding: 10px 22px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; color: #374151; text-decoration: none; font-weight: 500; transition: background 0.2s, color 0.2s; }
+  .btn-cancel:hover { background: #f8bbd0; color: #e91e63; }
+  .btn-save { padding: 10px 22px; background: #e91e63; color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 8px rgba(233,30,99,0.08); }
+  .btn-save:hover { background: #c2185b; }
+  em { color: #6b7280; font-size: 0.97em; }
+</style>
+
+<div class="form-container">
+  <% if paciente.errors.any? || (user&.errors&.any?) %>
+    <div class="form-error">
+      <strong>Corrija os seguintes erros:</strong>
+      <ul style="margin-top: 8px;">
+        <% paciente.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        <% if user&.errors&.any? %>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="form-section">
+    <legend>Dados Pessoais do Paciente</legend>
+    <div class="form-group">
+      <%= f.label :nome, "Nome Completo", class: 'form-label' %>
+      <%= f.text_field :nome, class: 'form-input' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cpf, "CPF", class: 'form-label' %>
+      <%= f.text_field :cpf, value: paciente.cpf, class: 'form-input', readonly: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :data_nascimento, "Data de Nascimento", class: 'form-label' %>
+      <%= f.date_field :data_nascimento, class: 'form-input' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :telefone, "Telefone", class: 'form-label' %>
+      <%= f.text_field :telefone, class: 'form-input' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :endereco, "Endereço", class: 'form-label' %>
+      <%= f.text_area :endereco, class: 'form-textarea' %>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-section">
+    <legend>Credenciais de Acesso ao Sistema</legend>
+    <%= f.fields_for :user do |user_form| %>
+      <div class="form-group">
+        <%= user_form.label :email, "E-mail de Acesso", class: 'form-label' %><br>
+        <%= user_form.email_field :email, value: user_form.object.email, class: 'form-input' %>
+      </div>
+      <div class="form-group">
+        <em>Alteração de senha deve ser feita pelo próprio paciente.</em>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset class="form-section">
+    <legend>Informações Clínicas (Opcional)</legend>
+    <div class="form-group">
+      <%= f.label :historico_familiar, "Histórico Familiar", class: 'form-label' %>
+      <%= f.text_area :historico_familiar, class: 'form-textarea' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :medicamentos_uso, "Medicamentos em Uso", class: 'form-label' %>
+      <%= f.text_area :medicamentos_uso, class: 'form-textarea' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :alergias, "Alergias Conhecidas", class: 'form-label' %>
+      <%= f.text_area :alergias, class: 'form-textarea' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :observacoes, "Observações Gerais", class: 'form-label' %>
+      <%= f.text_area :observacoes, class: 'form-textarea' %>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= link_to 'Cancelar', terapeuta_pacientes_path, class: 'btn-cancel' %>
+    <%= f.submit 'Salvar Alterações', class: 'btn-save' %>
+  </div>
+</div>
