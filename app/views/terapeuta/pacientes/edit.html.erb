@@ -1,0 +1,3 @@
+<%= form_with model: [@paciente], url: terapeuta_paciente_path(@paciente), method: :patch, local: true do |f| %>
+  <%= render partial: "form", locals: { f: f, paciente: @paciente, user: @paciente.user } %>
+<% end %>
