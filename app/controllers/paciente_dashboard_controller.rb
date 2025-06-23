@@ -11,7 +11,7 @@ class PacienteDashboardController < ApplicationController
     @proximo_atendimento = current_user.paciente&.atendimentos&.proximos&.first
     @atendimentos_agendados = current_user.paciente&.atendimentos&.proximos&.limit(3)&.order(:data) || []
     @historico_atendimentos = current_user.paciente&.atendimentos&.passados&.limit(5)&.order(data: :desc) || []
-    @registros_clinicos = current_user.paciente&.registro_clinicos&.recentes&.limit(3) || []
+    @registros_clinicos = current_user.paciente&.registros_clinicos&.recentes&.limit(3) || []
   end
 
   private
