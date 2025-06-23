@@ -7,7 +7,6 @@ Somos um grupo da disciplina de Requisitos de Software, oferecida pela Universid
 
 Para acessar a nossa documentação [clique aqui](https://mdsreq-fga-unb.github.io/2025.1-T02-MeuCapilar/).
 
-
 ## Equipe
 
 <center>
@@ -53,112 +52,269 @@ Para acessar a nossa documentação [clique aqui](https://mdsreq-fga-unb.github.
 </table>
 </center>
 
-## Como subir o ambiente
+---
 
-# MeuCapilar - Ambiente de Desenvolvimento com Docker
+# MeuCapilar - Ambiente de Desenvolvimento
 
-Este README fornece as instruções para configurar o ambiente de desenvolvimento deste projeto Rails utilizando Docker e Docker Compose. Isso garante um ambiente consistente para todos os membros da equipe.
+Este README fornece as instruções completas para configurar o ambiente de desenvolvimento deste projeto Rails utilizando Docker e Docker Compose, além das boas práticas de desenvolvimento da equipe.
 
-## Pré-requisitos
+## 🔧 Pré-requisitos
 
 Antes de começar, certifique-se de que as seguintes ferramentas estejam instaladas em sua máquina:
 
 * **Docker:** [Instruções de instalação do Docker](https://docs.docker.com/engine/install/)
 * **Docker Compose:** [Instruções de instalação do Docker Compose](https://docs.docker.com/compose/install/)
+* **Git:** Para clonar o repositório
 
-## Passo a Passo para Configurar o Ambiente
+## 🚀 Configuração Inicial (Primeira vez)
 
-Siga estas etapas para iniciar o ambiente de desenvolvimento do projeto:
-
-1.  **Clonar o Repositório:**
-
-    Primeiro, clone o repositório do projeto para sua máquina local utilizando o Git:
-
-    ```bash
-    git clone https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar.git
-    cd 2025.1-T02-MeuCapilar
-    ```
-
-
-2.  **Configurar as Variáveis de Ambiente:**
-
-    Na raiz do projeto, você encontrará um arquivo `.env.example`. Copie este arquivo para `.env`:
-
-    ```bash
-    cp .env.example .env
-    ```
-
-    Abra o arquivo `.env` e configure as variáveis de ambiente necessárias, como as credenciais do banco de dados:
-
-    ```
-    DB_USERNAME=postgres
-    DB_PASSWORD=postgres
-    ```
-
-    Essas variáveis serão utilizadas pelo Docker Compose para configurar o serviço PostgreSQL.
-
-3.  **Iniciar os Containers Docker:**
-
-    Na raiz do diretório do projeto, execute o seguinte comando para construir as imagens Docker (se necessário) e iniciar os containers definidos no arquivo `docker-compose.yml`:
-
-    ```bash
-    docker-compose up --build
-    ```
-
-    * O flag `--build` garante que a imagem da aplicação web seja construída utilizando as instruções do `Dockerfile`. Isso é necessário na primeira vez que você executa o comando ou sempre que o `Dockerfile` for modificado.
-
-4.  **Criar o Banco de Dados:**
-
-    Após subir os containers, você precisa criar o banco local com base no schema.rb já versionado:
-
-    ```bash
-    docker-compose exec web bin/rails db:setup
-    ```
-
-    Esse comando:
-
-    - Cria o banco de dados (db:create)
-
-    - Carrega o schema (db:schema:load)
-
-    - E, se existir, roda os seeds (db:seed)
-
-    Alternativamente, você pode usar:
-
-    ```bash
-    docker-compose exec web bin/rails db:prepare
-    ```
-
-   Esse comando detecta automaticamente se deve carregar o schema.rb ou executar as migrations, tornando o setup mais flexível.
-
-    
-5.  **Acessar a Aplicação Rails:**
-
-    Após a conclusão das migrations, a aplicação Rails estará acessível no seu navegador através do seguinte endereço:
-
-    ```
-    http://localhost:3000
-    ```
-
-6.  **Executar Outros Comandos Rails (dentro do Container):**
-
-    Para executar outros comandos do Rails, como console ou testes, continue usando o prefixo `docker-compose exec web`:
-
-    ```bash
-    docker-compose exec web bin/rails console
-    docker-compose exec web bin/rspec
-    # ou outros comandos Rails que você precise executar
-    ```
-
-
-## Configuração do Banco de Dados
-
-O arquivo `docker-compose.yml` configura um serviço PostgreSQL chamado `db`. As configurações de nome de usuário e senha são definidas através das variáveis de ambiente `DB_USERNAME` e `DB_PASSWORD` no arquivo `.env`. O container da aplicação Rails (`web`) está configurado para se conectar a este banco de dados através do nome de serviço `db` (definido na variável de ambiente `DB_HOST`).
-
-## Desenvolvimento
-
-Como o volume `./:/app` está configurado no serviço `web` do `docker-compose.yml`, as alterações que você fizer nos arquivos do seu projeto local serão automaticamente refletidas dentro do container. No entanto, para algumas alterações (como adicionar novas gems ao `Gemfile`), você pode precisar reconstruir o container da aplicação:
+### 1. Clonar o Repositório
 
 ```bash
-docker-compose build web
+git clone https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar.git
+```
+
+### 1.1. Acessar o Diretório
+
+```bash
+cd 2025.1-T02-MeuCapilar
+```
+
+### 2. Configurar Variáveis de Ambiente
+
+Crie o arquivo `.env` na raiz do projeto com as seguintes configurações:
+
+```bash
+# Criar arquivo .env
+cat > .env << EOF
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+EOF
+```
+
+> **Nota:** O arquivo `.env.example` não está versionado por questões de segurança. Use as configurações acima para desenvolvimento local.
+
+### 3. Primeira Execução
+
+Execute a sequência completa de comandos para configurar o ambiente:
+
+```bash
+# Limpar ambiente Docker (caso necessário)
+docker container prune -f
+docker image prune -a -f
+docker volume prune -f
+docker builder prune -f
+
+# Construir e subir os containers
+docker-compose build --no-cache
 docker-compose up -d
+
+# Configurar banco de dados
+docker-compose exec web bin/rails db:setup
+
+# Compilar CSS do Tailwind
+docker-compose exec web bin/rails tailwindcss:build
+```
+
+### 4. Acessar a Aplicação
+
+Após a configuração, a aplicação estará disponível em:
+```
+http://localhost:3000
+```
+
+## 🔄 Desenvolvimento - Mudança de Branch
+
+**⚠️ IMPORTANTE:** Sempre que trocar de branch ou fazer pull de mudanças significativas, execute a sequência completa abaixo para evitar problemas:
+
+```bash
+# 1. Limpar completamente o ambiente Docker
+docker container prune -f
+docker image prune -a -f  
+docker volume prune -f
+docker builder prune -f
+
+# 2. Reconstruir containers sem cache
+docker-compose build --no-cache
+
+# 3. Subir os serviços
+docker-compose up -d
+
+# 4. Reconfigurar banco de dados
+docker-compose exec web bin/rails db:setup
+
+# 5. Recompilar CSS
+docker-compose exec web bin/rails tailwindcss:build
+```
+
+> **Por que essa sequência?** Durante o desenvolvimento com Docker, mudanças no código, dependências ou banco podem causar inconsistências. Essa sequência garante um ambiente limpo e atualizado.
+
+## 🧪 Executando Testes
+
+O projeto possui uma suite completa de testes unitários para os modelos e controllers.
+
+### Executar Todos os Testes
+
+```bash
+# Todos os testes da aplicação
+docker-compose exec web bin/rails test
+
+# Testes com detalhamento
+docker-compose exec web bin/rails test --verbose
+```
+
+### Executar Testes Específicos
+
+```bash
+# Testes de um modelo específico
+docker-compose exec web bin/rails test test/models/paciente_test.rb
+docker-compose exec web bin/rails test test/models/atendimento_test.rb
+
+# Testes de um controller específico  
+docker-compose exec web bin/rails test test/controllers/terapeuta/pacientes_controller_test.rb
+docker-compose exec web bin/rails test test/controllers/terapeuta/atendimentos_controller_test.rb
+
+# Teste específico por nome
+docker-compose exec web bin/rails test test/models/paciente_test.rb -n "test_deve_validar_cpf"
+```
+
+### Cobertura Atual de Testes
+
+✅ **105 testes passando** com **297 assertions**
+
+- **Modelo Paciente:** 35 testes (validações, métodos, associações)
+- **Controller Pacientes:** 19 testes (CRUD completo, autorizações)
+- **Modelo Atendimento:** 32 testes (validações complexas, conflitos de horário)
+- **Controller Atendimentos:** 19 testes (CRUD, calendário, regras de negócio)
+
+## 📝 Comandos Úteis para Desenvolvimento
+
+### Console Rails
+```bash
+docker-compose exec web bin/rails console
+```
+
+### Executar Migrations
+```bash
+docker-compose exec web bin/rails db:migrate
+```
+
+### Resetar Banco de Dados
+```bash
+docker-compose exec web bin/rails db:reset
+```
+
+### Ver Logs
+```bash
+# Logs de todos os containers
+docker-compose logs -f
+
+# Logs apenas da aplicação web
+docker-compose logs -f web
+
+# Logs apenas do banco
+docker-compose logs -f db
+```
+
+### Acessar Container
+```bash
+# Acessar bash do container web
+docker-compose exec web bash
+
+# Acessar bash do container do PostgreSQL
+docker-compose exec db bash
+```
+
+## 🛠️ Estrutura do Projeto
+
+```
+├── app/
+│   ├── controllers/     # Controllers da aplicação
+│   ├── models/         # Modelos e validações
+│   ├── views/          # Templates ERB
+│   └── assets/         # CSS, JS, imagens
+├── config/             # Configurações Rails
+├── db/                 # Migrations e schema
+├── test/               # Testes unitários
+│   ├── models/         # Testes dos modelos
+│   └── controllers/    # Testes dos controllers
+├── docker-compose.yml  # Configuração Docker
+├── Dockerfile         # Imagem da aplicação
+└── .env              # Variáveis de ambiente (não versionado)
+```
+
+## 🐛 Solução de Problemas Comuns
+
+### Container não sobe
+```bash
+# Verificar se há outros serviços na porta 3000
+sudo netstat -tulpn | grep :3000
+
+# Parar todos os containers
+docker-compose down
+
+# Limpar e reconstruir
+docker system prune -a -f
+docker-compose build --no-cache
+```
+
+### Erro de permissão
+```bash
+# No Linux, pode ser necessário sudo
+sudo docker-compose exec web bin/rails db:setup
+```
+
+### Banco não conecta
+```bash
+# Verificar se o container do banco está rodando
+docker-compose ps
+
+# Recriar volume do banco
+docker-compose down -v
+docker-compose up -d
+docker-compose exec web bin/rails db:setup
+```
+
+### CSS não carrega
+```bash
+# Recompilar Tailwind CSS
+docker-compose exec web bin/rails tailwindcss:build
+```
+
+## 🎯 Boas Práticas da Equipe
+
+1. **Sempre usar a sequência de mudança de branch** quando trocar de branch
+2. **Executar testes** antes de fazer commit: `docker-compose exec web bin/rails test`
+3. **Não commitar** arquivos `.env` ou dados sensíveis
+4. **Usar commits descritivos** seguindo convenções da equipe
+5. **Testar localmente** antes de abrir PR
+6. **Documentar** novas funcionalidades no código
+
+## 📚 Tecnologias Utilizadas
+
+- **Ruby on Rails 7.1**
+- **PostgreSQL** (banco de dados)
+- **Tailwind CSS** (estilização)
+- **Docker & Docker Compose** (containerização)
+- **Devise** (autenticação)
+- **CanCan** (autorização)
+- **Rolify** (gerenciamento de roles)
+
+---
+
+## 🤝 Contribuindo
+
+Para contribuir com o projeto:
+
+1. Faça fork do repositório
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Execute a sequência de desenvolvimento limpo
+4. Desenvolva e teste suas alterações
+5. Execute todos os testes: `docker-compose exec web bin/rails test`
+6. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
+7. Push para a branch (`git push origin feature/nova-funcionalidade`)
+8. Abra um Pull Request
+
+---
+
+Para dúvidas ou problemas, consulte a equipe ou abra uma issue no repositório.
