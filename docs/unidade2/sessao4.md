@@ -39,8 +39,6 @@
 
 - **INVEST**: Utilizado como critério dentro do DoR, validando se cada história de usuário está escrita de forma que permita seu desenvolvimento de maneira independente, negociável, valiosa, estimável, pequena e testável.
 
-- **DEEP**: Técnica aplicada na organização do backlog para manter os itens prioritários bem estruturados e prontos para o desenvolvimento contínuo.
-
 - **Definition of Done (DoD)**: Utilizada para verificar se a entrega realizada pode ser apresentada ao cliente, avaliando se cada história de usuário atende aos critérios estabelecidos de conclusão.
 
 - **Feedback do Cliente**: Técnica central na Sprint Review, onde as funcionalidades desenvolvidas são apresentadas ao cliente para validação e ajuste, garantindo que o produto atenda às expectativas.
@@ -50,6 +48,8 @@
 ---
 
 ### Organização e Atualização de Requisitos
+
+- **DEEP**: Técnica aplicada na organização do backlog, garantindo que ele esteja detalhado, estimável, emergente e priorizado, viabilizando o desenvolvimento contínuo e sustentável.
 
 - **Reuniões de Revisão**: Aplicadas para coletar feedback da equipe sobre os requisitos, ajustando e melhorando o backlog conforme necessário ao longo do desenvolvimento.
 
@@ -92,7 +92,7 @@
     </tr>
     <tr>
       <td></td>
-      <td>Declaração de Requisitos</td>
+      <td>Organização e Atualização dos Requisitos</td>
       <td>Organização dos requisitos</td>
       <td>Temas, Épicos e Histórias de Usuário</td>
       <td>Estruturar os requisitos de forma hierárquica e compreensível</td>
@@ -141,7 +141,7 @@
     </tr>
     <tr>
       <td></td>
-      <td>Verificação e Validação</td>
+      <td>Organização e Atualização dos Requisitos</td>
       <td>Organização do Backlog</td>
       <td>DEEP</td>
       <td>Manter os itens prioritários do backlog em um formato que permite desenvolvimento</td>
@@ -159,13 +159,6 @@
       <td>Apresentação das funcionalidades para o cliente</td>
       <td>Feedback do Cliente</td>
       <td>Apresentar o que foi desenvolvido na sprint para validação do cliente</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Representação</td>
-      <td>Sketches</td>
-      <td>Wireframes</td>
-      <td>Apresentar para a cliente um esboço da próxima sprint sempre que possível</td>
     </tr>
     <tr>
       <td>Adaptação (Retrospectiva)</td>
