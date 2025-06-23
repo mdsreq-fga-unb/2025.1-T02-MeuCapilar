@@ -14,7 +14,7 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
 
 #### <strong>9.1.1 Objetivo Específico: Agendamento completo dos tratamentos capilares</strong>
 
-<strong>Tema 1:</strong> Gestão de Pacientes e Atendimento
+<strong>Tema 1:</strong> Gestão de Usuários e Atendimento
 
 <strong>Épico 1.1:</strong> Cadastro e Gerenciamento de Pacientes
 
@@ -94,6 +94,71 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
   </tbody>
 </table>
 
+<strong>Épico 1.3:</strong> Autenticação e Acesso
+
+<table border="1">
+  <thead style="background-color: #F02464;">
+    <tr>
+      <th><strong>Código</strong></th>
+      <th><strong>Prioridade</strong></th>
+      <th><strong>User Story</strong></th>
+      <th><strong>Critérios de Aceitação</strong></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>US 1.3.1</td>
+      <td>MUST</td>
+      <td>Como visitante, quero selecionar meu tipo de usuário (Terapeuta ou Paciente) antes de preencher as credenciais.</td>
+      <td>
+        — Página inicial exibe botões “Terapeuta” e “Paciente”.<br>
+        — Após a escolha, carrega apenas o formulário correspondente.
+      </td>
+    </tr>
+    <tr>
+      <td>US 1.3.2</td>
+      <td>MUST</td>
+      <td>Como usuário, quero inserir e-mail e senha para acessar o sistema.</td>
+      <td>
+        — Campos e-mail e senha são obrigatórios.<br>
+        — Credenciais válidas → redireciona para o dashboard.<br>
+        — Credenciais inválidas → exibe mensagem de erro.
+      </td>
+    </tr>
+    <tr>
+      <td>US 1.3.3</td>
+      <td>MUST</td>
+      <td>Como terapeuta autenticado, quero ver meu painel de terapeuta (paciente vê o próprio painel de paciente).</td>
+      <td>
+        — Depois do login, o terapeuta visualiza sua lista de pacientes e consultas.<br>
+        — Depois do login, o paciente visualiza apenas suas próprias informações.<br>
+        — Se alguém tentar abrir o painel errado, o sistema mostra aviso de “Acesso não permitido”.
+      </td>
+    </tr>
+    <!-- <tr>
+      <td>US 1.3.4</td>
+      <td>MUST</td>
+      <td>Como terapeuta, quero cadastrar um paciente gerando uma senha provisória.</td>
+      <td>
+        — Formulário “Novo Paciente” com nome, e-mail, data de nascimento.<br>
+        — Salvar gera senha provisória e exibe/envia ao terapeuta.<br>
+        — Paciente aparece na lista do terapeuta.
+      </td>
+    </tr> -->
+    <tr>
+      <td>US 1.3.4</td>
+      <td>MUST</td>
+      <td>Como usuário autenticado, quero trocar minha senha e sair do sistema com segurança.</td>
+      <td>
+        — Link “Alterar senha” exige senha atual e nova.<br>
+        — Alteração confirmada com sucesso.<br>
+        — Link “Sair” encerra a sessão e volta à tela inicial.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <br>
 
 #### <strong>9.1.2 Objetivo Específico: Automatização e profissionalização dos relatórios da terapeuta</strong>
@@ -130,6 +195,27 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
       <td>Como terapeuta, quero editar um registro clínico para corrigir ou complementar informações..</td>
       <td>- Permitir edição do conteúdo do relatório.</td>
     </tr>
+    <tr>
+    <td>US 2.1.4</td>
+    <td>MUST</td>
+    <td>Como paciente, quero verificar meus próximos atendimentos para não perder nenhuma consulta.</td>
+    <td>
+      — Após login, o paciente vê uma lista com data, horário e nome do terapeuta.<br>
+      — Lista ordenada do mais próximo ao mais distante.<br>
+      — Se não houver agendamento, mostrar mensagem “Nenhum atendimento agendado”.
+    </td>
+  </tr>
+
+  <tr>
+    <td>US 2.1.5</td>
+    <td>MUST</td>
+    <td>Como paciente, quero ver o relatório da minha consulta para revisar meu diagnóstico.</td>
+    <td>
+      — Cada atendimento concluído exibe um link “Ver relatório”.<br>
+      — Relatório mostra data, diagnóstico e observações do terapeuta.<br>
+      — Paciente acessa somente seus próprios relatórios.
+    </td>
+  </tr>
   </tbody>
 </table>
 <br>
