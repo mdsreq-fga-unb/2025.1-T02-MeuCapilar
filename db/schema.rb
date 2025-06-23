@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_13_030525) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_22_061657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_13_030525) do
     t.text "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duracao"
     t.index ["paciente_id"], name: "index_atendimentos_on_paciente_id"
     t.index ["terapeuta_id"], name: "index_atendimentos_on_terapeuta_id"
   end

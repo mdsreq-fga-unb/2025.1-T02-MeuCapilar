@@ -5,7 +5,7 @@ class Paciente < ApplicationRecord
   # Associações
   has_many :atendimentos, dependent: :destroy
   has_many :terapeutas, through: :atendimentos
-  has_many :registro_clinicos, dependent: :destroy
+  has_many :registros_clinicos, class_name: 'RegistroClinico', dependent: :destroy
 
   # Validações
   validates :nome, presence: true, length: { minimum: 2 }, format: { with: /\A[a-zA-ZÀ-ÿ'\s]+\z/, message: "deve conter apenas letras" }

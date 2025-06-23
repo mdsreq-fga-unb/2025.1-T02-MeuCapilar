@@ -9,7 +9,7 @@ class TerapeutaDashboardController < ApplicationController
     @terapeuta = current_user.terapeuta
     
     # Estatísticas gerais
-    @total_pacientes = @terapeuta.pacientes.distinct.count
+    @total_pacientes = Paciente.count
     @total_registros = RegistroClinico.joins(:terapeuta).where(terapeuta: { user_id: current_user.id }).count
     
     # Atendimentos
