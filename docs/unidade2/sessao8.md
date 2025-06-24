@@ -26,7 +26,8 @@ Os critérios adotados neste projeto para o DoD são:
 - Os testes unitários foram realizados e aprovados?
 - As regras de negócio foram satisfeitas na implementação?
 - A documentação técnica e funcional foi atualizada?
-- O *deploy* foi realizado com sucesso (quando aplicável)?
-- A funcionalidade foi validada com o Product Owner (PO) responsável?
+- O *deploy* foi realizado com sucesso?
+- A funcionalidade foi validada com o engenheiro de requisitos principal da sprint?
 
 Esses critérios ajudam a garantir que as entregas tenham qualidade e estejam alinhadas com as expectativas dos stakeholders.
+*perceba que o engenheiro de requisitos é definido no início de cada sprint por nós, cada membro da equipe ficou sendo o "engenherio de requisitos" chefe em cada sprint. Ele esteve a frente e puxou mais tarefas que os outros membros, mas não signifca que todos os outros membros não participaram das atividades da ER*

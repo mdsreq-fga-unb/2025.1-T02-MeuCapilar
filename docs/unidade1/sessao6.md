@@ -2,7 +2,7 @@
 
 ## **6.1 Composição da Equipe**
 <p style="text-align: justify;">
-Nossa equipe é composta por seis integrantes e, como estamos adotando o processo ScrumXP, optamos por implementar um modelo de Product Owner (PO) rotativo — ou seja, o PO será diferente a cada sprint. Essa abordagem foi escolhida para que todos tenham a oportunidade de se envolver ativamente com os requisitos, que são o foco principal da disciplina. Além do papel rotativo de PO,os membros terão papéis ativos/passivos nas entregas relacionadas a requisitos, de forma que todos estejam cientes do que está sendo produzido e tenham contribuições nessa disciplina. A equipe foi organizada da seguinte forma para esta sprint:
+Nossa equipe é composta por seis integrantes e, como estamos adotando o processo ScrumXP, optamos por implementar um modelo de engenheiro de requisitos chefe  rotativo — ou seja, quem estará a frente do requisitos e também agirá como uma espécie de PO da sprint é rotativo. Essa abordagem foi escolhida para que todos tenham a oportunidade de se envolver ativamente com os requisitos, que são o foco principal da disciplina. Além do papel rotativo,os membros terão papéis ativos/passivos nas entregas relacionadas a requisitos, de forma que todos estejam cientes do que está sendo produzido e tenham contribuições nessa disciplina. A equipe foi organizada da seguinte forma para esta sprint:
 </p>
 
 
