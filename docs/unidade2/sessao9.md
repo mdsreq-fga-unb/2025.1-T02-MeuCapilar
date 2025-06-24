@@ -309,6 +309,9 @@ Por fim, a pontuação total obtida — combinando critérios de negócio e esfo
     <tr><td>US 1.2.2</td><td>MUST</td><td>13</td><td>9/4</td></tr>
     <tr><td>US 1.2.3</td><td>SHOULD</td><td>7</td><td>4/3</td></tr>
     <tr><td>US 1.2.4</td><td>SHOULD</td><td>8</td><td>4/4</td></tr>
+    <tr><td>US 1.3.1</td><td>MUST</td><td>13</td><td>4/4</td></tr>
+    <tr><td>US 1.3.2</td><td>MUST</td><td>13</td><td>4/4</td></tr>
+    <tr><td>US 1.3.3</td><td>MUST</td><td>13</td><td>4/4</td></tr>
     <tr><td>US 2.1.1</td><td>MUST</td><td>9</td><td>9/0</td></tr>
     <tr><td>US 2.1.2</td><td>MUST</td><td>12</td><td>9/3</td></tr>
     <tr><td>US 2.1.3</td><td>MUST</td><td>9</td><td>9/0</td></tr>>
@@ -346,6 +349,13 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 <ul>
   <li>US 1.2.1 (MUST)</li>
   <li>US 1.2.2 (MUST)</li>
+</ul>
+
+<strong>Épico 1.3:</strong> Autenticação e Acesso<br>
+<ul>
+  <li>US 1.3.1 (MUST)</li>
+  <li>US 1.3.2 (MUST)</li>
+  <li>US 1.3.3 (MUST)</li>
 </ul>
 
 <h3>Objetivo Específico:</h3>

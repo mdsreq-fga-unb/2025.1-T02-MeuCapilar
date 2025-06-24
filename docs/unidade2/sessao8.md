@@ -25,7 +25,6 @@ Os critérios adotados neste projeto para o DoD são:
 - O código foi implementado e revisado de acordo com as especificaçes do requisito(descritas pela US associada)?
 - Os testes unitários foram realizados e aprovados?
 - As regras de negócio foram satisfeitas na implementação?
-- A documentação técnica e funcional foi atualizada?
 - O *deploy* foi realizado com sucesso?
 - A funcionalidade foi validada com o engenheiro de requisitos principal da sprint?
 
