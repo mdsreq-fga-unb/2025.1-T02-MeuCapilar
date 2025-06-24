@@ -67,187 +67,155 @@ Painel de métricas atualizadas facilita decisões rápidas e estratégicas.
 
 ---
 
-## PBIs: PRODUCT BACKLOG ITEMS (Histórias de Usuário Prioritárias)
+## Behavior-Driven Development (BDD) – Critérios de Aceitação
 
 ### PBI‑01 – Cadastro de Técnicos (Alta)
 
-**Cenário**  
+**Cenário: Cadastro de Técnicos**  
 Dado que o gestor acessa o painel de administração,  
-Quando ele preenche os dados do técnico e confirma o cadastro,  
+Quando ele preenche os dados do técnico (nome, especialidade, disponibilidade) e confirma o cadastro,  
 Então o técnico é incluído na escala e aparece na lista de técnicos disponíveis.
 
-**História de Usuário**  
-Como Gestor, quero cadastrar técnicos para montar a escala.
-
-**Critérios de Aceitação**
-- Adição com nome, especialidade e horários.
-- Técnico aparece na escala.
-- Validação de campos obrigatórios.
-- Possibilidade de editar ou excluir.
+**Critérios de Aceitação:**
+- O gestor consegue adicionar técnicos com nome, especialidade e horários.
+- Técnicos aparecem disponíveis para escala após cadastro.
+- O sistema impede cadastro com campos obrigatórios vazios.
+- É possível editar ou excluir um técnico cadastrado.
 
 ---
 
 ### PBI‑02 – Consulta de Chamados do Dia (Alta)
 
-**Cenário**  
-Dado que o técnico está logado,  
-Quando acessa a aba de chamados,  
-Então vê atendimentos do dia com local, horário e tipo.
+**Cenário: Consulta de Chamados do Dia**  
+Dado que o técnico está logado no app mobile,  
+Quando ele acessa a aba de chamados,  
+Então é exibida a lista de atendimentos do dia com detalhes como local, horário e tipo de serviço.
 
-**História de Usuário**  
-Como Técnico, quero ver meus chamados do dia para planejar meu trajeto.
-
-**Critérios de Aceitação**
-- Lista por ordem de atendimento.
-- Exibe cliente, endereço, horário e tipo.
-- Atualizações automáticas.
-- Marcar como “em andamento” ou “concluído”.
+**Critérios de Aceitação:**
+- O técnico vê todos os chamados do dia organizados por ordem de atendimento.
+- Cada chamado exibe cliente, endereço, horário e tipo de serviço.
+- Chamados atualizam automaticamente em caso de alteração pelo gestor.
+- O técnico pode marcar chamados como "em andamento" ou "concluído".
 
 ---
 
 ### PBI‑03 – Acompanhamento da Localização do Técnico (Alta)
 
-**Cenário**  
-Dado que o técnico ativou o check-in,  
-Quando o cliente acessa o chamado,  
-Então vê a localização no mapa e tempo estimado.
+**Cenário: Acompanhamento da Localização do Técnico**  
+Dado que o técnico iniciou o deslocamento e ativou o check-in,  
+Quando o cliente acessa o chamado pelo app,  
+Então ele vê a localização atual do técnico no mapa com tempo estimado de chegada.
 
-**História de Usuário**  
-Como Cliente, quero acompanhar a localização do técnico para saber quando ele chegará.
-
-**Critérios de Aceitação**
-- Mostrar posição no mapa após check-in.
-- Exibir tempo estimado de chegada.
-- Notificar atrasos significativos.
-- Atualização periódica da localização.
+**Critérios de Aceitação:**
+- O cliente visualiza a posição do técnico no mapa após o check-in.
+- O app mostra o tempo estimado de chegada.
+- O cliente é notificado se houver atrasos significativos.
+- A localização é atualizada periodicamente.
 
 ---
 
 ### PBI‑04 – Registro Offline de Serviço (Alta)
 
-**Cenário**  
-Dado que o técnico está sem internet,  
-Quando realiza check-in e check-out,  
-Então os dados são armazenados localmente e sincronizados depois.
+**Cenário: Registro Offline de Serviço**  
+Dado que o técnico está sem conexão com a internet,  
+Quando ele realiza o check-in e o check-out pelo app,  
+Então os dados são armazenados localmente e sincronizados automaticamente quando houver conexão.
 
-**História de Usuário**  
-Como Técnico, quero registrar início e fim do serviço mesmo sem internet para não perder dados.
-
-**Critérios de Aceitação**
-- Permitir check-in/out offline.
-- Armazenamento local até sincronização.
-- Incluir data, hora e localização.
-- Gestor vê registros sincronizados.
+**Critérios de Aceitação:**
+- O app permite check-in/out mesmo offline.
+- Dados são armazenados localmente até a sincronização com a nuvem.
+- O registro inclui data, hora e localização.
+- O gestor pode ver os registros assim que sincronizados.
 
 ---
 
-### PBI‑05 – Relatório de Desempenho (Média)
+### PBI‑05 – Geração de Relatório de Desempenho (Média)
 
-**Cenário**  
+**Cenário: Geração de Relatório de Desempenho**  
 Dado que o gestor acessa a área de relatórios,  
-Quando seleciona técnico e período,  
-Então vê dados com opção de exportar PDF.
+Quando ele seleciona o técnico e o período desejado,  
+Então o sistema exibe os dados de desempenho com opção de exportação em PDF.
 
-**História de Usuário**  
-Como Gestor, quero gerar relatório por técnico para identificar gargalos.
-
-**Critérios de Aceitação**
-- Filtrar por técnico e período.
-- Incluir atendimentos, tempo médio e avaliações.
-- Exportar em PDF.
-- Dados atualizados automaticamente.
+**Critérios de Aceitação:**
+- O sistema gera relatórios filtrando por técnico e período.
+- O relatório inclui número de atendimentos, tempo médio e avaliações.
+- É possível exportar o relatório em PDF.
+- Dados são atualizados automaticamente a cada novo atendimento registrado.
 
 ---
 
 ### PBI‑06 – Avaliação do Serviço (Média)
 
-**Cenário**  
+**Cenário: Avaliação do Serviço**  
 Dado que o atendimento foi finalizado,  
-Quando o cliente acessa a avaliação,  
-Então pode atribuir nota e comentário.
+Quando o cliente acessa a avaliação via app ou e-mail,  
+Então ele pode atribuir uma nota e comentário, e o feedback é registrado no sistema.
 
-**História de Usuário**  
-Como Cliente, quero avaliar o serviço após a conclusão para fornecer feedback.
-
-**Critérios de Aceitação**
-- Convite enviado ao cliente após finalização.
-- Avaliação de 1 a 5 e comentário opcional.
-- Vínculo da avaliação com atendimento e técnico.
-- Visualização no painel do gestor.
+**Critérios de Aceitação:**
+- O cliente recebe um convite para avaliar o serviço após a finalização.
+- A avaliação inclui nota de 1 a 5 e campo opcional para comentário.
+- O sistema registra a avaliação com vínculo ao atendimento e técnico.
+- O gestor pode visualizar avaliações no painel.
 
 ---
 
 ### PBI‑07 – Alerta de Atraso do Técnico (Média)
 
-**Cenário**  
-Dado que o técnico atrasa mais de 15 min,  
-Quando o sistema detecta isso,  
-Então envia alerta ao gestor com detalhes.
+**Cenário: Alerta de Atraso do Técnico**  
+Dado que o tempo estimado do técnico excede 15 minutos do horário previsto,  
+Quando o sistema detecta esse atraso,  
+Então um alerta é enviado automaticamente ao gestor com detalhes do chamado e do técnico.
 
-**História de Usuário**  
-Como Gestor, quero receber alertas automáticos de atraso para agir rapidamente.
-
-**Critérios de Aceitação**
-- Calcular tempo estimado de chegada.
-- Enviar notificação ao gestor se atraso > 15 min.
-- Incluir técnico, chamado e motivo estimado.
-- Permitir reagendamento ou redistribuição.
+**Critérios de Aceitação:**
+- O sistema calcula o tempo previsto de chegada de cada técnico.
+- Se houver atraso maior que 15 minutos, o gestor recebe uma notificação.
+- O alerta mostra o técnico, chamado e motivo estimado do atraso.
+- O gestor pode reagendar ou redistribuir o chamado com base no alerta.
 
 ---
 
 ### PBI‑08 – Anexar Fotos ao Laudo (Baixa)
 
-**Cenário**  
-Dado que o técnico finaliza o atendimento,  
-Quando acessa anexar imagens,  
-Então pode tirar ou selecionar fotos para o laudo.
+**Cenário: Anexar Fotos ao Laudo**  
+Dado que o técnico está finalizando o atendimento,  
+Quando ele acessa a opção de anexar imagens,  
+Então pode tirar fotos ou escolher da galeria para incluir no laudo técnico do chamado.
 
-**História de Usuário**  
-Como Técnico, quero anexar fotos ao laudo para comprovar o serviço.
-
-**Critérios de Aceitação**
-- Tirar fotos ou escolher da galeria.
-- Salvar com data/hora e vincular ao chamado.
-- Limite de 5 fotos por chamado.
-- Visualização pelo gestor no histórico.
+**Critérios de Aceitação:**
+- O técnico pode tirar fotos diretamente do app ou selecionar da galeria.
+- As imagens são vinculadas ao chamado e salvas com data/hora.
+- É possível anexar até 5 fotos por chamado.
+- O gestor pode visualizar as fotos no histórico de atendimento.
 
 ---
 
 ### PBI‑09 – Exportação de Dados (Baixa)
 
-**Cenário**  
-Dado que o gestor deseja análise externa,  
-Quando seleciona filtros e clica em exportar,  
-Então sistema gera arquivo CSV.
+**Cenário: Exportação de Dados**  
+Dado que o gestor deseja realizar uma análise externa,  
+Quando ele seleciona os filtros de dados e clica em “Exportar CSV”,  
+Então o sistema gera um arquivo com os dados correspondentes para download.
 
-**História de Usuário**  
-Como Gestor, quero exportar dados em CSV para análises externas.
-
-**Critérios de Aceitação**
-- Exportar por data, técnico e status.
-- Arquivo disponível no painel.
-- Colunas com ID, cliente, técnico, datas, status.
-- Dados atualizados no momento da exportação.
+**Critérios de Aceitação:**
+- O sistema oferece a opção de exportar dados filtrados por data, técnico e status.
+- O arquivo CSV pode ser baixado no painel do gestor.
+- As colunas incluem ID do chamado, cliente, técnico, datas e status.
+- Os dados são atualizados no momento da exportação.
 
 ---
 
 ### PBI‑10 – Emissão de NF-e Automática (Baixa)
 
-**Cenário**  
-Dado que o cliente empresarial tem CNPJ,  
-Quando o chamado é concluído,  
-Então o sistema emite automaticamente a NF-e.
+**Cenário: Emissão de NF-e Automática**  
+Dado que o cliente empresarial possui CNPJ e serviço finalizado,  
+Quando o chamado é encerrado com status "concluído",  
+Então o sistema emite automaticamente a nota fiscal e envia por e-mail.
 
-**História de Usuário**  
-Como Cliente Empresarial, quero emitir NF-e automaticamente para fins contábeis.
-
-**Critérios de Aceitação**
-- Gerar NF-e após conclusão do serviço.
-- Envio automático por e-mail.
-- Consulta ao histórico de NF-es.
-- Integração com sistema SEFAZ via API.
-
----
+**Critérios de Aceitação:**
+- O sistema gera a NF-e automaticamente após a conclusão do serviço.
+- A nota fiscal é enviada para o e-mail cadastrado do cliente.
+- O cliente pode consultar o histórico de NF-e emitidas pelo sistema.
+- A emissão é integrada a um sistema SEFAZ válido por meio de API.
 
 ## CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX
 
