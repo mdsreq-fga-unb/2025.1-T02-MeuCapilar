@@ -31,6 +31,10 @@ nav:
         - Daily 1: sprints/sprint02/daily1.md
         - Review: sprints/sprint02/review.md
         - Retrospectiva: sprints/sprint02/retrospective.md
+      - Sprint 3:
+         - Planning: sprints/sprint03/planning.md
+         - Review: sprints/sprint03/review.md
+         - Retrospectiva: sprints/sprint03/retrospective.md
 
 theme:
    name: material 
