@@ -1,4 +1,4 @@
-[Clique Aqui (Disponível apenas para pessoas em UnB.br).](https://unbbr.sharepoint.com/:v:/s/MeuCapilar-Requisitos/EUoBclo_eCVPoBDL9tptxTcBAK0tm3kwjuCvHLB78F4EaA?e=122wqB)
+[Clique Aqui (Disponível apenas para pessoas em UnB.br).](https://unbbr.sharepoint.com/sites/MeuCapilar-Requisitos/_layouts/15/stream.aspx?id=%2Fsites%2FMeuCapilar%2DRequisitos%2FDocumentos%20Compartilhados%2FGeneral%2FRecordings%2FSprint%20Planning%2D20250609%5F212608%2DGrava%C3%A7%C3%A3o%20de%20Reuni%C3%A3o%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E78cc1930%2D3120%2D4d10%2D963d%2Dac2a851fa2e0)
 
 # Sprint Planning - Sprint 3
 
