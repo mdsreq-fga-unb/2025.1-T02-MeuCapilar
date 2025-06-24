@@ -91,6 +91,26 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
       <td>Como terapeuta, quero reagendar ou cancelar atendimentos para atender solicitações de mudança ou imprevistos.</td>
       <td>- Permitir alteração de data/horário.<br>- Notificar paciente.<br>- Confirmar intenção antes do cancelamento.</td>
     </tr>
+    <tr>
+    <td>US 1.2.5</td>
+    <td>MUST</td>
+    <td>Como paciente, quero verificar meus próximos atendimentos para não perder nenhuma consulta.</td>
+    <td>
+      — Após login, o paciente vê uma lista com data, horário e nome do terapeuta.<br>
+      — Lista ordenada do mais próximo ao mais distante.<br>
+      — Se não houver agendamento, mostrar mensagem “Nenhum atendimento agendado”.
+    </td>
+  </tr>
+  <tr>
+    <td>US 1.2.6</td>
+    <td>MUST</td>
+    <td>Como paciente, quero ver o relatório da minha consulta para revisar meu diagnóstico.</td>
+    <td>
+      — Cada atendimento concluído exibe um link “Ver relatório”.<br>
+      — Relatório mostra data, diagnóstico e observações do terapeuta.<br>
+      — Paciente acessa somente seus próprios relatórios.
+    </td>
+  </tr>
   </tbody>
 </table>
 
@@ -195,27 +215,6 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
       <td>Como terapeuta, quero editar um registro clínico para corrigir ou complementar informações..</td>
       <td>- Permitir edição do conteúdo do relatório.</td>
     </tr>
-    <tr>
-    <td>US 2.1.4</td>
-    <td>MUST</td>
-    <td>Como paciente, quero verificar meus próximos atendimentos para não perder nenhuma consulta.</td>
-    <td>
-      — Após login, o paciente vê uma lista com data, horário e nome do terapeuta.<br>
-      — Lista ordenada do mais próximo ao mais distante.<br>
-      — Se não houver agendamento, mostrar mensagem “Nenhum atendimento agendado”.
-    </td>
-  </tr>
-
-  <tr>
-    <td>US 2.1.5</td>
-    <td>MUST</td>
-    <td>Como paciente, quero ver o relatório da minha consulta para revisar meu diagnóstico.</td>
-    <td>
-      — Cada atendimento concluído exibe um link “Ver relatório”.<br>
-      — Relatório mostra data, diagnóstico e observações do terapeuta.<br>
-      — Paciente acessa somente seus próprios relatórios.
-    </td>
-  </tr>
   </tbody>
 </table>
 <br>
