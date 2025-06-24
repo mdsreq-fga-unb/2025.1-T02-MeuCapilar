@@ -27,3 +27,13 @@ A Unidade 2 transcorreu **sem conflitos internos**. O time conseguiu **aplicar o
 ### Papéis bem definidos
 - Atribuir um **responsável por história de usuário** (PO) **diminuiu dúvidas** sobre “quem faz o quê”.
 - Na próxima unidade **manteremos essa organização** 
+
+## **6.3 Unidade 3**
+
+<p style="text-align: justify;">
+Durante este módulo, enfrentamos alguns atrasos e conflitos de horário nas <em>dailies</em>. O cronograma inicial não previa folgas para imprevistos e, por isso, ficamos atrás no prazo para a aprovação do MVP. Após um realinhamento de disponibilidades e prioridades, ajustamos o planejamento e recuperamos o tempo perdido, entregando a primeira parte do MVP parcial com as User Stories propostas.
+</p>
+
+<p>
+Essas mudanças permitiram recuperar o atraso e estabelecer um fluxo de trabalho mais previsível para as próximas etapas do projeto.
+</p>
