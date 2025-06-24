@@ -111,6 +111,48 @@
       <td>Permitir a geração de documento em formato PDF com os registros clínicos do paciente.</td>
     </tr>
   </tbody>
+  <tbody>
+    <!-- Autenticação e Acesso -->
+    <tr>
+      <!-- A célula abaixo cobre as 5 linhas de requisitos -->
+      <td rowspan="5">Autenticação e Acesso</td>
+      <td>RF4.1</td>
+      <td>Escolher perfil</td>
+      <td>Permitir que o visitante selecione se é Terapeuta ou Paciente antes de informar as credenciais.</td>
+    </tr>
+    <tr>
+      <td>RF4.2</td>
+      <td>Autenticar usuário</td>
+      <td>Autenticar o usuário pelo e-mail e senha.</td>
+    </tr>
+    <tr>
+      <td>RF4.3</td>
+      <td>Acesso diferenciado</td>
+      <td>Direcionar cada tipo de usuário ao painel apropriado após o login (terapeuta ⇢ dashboard de terapeuta; paciente ⇢ dashboard de paciente).</td>
+    </tr>
+    <tr>
+      <td>RF4.4</td>
+      <td>Trocar senha</td>
+      <td>Permitir que qualquer usuário possa mudar a senha.</td>
+    </tr>
+    <tr>
+      <td>RF4.5</td>
+      <td>Logout</td>
+      <td>Permitir que qualquer usuário possa encerrar a sessão.</td>
+    </tr>
+    <tr>
+      <!-- A célula abaixo agrupa os dois requisitos -->
+      <td rowspan="2">Autoatendimento do Paciente</td>
+      <td>RF5.1</td>
+      <td>Verificar agendamentos</td>
+      <td>O sistema deve exibir ao paciente a lista de seus próximos atendimentos, ordenada da data mais próxima à mais distante.</td>
+    </tr>
+    <tr>
+      <td>RF5.2</td>
+      <td>Visualizar relatório da consulta</td>
+      <td>O sistema deve disponibilizar ao paciente o relatório completo de cada atendimento concluído, incluindo diagnóstico e observações.</td>
+    </tr>
+  </tbody>
 </table>
 
 ## **7.2 Tabela de Requisitos Não Funcionais**
