@@ -16,9 +16,10 @@ nav:
       - 7.Lista de Requisitos: unidade2/sessao7.md
       - 8.DoR e DoD: unidade2/sessao8.md
       - 9.Product Backlog: unidade2/sessao9.md
+   - PBB e BDD: unidade3/PBB.md
    - Lições Aprendidas: unidade1/licoesAprendidas.md
    - Sprints:
-      - Sprint 1: 
+      - Sprint 1:
         - Planning: sprints/sprint01/planning.md
         - Daily 1: sprints/sprint01/daily1.md
         - Daily 2: sprints/sprint01/daily2.md
