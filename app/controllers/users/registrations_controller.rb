@@ -38,4 +38,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       root_path
     end
   end
+
+  # Redireciona para página informativa quando usuário se cadastra mas precisa confirmar e-mail
+  def after_inactive_sign_up_path_for(resource)
+    confirmation_pending_path
+  end
 end 

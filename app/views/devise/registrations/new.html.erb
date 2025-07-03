@@ -66,7 +66,27 @@
                   Conta Profissional
                 </h3>
                 <p class="mt-1 text-sm text-pink-700">
-                  Esta conta será criada como <strong>Terapeuta Capilar</strong>. Após o cadastro, você poderá gerenciar seus pacientes e atendimentos.
+                  Esta conta será criada como <strong>Terapeuta Capilar</strong>. Após o cadastro, você precisará <strong>confirmar seu e-mail</strong> antes de acessar o sistema.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info sobre confirmação de e-mail -->
+          <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-blue-800">
+                  Confirmação de E-mail
+                </h3>
+                <p class="mt-1 text-sm text-blue-700">
+                  Enviaremos um e-mail de confirmação para verificar sua identidade. Verifique sua caixa de entrada e spam.
                 </p>
               </div>
             </div>
@@ -111,10 +131,6 @@
 
           <!-- Links adicionais -->
           <div class="text-center space-y-2">
-            <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-              <%= link_to "Esqueci minha senha", new_password_path(resource_name), 
-                  class: "text-sm text-pink-600 hover:text-pink-500" %>
-            <% end %>
             <div class="text-xs text-gray-500 mt-4">
               <p><strong>Importante:</strong> Este cadastro é exclusivo para terapeutas capilares.</p>
               <p>Pacientes recebem credenciais de seus terapeutas.</p>
