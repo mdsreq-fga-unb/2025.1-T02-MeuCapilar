@@ -1,16 +1,133 @@
-<h2>Resend confirmation instructions</h2>
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <!-- Header simples -->
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <%= link_to root_path do %>
+            <span class="text-2xl font-bold text-pink-600">MeuCapilar</span>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to "Voltar ao início", root_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" %>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!-- Conteúdo principal -->
+  <div class="py-12">
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Título -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900">
+          Reenviar Confirmação
+        </h1>
+        <p class="mt-2 text-gray-600">
+          Não recebeu o e-mail de confirmação? Enviaremos novamente.
+        </p>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      <!-- Formulário -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "space-y-6" }) do |f| %>
+          
+          <!-- Mensagens de erro -->
+          <% if resource.errors.any? %>
+            <div class="bg-red-50 border border-red-200 rounded-md p-4">
+              <h3 class="text-sm font-medium text-red-800 mb-2">
+                <%= pluralize(resource.errors.count, "erro") %> <%= resource.errors.count == 1 ? "impediu" : "impediram" %> o reenvio:
+              </h3>
+              <ul class="text-sm text-red-700 list-disc pl-5 space-y-1">
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Info sobre reenvio -->
+          <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-blue-800">
+                  Reenvio de E-mail
+                </h3>
+                <p class="mt-1 text-sm text-blue-700">
+                  Digite seu e-mail abaixo para receber um novo link de confirmação. Verifique sua caixa de entrada e spam.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div>
+            <%= f.label :email, "E-mail", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= f.email_field :email, 
+                autofocus: true, 
+                autocomplete: "email", 
+                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500",
+                placeholder: "Digite seu e-mail" %>
+          </div>
+
+          <!-- Botão de reenvio -->
+          <div>
+            <%= f.submit "Reenviar E-mail de Confirmação", 
+                class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
+          </div>
+
+          <!-- Links adicionais - com lógica baseada no referrer -->
+          <div class="text-center space-y-2">
+            <% 
+              # Detectar de onde o usuário veio baseado no referrer
+              is_from_paciente = request.referrer&.include?('/paciente/login')
+              is_from_terapeuta = request.referrer&.include?('/terapeuta/login')
+            %>
+            
+            <% if is_from_paciente %>
+              <!-- Links para pacientes -->
+              <div class="mt-4">
+                <%= link_to "Voltar ao login", paciente_login_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+              <div class="mt-2 text-xs text-gray-500">
+                <p><strong>Paciente:</strong> Você não pode criar uma nova conta. Solicite suas credenciais ao seu terapeuta.</p>
+              </div>
+            <% elsif is_from_terapeuta %>
+              <!-- Links para terapeutas -->
+              <div class="mt-4">
+                <%= link_to "Voltar ao login", terapeuta_login_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+              <div class="mt-3">
+                <%= link_to "Criar nova conta", terapeuta_cadastro_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+            <% else %>
+              <!-- Links genéricos (fallback) -->
+              <div class="mt-4">
+                <%= link_to "Login de Terapeuta", terapeuta_login_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+              <div class="mt-2">
+                <%= link_to "Login de Paciente", paciente_login_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+              <div class="mt-3">
+                <%= link_to "Cadastro de Terapeuta", terapeuta_cadastro_path, 
+                    class: "text-sm font-medium text-gray-600 hover:text-pink-600 hover:underline transition-colors duration-200" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

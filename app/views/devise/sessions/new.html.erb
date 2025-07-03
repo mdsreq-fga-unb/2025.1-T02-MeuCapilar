@@ -20,34 +20,30 @@
     <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Título -->
       <div class="text-center mb-8">
-        <% if params[:user_type] == 'terapeuta' %>
-          <h1 class="text-3xl font-extrabold text-gray-900">
-            Login - Terapeuta
-          </h1>
-          <p class="mt-2 text-gray-600">
+        <h1 class="text-3xl font-extrabold text-gray-900">
+          <% 
+            user_type = params[:user_type] || session[:login_context]
+            if user_type == 'terapeuta' 
+          %>
+            Login do Terapeuta
+          <% elsif user_type == 'paciente' %>
+            Login do Paciente
+          <% else %>
+            Entrar
+          <% end %>
+        </h1>
+        <p class="mt-2 text-gray-600">
+          <% if user_type == 'terapeuta' %>
             Acesse sua conta profissional
-          </p>
-          <p class="mt-1 text-sm text-gray-600">
-            Não tem uma conta profissional? 
-            <%= link_to "Cadastre-se como terapeuta", terapeuta_cadastro_path, class: "text-pink-600 hover:text-pink-500 font-medium" %>
-          </p>
-        <% elsif params[:user_type] == 'paciente' %>
-          <h1 class="text-3xl font-extrabold text-gray-900">
-            Login - Paciente
-          </h1>
-          <p class="mt-2 text-gray-600">
-            Acesse seu painel de atendimentos
-          </p>
-          <p class="mt-1 text-sm text-gray-600">
-            Suas credenciais foram criadas pelo seu terapeuta.<br>
-            Se não possui login, entre em contato com seu terapeuta.
-          </p>
-        <% else %>
-          <h1 class="text-3xl font-extrabold text-gray-900">
+          <% elsif user_type == 'paciente' %>
+            Acesse sua área do paciente
+          <% else %>
             Faça login em sua conta
-          </h1>
-          <p class="mt-2 text-gray-600">
-            Não tem uma conta? 
+          <% end %>
+        </p>
+        <% if user_type == 'terapeuta' %>
+          <p class="mt-1 text-sm text-gray-600">
+            Ainda não tem conta? 
             <%= link_to "Cadastre-se aqui", terapeuta_cadastro_path, class: "text-pink-600 hover:text-pink-500 font-medium" %>
           </p>
         <% end %>
@@ -57,11 +53,44 @@
       <div class="bg-white rounded-lg shadow-md p-6">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
           
-          <!-- Campo hidden para preservar o user_type -->
-          <% if params[:user_type].present? %>
-            <%= hidden_field_tag :user_type, params[:user_type] %>
+          <!-- Preservar contexto user_type -->
+          <% if params[:user_type].present? || session[:login_context].present? %>
+            <%= hidden_field_tag :user_type, params[:user_type] || session[:login_context] %>
           <% end %>
           
+          <!-- Mensagens de erro -->
+          <% if alert %>
+            <div class="bg-red-50 border border-red-200 rounded-md p-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-red-800"><%= alert %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Mensagens de sucesso -->
+          <% if notice %>
+            <div class="bg-green-50 border border-green-200 rounded-md p-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-green-800"><%= notice %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- E-mail -->
           <div>
             <%= f.label :email, "E-mail", class: "block text-sm font-medium text-gray-700 mb-1" %>
             <%= f.email_field :email, 
@@ -71,6 +100,7 @@
                 placeholder: "Digite seu e-mail" %>
           </div>
 
+          <!-- Senha -->
           <div>
             <%= f.label :password, "Senha", class: "block text-sm font-medium text-gray-700 mb-1" %>
             <%= f.password_field :password, 
@@ -79,13 +109,15 @@
                 placeholder: "Digite sua senha" %>
           </div>
 
+          <!-- Lembrar de mim -->
           <% if devise_mapping.rememberable? %>
             <div class="flex items-center">
               <%= f.check_box :remember_me, class: "h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded" %>
-              <%= f.label :remember_me, "Lembrar de mim", class: "ml-2 block text-sm text-gray-700" %>
+              <%= f.label :remember_me, "Lembrar de mim", class: "ml-2 block text-sm text-gray-900" %>
             </div>
           <% end %>
 
+          <!-- Botão de login -->
           <div>
             <%= f.submit "Entrar", 
                 class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
@@ -93,13 +125,53 @@
 
           <!-- Links adicionais -->
           <div class="text-center space-y-2">
-            <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "Esqueci minha senha", new_password_path(resource_name), 
-                  class: "text-sm text-pink-600 hover:text-pink-500" %>
-            <% end %>
+            <%= render "devise/shared/links" %>
           </div>
         <% end %>
       </div>
+
+      <!-- Informações sobre tipos de conta -->
+      <% if user_type == 'terapeuta' %>
+        <div class="mt-6 text-center">
+          <div class="bg-pink-50 border border-pink-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-pink-800">
+                  Conta Profissional
+                </h3>
+                <p class="mt-1 text-sm text-pink-700">
+                  Esta é a área de login para <strong>Terapeutas Capilares</strong>. Se você é paciente, solicite suas credenciais ao seu terapeuta.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% elsif user_type == 'paciente' %>
+        <div class="mt-6 text-center">
+          <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-blue-800">
+                  Área do Paciente
+                </h3>
+                <p class="mt-1 text-sm text-blue-700">
+                  <strong>Não possui conta?</strong> Solicite suas credenciais de acesso ao seu terapeuta capilar. Pacientes não podem criar contas próprias.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

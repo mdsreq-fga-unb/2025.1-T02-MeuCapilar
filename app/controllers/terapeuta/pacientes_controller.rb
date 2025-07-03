@@ -50,14 +50,15 @@ class Terapeuta::PacientesController < ApplicationController
   def create
     @paciente = Paciente.new(paciente_params)
     
-    # Criar o usuário associado
+    # Criar o usuário associado (sem senha definida, será criada na confirmação)
     user_params = params[:paciente][:user_attributes]
+    temp_password = SecureRandom.hex(16) # Senha temporária única
     @user = User.new(
       email: user_params[:email],
-      password: user_params[:password],
-      password_confirmation: user_params[:password_confirmation],
-      user_type: 'paciente',
-      status: true
+      password: temp_password,
+      password_confirmation: temp_password,
+      user_type: 'paciente'
+      # Removido status: true - conta ficará inativa até confirmação
     )
 
     if @user.save
@@ -65,8 +66,11 @@ class Terapeuta::PacientesController < ApplicationController
       @paciente.user = @user
       
       if @paciente.save
+        # Enviar e-mail de confirmação para o paciente definir senha
+        @user.send_confirmation_instructions
+        
         redirect_to terapeuta_paciente_path(@paciente), 
-                    notice: 'Paciente cadastrado com sucesso! Credenciais de acesso criadas.'
+                    notice: 'Paciente cadastrado com sucesso! E-mail de confirmação enviado para que o paciente defina sua senha.'
       else
         @user.destroy # Limpar usuário se paciente não salvar
         render :new, status: :unprocessable_entity
