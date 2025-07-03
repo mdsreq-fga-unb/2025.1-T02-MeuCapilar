@@ -27,13 +27,13 @@ class PacienteTest < ActiveSupport::TestCase
   test "deve exigir nome" do
     @paciente.nome = nil
     assert_not @paciente.valid?
-    assert_includes @paciente.errors[:nome], "can't be blank"
+    assert_includes @paciente.errors[:nome], "não pode ficar em branco"
   end
 
   test "deve exigir nome com pelo menos 2 caracteres" do
     @paciente.nome = "A"
     assert_not @paciente.valid?
-    assert_includes @paciente.errors[:nome], "is too short (minimum is 2 characters)"
+    assert_includes @paciente.errors[:nome], "é muito curto (mínimo: 2 caracteres)"
   end
 
   test "deve aceitar nome válido" do
@@ -56,7 +56,7 @@ class PacienteTest < ActiveSupport::TestCase
   test "deve exigir CPF" do
     @paciente.cpf = nil
     assert_not @paciente.valid?
-    assert_includes @paciente.errors[:cpf], "can't be blank"
+    assert_includes @paciente.errors[:cpf], "não pode ficar em branco"
   end
 
   test "deve exigir CPF único" do
@@ -77,7 +77,7 @@ class PacienteTest < ActiveSupport::TestCase
     )
     
     assert_not paciente_duplicado.valid?
-    assert_includes paciente_duplicado.errors[:cpf], "has already been taken"
+    assert_includes paciente_duplicado.errors[:cpf], "já está em uso"
   end
 
   test "deve rejeitar CPF inválido" do
@@ -90,7 +90,7 @@ class PacienteTest < ActiveSupport::TestCase
   test "deve exigir telefone" do
     @paciente.telefone = nil
     assert_not @paciente.valid?
-    assert_includes @paciente.errors[:telefone], "can't be blank"
+    assert_includes @paciente.errors[:telefone], "não pode ficar em branco"
   end
 
   test "deve aceitar telefone com 10 dígitos" do
@@ -119,7 +119,7 @@ class PacienteTest < ActiveSupport::TestCase
   test "deve exigir data de nascimento" do
     @paciente.data_nascimento = nil
     assert_not @paciente.valid?
-    assert_includes @paciente.errors[:data_nascimento], "can't be blank"
+    assert_includes @paciente.errors[:data_nascimento], "não pode ficar em branco"
   end
 
   test "deve rejeitar data de nascimento no futuro" do

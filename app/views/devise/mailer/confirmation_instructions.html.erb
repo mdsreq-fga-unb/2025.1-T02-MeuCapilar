@@ -1,5 +1,100 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirme sua conta - MeuCapilar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9fafb;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
+    .content {
+      padding: 30px 20px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #ec4899;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+    .footer {
+      background-color: #f3f4f6;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="margin: 0; font-size: 28px;">MeuCapilar</h1>
+      <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Confirme sua conta</p>
+    </div>
+    
+    <div class="content">
+      <h2 style="color: #1f2937; margin-top: 0;">Olá, <%= @email %>!</h2>
+      
+      <p style="color: #4b5563; font-size: 16px;">
+        Bem-vindo(a) ao <strong>MeuCapilar</strong>! 
+      </p>
+      
+      <p style="color: #4b5563; font-size: 16px;">
+        Para começar a usar nossa plataforma, você precisa confirmar seu endereço de e-mail clicando no botão abaixo:
+      </p>
+      
+      <div style="text-align: center; margin: 30px 0;">
+        <% 
+          # Define as opções de URL baseado no ambiente
+          url_options = Rails.env.test? ? { only_path: true } : {}
+        %>
+        <%= link_to "Confirmar minha conta", confirmation_url(@resource, confirmation_token: @token, **url_options), 
+            style: "display: inline-block; background-color: #ec4899; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600;" %>
+      </div>
+      
+      <p style="color: #6b7280; font-size: 14px;">
+        Se o botão não funcionar, copie e cole este link no seu navegador:
+      </p>
+      
+      <p style="word-break: break-all; background-color: #f3f4f6; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 14px;">
+        <%= confirmation_url(@resource, confirmation_token: @token, **url_options) %>
+      </p>
+      
+      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+      
+      <p style="color: #6b7280; font-size: 14px;">
+        <strong>Importante:</strong> Se você não criou esta conta, pode ignorar este e-mail com segurança.
+      </p>
+    </div>
+    
+    <div class="footer">
+      <p style="margin: 0;">
+        © <%= Date.current.year %> MeuCapilar - Sistema de Gestão Capilar
+      </p>
+    </div>
+  </div>
+</body>
+</html>

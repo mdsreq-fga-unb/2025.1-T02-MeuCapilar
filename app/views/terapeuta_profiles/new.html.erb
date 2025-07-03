@@ -14,7 +14,7 @@
 
       <!-- Formulário -->
       <div class="bg-white rounded-lg shadow-md p-6">
-        <%= form_with model: @terapeuta, url: terapeuta_profiles_path, local: true, html: { class: "space-y-6" } do |form| %>
+        <%= form_for @terapeuta, url: terapeuta_profiles_path, method: :post, html: { class: "space-y-6" } do |form| %>
           
           <!-- Exibição de erros -->
           <% if @terapeuta.errors.any? %>
@@ -80,12 +80,8 @@
             </div>
           </div>
 
-          <!-- Checkbox Status -->
-          <div class="flex items-center mb-6">
-            <%= form.check_box :status, 
-                { checked: true, class: "h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded" } %>
-            <%= form.label :status, "Perfil ativo", class: "ml-2 block text-sm text-gray-700" %>
-          </div>
+          <!-- Campo oculto para status (sempre true) -->
+          <%= form.hidden_field :status, value: true %>
 
           <!-- Botão Submit -->
           <div>
