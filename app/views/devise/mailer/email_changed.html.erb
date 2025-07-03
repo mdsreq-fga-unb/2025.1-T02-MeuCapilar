@@ -1,7 +1,94 @@
-<p>Hello <%= @email %>!</p>
-
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-mail alterado - MeuCapilar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9fafb;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
+    .content {
+      padding: 30px 20px;
+    }
+    .footer {
+      background-color: #f3f4f6;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+    }
+    .info {
+      background-color: #dbeafe;
+      border-left: 4px solid #3b82f6;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="margin: 0; font-size: 28px;">MeuCapilar</h1>
+      <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Notificação de alteração</p>
+    </div>
+    
+    <div class="content">
+      <h2 style="color: #1f2937; margin-top: 0;">Olá!</h2>
+      
+      <% if @resource.try(:unconfirmed_email?) %>
+        <p style="color: #4b5563; font-size: 16px;">
+          Estamos entrando em contato para notificar que seu e-mail está sendo alterado para <strong><%= @resource.unconfirmed_email %></strong>.
+        </p>
+        
+        <div class="info">
+          <p style="margin: 0; color: #1e40af; font-size: 14px;">
+            <strong>📧 Próximo passo:</strong> Você receberá um e-mail de confirmação no novo endereço para completar a alteração.
+          </p>
+        </div>
+      <% else %>
+        <p style="color: #4b5563; font-size: 16px;">
+          Estamos entrando em contato para notificar que seu e-mail foi alterado para <strong><%= @resource.email %></strong>.
+        </p>
+        
+        <div class="info">
+          <p style="margin: 0; color: #1e40af; font-size: 14px;">
+            <strong>✅ Alteração concluída:</strong> A mudança de e-mail foi processada com sucesso.
+          </p>
+        </div>
+      <% end %>
+      
+      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+      
+      <p style="color: #6b7280; font-size: 14px;">
+        <strong>Importante:</strong> Se você não solicitou esta alteração, entre em contato conosco imediatamente.
+      </p>
+    </div>
+    
+    <div class="footer">
+      <p style="margin: 0;">
+        © <%= Date.current.year %> MeuCapilar - Sistema de Gestão Capilar
+      </p>
+    </div>
+  </div>
+</body>
+</html>

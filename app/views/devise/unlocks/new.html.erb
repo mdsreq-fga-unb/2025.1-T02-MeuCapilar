@@ -1,16 +1,92 @@
-<h2>Resend unlock instructions</h2>
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <!-- Header simples -->
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <%= link_to root_path do %>
+            <span class="text-2xl font-bold text-pink-600">MeuCapilar</span>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to "Voltar ao início", root_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" %>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!-- Conteúdo principal -->
+  <div class="py-12">
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Título -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900">
+          Desbloquear Conta
+        </h1>
+        <p class="mt-2 text-gray-600">
+          Digite seu e-mail para receber instruções de desbloqueio
+        </p>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <!-- Formulário -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "space-y-6" }) do |f| %>
+          
+          <!-- Mensagens de erro -->
+          <% if resource.errors.any? %>
+            <div class="bg-red-50 border border-red-200 rounded-md p-4">
+              <h3 class="text-sm font-medium text-red-800 mb-2">
+                <%= pluralize(resource.errors.count, "erro") %> <%= resource.errors.count == 1 ? "impediu" : "impediram" %> o desbloqueio:
+              </h3>
+              <ul class="text-sm text-red-700 list-disc pl-5 space-y-1">
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Info sobre desbloqueio -->
+          <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-800">
+                  Conta Bloqueada
+                </h3>
+                <p class="mt-1 text-sm text-yellow-700">
+                  Sua conta foi bloqueada devido a muitas tentativas de login incorretas. Digite seu e-mail abaixo para receber instruções de desbloqueio.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div>
+            <%= f.label :email, "E-mail", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= f.email_field :email, 
+                autofocus: true, 
+                autocomplete: "email", 
+                class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-pink-500 focus:border-pink-500",
+                placeholder: "Digite seu e-mail" %>
+          </div>
+
+          <!-- Botão de envio -->
+          <div>
+            <%= f.submit "Enviar Instruções de Desbloqueio", 
+                class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
+          </div>
+
+          <!-- Links adicionais -->
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -90,51 +90,35 @@
 
       <!-- Seção: Credenciais de Acesso -->
       <div class="border-b border-gray-200 pb-8 mb-8">
-        <h2 class="text-xl font-semibold text-gray-800 mb-6">Credenciais de Acesso ao Sistema</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">E-mail de Acesso ao Sistema</h2>
         
         <div class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
           <div class="flex">
             <div class="flex-shrink-0">
               <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
               </svg>
             </div>
             <div class="ml-3">
               <h3 class="text-sm font-medium text-blue-800">
-                Acesso do Paciente
+                Confirmação por E-mail
               </h3>
               <div class="mt-1 text-sm text-blue-700">
-                <p>Crie as credenciais que o paciente usará para acessar o sistema e acompanhar seus atendimentos.</p>
+                <p>O paciente receberá um e-mail de confirmação para <strong>definir sua própria senha</strong> e ativar o acesso ao sistema. Certifique-se de informar o e-mail correto.</p>
               </div>
             </div>
           </div>
         </div>
         
         <%= f.fields_for :user_attributes do |user_form| %>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Email -->
-            <div class="md:col-span-2">
-              <%= label_tag "paciente[user_attributes][email]", raw("E-mail de Acesso <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
-              <%= email_field_tag "paciente[user_attributes][email]", params.dig(:paciente, :user_attributes, :email),
-                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
-                  placeholder: "email@exemplo.com" %>
-            </div>
-            
-            <!-- Senha -->
-            <div>
-              <%= label_tag "paciente[user_attributes][password]", raw("Senha <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
-              <%= password_field_tag "paciente[user_attributes][password]", "",
-                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
-                  placeholder: "Mínimo 6 caracteres" %>
-            </div>
-            
-            <!-- Confirmar Senha -->
-            <div>
-              <%= label_tag "paciente[user_attributes][password_confirmation]", "Confirmar Senha", class: "block text-base font-medium text-gray-700" %>
-              <%= password_field_tag "paciente[user_attributes][password_confirmation]", "",
-                  class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
-                  placeholder: "Repita a senha" %>
-            </div>
+          <!-- Email -->
+          <div>
+            <%= label_tag "paciente[user_attributes][email]", raw("E-mail do Paciente <span style='color: #ef4444'>*</span>"), class: "block text-base font-medium text-gray-700" %>
+            <%= email_field_tag "paciente[user_attributes][email]", params.dig(:paciente, :user_attributes, :email),
+                class: "mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+                placeholder: "email@exemplo.com" %>
+            <p class="mt-1 text-sm text-gray-500">O paciente receberá instruções para criar sua senha neste e-mail</p>
           </div>
         <% end %>
       </div>

@@ -54,38 +54,38 @@ class AtendimentoTest < ActiveSupport::TestCase
   test "deve exigir data" do
     @atendimento.data = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:data], "can't be blank"
+    assert_includes @atendimento.errors[:data], "não pode ficar em branco"
   end
 
   test "deve exigir servico" do
     @atendimento.servico = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:servico], "can't be blank"
+    assert_includes @atendimento.errors[:servico], "não pode ficar em branco"
   end
 
   test "deve exigir status" do
     @atendimento.status = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:status], "can't be blank"
+    assert_includes @atendimento.errors[:status], "não pode ficar em branco"
   end
 
   test "deve exigir duracao" do
     @atendimento.duracao = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:duracao], "can't be blank"
+    assert_includes @atendimento.errors[:duracao], "não pode ficar em branco"
   end
 
   # Testes de validação de duração
   test "deve exigir duracao maior que zero" do
     @atendimento.duracao = 0
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:duracao], "must be greater than 0"
+    assert_includes @atendimento.errors[:duracao], "deve ser maior que 0"
   end
 
   test "deve exigir duracao menor ou igual a 480 minutos" do
     @atendimento.duracao = 481 # Mais de 8 horas
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:duracao], "must be less than or equal to 480"
+    assert_includes @atendimento.errors[:duracao], "deve ser menor ou igual a 480"
   end
 
   test "deve aceitar duracao válida" do
@@ -258,13 +258,13 @@ class AtendimentoTest < ActiveSupport::TestCase
   test "deve exigir paciente" do
     @atendimento.paciente = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:paciente], "must exist"
+    assert_includes @atendimento.errors[:paciente], "é obrigatório(a)"
   end
 
   test "deve exigir terapeuta" do
     @atendimento.terapeuta = nil
     assert_not @atendimento.valid?
-    assert_includes @atendimento.errors[:terapeuta], "must exist"
+    assert_includes @atendimento.errors[:terapeuta], "é obrigatório(a)"
   end
 
   # Testes de scopes

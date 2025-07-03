@@ -1,0 +1,169 @@
+pt-BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+    day_names:
+      - Domingo
+      - Segunda-feira
+      - Terça-feira
+      - Quarta-feira
+      - Quinta-feira
+      - Sexta-feira
+      - Sábado
+    abbr_day_names:
+      - Dom
+      - Seg
+      - Ter
+      - Qua
+      - Qui
+      - Sex
+      - Sáb
+    month_names:
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+    abbr_month_names:
+      - ~
+      - Jan
+      - Fev
+      - Mar
+      - Abr
+      - Mai
+      - Jun
+      - Jul
+      - Ago
+      - Set
+      - Out
+      - Nov
+      - Dez
+
+  time:
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      short: "%d de %B, %H:%M"
+      long: "%A, %d de %B de %Y, %H:%M"
+    am: ""
+    pm: ""
+
+  # Tradução dos modelos ActiveRecord
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "A validação falhou: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Não é possível excluir o registro pois existe um %{record} dependente"
+          has_many: "Não é possível excluir o registro pois existem %{record} dependentes"
+    models:
+      user: "Usuário"
+      paciente: "Paciente"
+      terapeuta: "Terapeuta"
+      atendimento: "Atendimento"
+      registro_clinico: "Registro Clínico"
+    attributes:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação da senha"
+        current_password: "Senha atual"
+        user_type: "Tipo de usuário"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      paciente:
+        nome: "Nome completo"
+        cpf: "CPF"
+        data_nascimento: "Data de nascimento"
+        telefone: "Telefone"
+        endereco: "Endereço"
+        status: "Status"
+        observacoes: "Observações"
+        created_at: "Cadastrado em"
+        updated_at: "Atualizado em"
+      terapeuta:
+        nome: "Nome completo"
+        cpf: "CPF"
+        crf: "CRF/Registro profissional"
+        especialidade: "Especialidade"
+        telefone: "Telefone"
+        endereco: "Endereço"
+        bio: "Biografia profissional"
+        created_at: "Cadastrado em"
+        updated_at: "Atualizado em"
+      atendimento:
+        data_atendimento: "Data do atendimento"
+        observacoes: "Observações"
+        status: "Status"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+      registro_clinico:
+        data_registro: "Data do registro"
+        diagnostico: "Diagnóstico"
+        tratamento: "Tratamento"
+        observacoes: "Observações"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
+
+  # Tradução das validações
+  errors: &errors
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: "deve ser aceito"
+      blank: "não pode ficar em branco"
+      present: "deve ficar em branco"
+      confirmation: "não é igual a %{attribute}"
+      empty: "não pode ficar vazio"
+      equal_to: "deve ser igual a %{count}"
+      even: "deve ser par"
+      exclusion: "não está disponível"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      inclusion: "não está incluído na lista"
+      invalid: "não é válido"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      model_invalid: "A validação falhou: %{errors}"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      odd: "deve ser ímpar"
+      required: "é obrigatório(a)"
+      taken: "já está em uso"
+      too_long:
+        one: "é muito longo (máximo: 1 caracter)"
+        other: "é muito longo (máximo: %{count} caracteres)"
+      too_short:
+        one: "é muito curto (mínimo: 1 caracter)"
+        other: "é muito curto (mínimo: %{count} caracteres)"
+      wrong_length:
+        one: "não possui o tamanho esperado (1 caracter)"
+        other: "não possui o tamanho esperado (%{count} caracteres)"
+      other_than: "deve ser diferente de %{count}"
+      
+  # Traduções específicas da aplicação
+  helpers:
+    select:
+      prompt: "Por favor selecione"
+    submit:
+      create: "Criar %{model}"
+      submit: "Salvar %{model}"
+      update: "Atualizar %{model}"
+
+  # Mensagens customizadas da aplicação
+  application:
+    messages:
+      access_denied: "Acesso negado. Você não tem permissão para acessar esta página."
+      login_required: "Você precisa estar logado para acessar esta página."
+      profile_incomplete: "Por favor, complete seu perfil antes de continuar."
+      unauthorized: "Você não está autorizado a realizar esta ação."
+      success: "Operação realizada com sucesso!"
+      error: "Ocorreu um erro. Tente novamente." 
