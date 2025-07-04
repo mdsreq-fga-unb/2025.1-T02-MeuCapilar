@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   # Rotas do Devise com controllers customizados
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations'
   }
 
   # Rotas específicas para login/cadastro por tipo de usuário dentro do devise_scope

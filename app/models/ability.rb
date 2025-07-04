@@ -14,6 +14,7 @@ class Ability
       can :manage, RegistroClinico
       can :read, Terapeuta, user: user
       can :update, Terapeuta, user: user
+      can :create, Terapeuta # Permite criar perfil de terapeuta
       
       # Pode ver apenas seus próprios atendimentos e registros
       can :read, Atendimento, terapeuta: { user: user }
@@ -24,6 +25,7 @@ class Ability
       can :read, :paciente_dashboard
       can :read, Paciente, user: user
       can :update, Paciente, user: user
+      can :create, Paciente # Permite criar perfil de paciente
       
       # Pode ver apenas seus próprios atendimentos e registros
       can :read, Atendimento, paciente: { user: user }
