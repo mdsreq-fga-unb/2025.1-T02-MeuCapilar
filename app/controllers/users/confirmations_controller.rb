@@ -26,10 +26,19 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if resource.paciente? && !resource.confirmed?
       render :confirm_with_password
     else
-      # Para terapeutas ou usuários já confirmados, usar fluxo padrão
-      # Garantir que a role seja atribuída na confirmação
-      ensure_user_role(resource)
-      super
+      # Para terapeutas, confirmar e fazer login automático
+      if resource.confirm
+        # Garantir que a role seja atribuída na confirmação
+        ensure_user_role(resource)
+        
+        # Login automático e redirect customizado
+        sign_in(resource)
+        redirect_to after_confirmation_path_for(resource_name, resource),
+                    notice: 'E-mail confirmado com sucesso! Bem-vindo ao MeuCapilar.'
+      else
+        # Se houve erro na confirmação
+        redirect_to terapeuta_login_path, alert: 'Erro ao confirmar e-mail. Tente novamente.'
+      end
     end
   end
 
@@ -116,6 +125,18 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       end
     else
       root_path
+    end
+  end
+  
+  # Sobrescrever para redirecionar para login correto em caso de falha
+  def after_resending_confirmation_instructions_path_for(resource_name)
+    case resource&.user_type
+    when 'terapeuta'
+      terapeuta_login_path
+    when 'paciente'
+      paciente_login_path
+    else
+      new_user_session_path
     end
   end
 end 

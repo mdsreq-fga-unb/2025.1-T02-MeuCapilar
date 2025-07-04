@@ -3,14 +3,14 @@ class PacienteProfilesController < ApplicationController
   before_action :ensure_paciente_user
   before_action :redirect_if_profile_exists, only: [:new, :create]
   
-  skip_authorization_check
-
   def new
     @paciente = Paciente.new
+    authorize! :create, Paciente
   end
 
   def create
     @paciente = current_user.build_paciente(paciente_params)
+    authorize! :create, @paciente
     
     if @paciente.save
       redirect_to paciente_dashboard_path, notice: 'Perfil de paciente criado com sucesso!'
