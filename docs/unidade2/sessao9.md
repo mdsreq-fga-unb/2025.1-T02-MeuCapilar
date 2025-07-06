@@ -49,8 +49,10 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 1.1.4</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero deletar um paciente registrado por engano.</td>
-      <td>- Solicitar confirmação antes da exclusão.<br>- Remover registro e dependências seguras.</td>
+      <td>Como terapeuta, quero deletar um paciente registrado por equívoco ou engano.</td>
+      <td>- Existir uma opção visível de “Excluir” na listagem de pacientes.<br>
+          - Após a confirmação, o paciente deve ser removido permanentemente do banco de dados.<br>
+          - Exibir uma mensagem de confirmação 
     </tr>
   </tbody>
 </table>
@@ -70,14 +72,15 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 1.2.1</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero cadastrar um novo atendimento informando serviço, data e horário para organizar minha agenda.</td>
+      <td>Como terapeuta, quero cadastrar um novo atendimento informando serviço e horário para manter minha agenda organizada.</td>
       <td>- Formulário deve conter serviço, data e horário.<br>- Registro salvo no banco de dados.</td>
     </tr>
     <tr>
       <td>US 1.2.2</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero editar um atendimento registrado para corrigir ou atualizar informações, incluindo anexar imagens.</td>
-      <td>- Permitir alteração de serviço, data, horário e anexar imagens (JPG, PNG).<br>- Garantir persistência das alterações.</td>
+      <td>Como terapeuta, quero editar um atendimento registrado para corrigir informações ou atualizar dados.</td>
+      <td>- Permitir alteração de serviço, data, horário.<br>
+          - Garantir persistência das alterações.</td>
     </tr>
     <tr>
       <td>US 1.2.3</td>
@@ -104,11 +107,21 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
   <tr>
     <td>US 1.2.6</td>
     <td>MUST</td>
-    <td>Como paciente, quero ver o relatório da minha consulta para revisar meu diagnóstico.</td>
+    <td>Como terapeuta, quero reagendar atendimentos para atender às solicitações de mudança feitas pelos pacientes.</td>
     <td>
-      — Cada atendimento concluído exibe um link “Ver relatório”.<br>
-      — Relatório mostra data, diagnóstico e observações do terapeuta.<br>
-      — Paciente acessa somente seus próprios relatórios.
+      — Permitir a edição de data e/ou horário dos atendimentos agendados.<br>
+      — A nova data e horário devem ser salvos corretamente no sistema<br>
+      — Exibir uma mensagem de confirmação após o reagendamento ser concluído com sucesso.
+    </td>
+  </tr>
+    <td>US 1.2.7</td>
+    <td>MUST</td>
+    <td>US 1.2.7: Como terapeuta, quero cancelar atendimentos para liberar o horário em casos de desistência ou imprevistos.</td>
+    <td>
+      - O sistema deve permitir que o terapeuta cancele atendimentos futuros.<br>
+      - Antes de cancelar, o sistema deve solicitar uma confirmação da ação.<br>
+      - O horário cancelado deve ser removido da agenda do terapeuta.<br>
+      - Deve ser exibida uma mensagem de sucesso após o cancelamento.
     </td>
   </tr>
   </tbody>
@@ -133,13 +146,14 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
       <td>Como visitante, quero selecionar meu tipo de usuário (Terapeuta ou Paciente) antes de preencher as credenciais.</td>
       <td>
         — Página inicial exibe botões “Terapeuta” e “Paciente”.<br>
-        — Após a escolha, carrega apenas o formulário correspondente.
+        — Após a escolha, carrega apenas o formulário correspondente.<br>
+        — O título da página ou seção deve se adaptar de acordo com o perfil (ex: "Login de Terapeuta", "Login de Paciente").
       </td>
     </tr>
     <tr>
       <td>US 1.3.2</td>
       <td>MUST</td>
-      <td>Como usuário, quero inserir e-mail e senha para acessar o sistema.</td>
+      <td>Como paciente, quero inserir e-mail e senha para acessar o sistema.</td>
       <td>
         — Campos e-mail e senha são obrigatórios.<br>
         — Credenciais válidas → redireciona para o dashboard.<br>
@@ -169,7 +183,7 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 1.3.4</td>
       <td>MUST</td>
-      <td>Como usuário autenticado, quero trocar minha senha e sair do sistema com segurança.</td>
+      <td>Como paciente autenticado, quero trocar minha senha e sair do sistema com segurança.</td>
       <td>
         — Link “Alterar senha” exige senha atual e nova.<br>
         — Alteração confirmada com sucesso.<br>
@@ -212,7 +226,7 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 2.1.3</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero editar um registro clínico para corrigir ou complementar informações..</td>
+      <td>Como terapeuta, quero visualizar o histórico de relatórios do paciente para acompanhar sua evolução.</td>
       <td>- Permitir edição do conteúdo do relatório.</td>
     </tr>
   </tbody>
@@ -233,14 +247,15 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 2.2.1</td>
       <td>SHOULD</td>
-      <td>Como terapeuta, quero exportar registro clínicos em formato de um relatório PDF para arquivamento ou envio ao paciente.</td>
+      <td>Como terapeuta, quero entregar o relatório clínico digitalmente ao cliente pela plataforma para maior comodidade.</td>
       <td>- Gerar PDF com relatórios filtrados ou completos.<br>- Opção de download <br> - Disponibilizar download para o paciente.</td>
     </tr>
     <tr>
       <td>US 2.2.2</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero entregar o relatório clínico digitalmente ao cliente pela plataforma para maior comodidade..</td>
-      <td>- Visualizar relatório pela plataforma.</td>
+      <td>Como terapeuta, quero exportar relatórios de evolução em PDF para entregar ao paciente.</td>
+      <td>- selecionar relatórios de evolução clínica de um paciente específico. <br>
+          - Visualizar relatório pela plataforma.</td>
     </tr>
   </tbody>
 </table>
