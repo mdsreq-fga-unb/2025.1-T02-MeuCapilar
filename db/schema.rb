@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_02_202505) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_10_032539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_02_202505) do
     t.datetime "data_registro"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tipo_registro"
+    t.text "queixa_principal"
+    t.text "plano_terapeutico"
+    t.date "proxima_consulta"
+    t.bigint "atendimento_id"
+    t.index ["atendimento_id"], name: "index_registro_clinicos_on_atendimento_id"
     t.index ["paciente_id"], name: "index_registro_clinicos_on_paciente_id"
     t.index ["terapeuta_id"], name: "index_registro_clinicos_on_terapeuta_id"
   end
@@ -110,6 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_02_202505) do
   add_foreign_key "atendimentos", "pacientes"
   add_foreign_key "atendimentos", "terapeuta", column: "terapeuta_id"
   add_foreign_key "pacientes", "users"
+  add_foreign_key "registro_clinicos", "atendimentos"
   add_foreign_key "registro_clinicos", "pacientes"
   add_foreign_key "registro_clinicos", "terapeuta", column: "terapeuta_id"
   add_foreign_key "terapeuta", "users"

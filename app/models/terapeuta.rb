@@ -4,7 +4,7 @@ class Terapeuta < ApplicationRecord
   # Associações
   has_many :atendimentos, dependent: :destroy
   has_many :pacientes, through: :atendimentos
-  has_many :registro_clinicos, dependent: :destroy
+  has_many :registros_clinicos, class_name: 'RegistroClinico', dependent: :destroy
 
   # Validações
   validates :nome, :cpf, :telefone, :especialidade, presence: true
