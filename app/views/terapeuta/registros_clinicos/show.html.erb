@@ -1,0 +1,400 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <main class="max-w-5xl mx-auto py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="px-4 py-6 sm:px-0 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Registro Clínico</h1>
+          <p class="mt-2 text-gray-600">
+            <%= @registro_clinico.paciente.nome %> • <%= @registro_clinico.data_formatada %>
+          </p>
+        </div>
+        <div class="flex space-x-3">
+          <%= link_to "Editar", edit_terapeuta_registros_clinico_path(@registro_clinico),
+              class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700" %>
+          <%= link_to "Voltar", terapeuta_registros_clinicos_path,
+              class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Conteúdo Principal -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Informações Básicas -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Informações do Registro</h3>
+          </div>
+          <div class="p-6">
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Tipo de Registro</dt>
+                <dd class="mt-1">
+                  <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                    <%= @registro_clinico.tipo_registro_humanizado %>
+                  </span>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Data do Registro</dt>
+                <dd class="mt-1 text-sm text-gray-900"><%= @registro_clinico.data_formatada %></dd>
+              </div>
+              <% if @registro_clinico.proxima_consulta %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Próxima Consulta</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= @registro_clinico.proxima_consulta.strftime("%d/%m/%Y") %>
+                  </dd>
+                </div>
+              <% end %>
+              <% if @atendimento %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Atendimento Vinculado</dt>
+                  <dd class="mt-1">
+                    <%= link_to "Ver Atendimento", terapeuta_atendimento_path(@atendimento),
+                        class: "text-pink-600 hover:text-pink-900 text-sm" %>
+                  </dd>
+                </div>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Queixa Principal -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Queixa Principal</h3>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-900 leading-relaxed">
+              <%= simple_format(@registro_clinico.queixa_principal) %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Diagnóstico/Avaliação -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Diagnóstico/Avaliação</h3>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-900 leading-relaxed">
+              <%= simple_format(@registro_clinico.diagnostico) %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Tratamento -->
+        <% if @registro_clinico.tratamento.present? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Tratamento Realizado</h3>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-900 leading-relaxed">
+                <%= simple_format(@registro_clinico.tratamento) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Plano Terapêutico -->
+        <% if @registro_clinico.plano_terapeutico.present? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Plano Terapêutico</h3>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-900 leading-relaxed">
+                <%= simple_format(@registro_clinico.plano_terapeutico) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Observações -->
+        <% if @registro_clinico.observacoes.present? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Observações Gerais</h3>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-900 leading-relaxed">
+                <%= simple_format(@registro_clinico.observacoes) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <!-- Paciente Info -->
+        <div class="bg-white rounded-lg shadow mb-6">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Informações do Paciente</h2>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <div class="flex-shrink-0 h-12 w-12">
+                <div class="h-12 w-12 rounded-full bg-pink-100 flex items-center justify-center">
+                  <span class="text-lg font-medium text-pink-800">
+                    <%= @paciente.iniciais %>
+                  </span>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900"><%= @paciente.nome %></h3>
+                <p class="text-sm text-gray-500">Paciente</p>
+              </div>
+            </div>
+            
+            <dl class="space-y-3">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Telefone</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.telefone_formatado %>
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Idade</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.idade %> anos
+                </dd>
+              </div>
+              
+              <div>
+                <dt class="text-sm font-medium text-gray-500">CPF</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @paciente.cpf_formatado %>
+                </dd>
+              </div>
+              
+              <% if @paciente.endereco.present? %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Endereço</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= @paciente.endereco %>
+                  </dd>
+                </div>
+              <% end %>
+            </dl>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <button
+                onclick="document.getElementById('modal-detalhes-paciente').classList.remove('hidden')"
+                class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700"
+              >
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                Ver Perfil Completo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outros Registros -->
+        <% if @outros_registros.any? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Outros Registros</h3>
+            </div>
+            <div class="p-6">
+              <div class="space-y-3">
+                <% @outros_registros.each do |registro| %>
+                  <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div>
+                      <div class="text-sm font-medium text-gray-900">
+                        <%= registro.tipo_registro_humanizado %>
+                      </div>
+                      <div class="text-xs text-gray-500">
+                        <%= registro.data_formatada %>
+                      </div>
+                    </div>
+                    <%= link_to "Ver", terapeuta_registros_clinico_path(registro),
+                        class: "text-sm text-pink-600 hover:text-pink-900" %>
+                  </div>
+                <% end %>
+              </div>
+              <%= link_to "Ver Todos", terapeuta_registros_clinicos_path(paciente_id: @paciente.id),
+                  class: "mt-4 inline-flex items-center text-sm text-pink-600 hover:text-pink-900" %>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Ações -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Ações</h3>
+          </div>
+          <div class="p-6 space-y-3">
+            <%= link_to "Novo Registro para este Paciente", 
+                new_terapeuta_registros_clinico_path(paciente_id: @paciente.id),
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
+            <%= link_to "Agendar Atendimento", 
+                new_terapeuta_atendimento_path(paciente_id: @paciente.id),
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+            <button
+              onclick="document.getElementById('modal-excluir-registro').classList.remove('hidden')"
+              class="w-full inline-flex justify-center items-center px-4 py-2 border border-red-300 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
+            >
+              Excluir Registro
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal de Confirmação de Exclusão dentro de Show-->
+<div
+  id="modal-excluir-registro"
+  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden"
+>
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-[30rem] w-fit mx-4">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Confirmar Exclusão do Registro</h2>
+    <p class="mb-4 text-gray-700">
+      Tem certeza que deseja excluir este registro clínico de <strong><%= @registro_clinico.paciente.nome %></strong>?
+    </p>
+    <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+      <p class="text-sm text-gray-600">
+        <strong>Tipo:</strong> <%= @registro_clinico.tipo_registro_humanizado %><br>
+        <strong>Data:</strong> <%= @registro_clinico.data_formatada %><br>
+        <strong>Queixa:</strong> <%= truncate(@registro_clinico.queixa_principal, length: 60) %>
+      </p>
+    </div>
+    <p class="mb-4 text-sm text-red-600">
+      ⚠️ Esta ação não pode ser desfeita e todas as informações do registro serão perdidas permanentemente.
+    </p>
+
+    <div class="flex justify-end gap-3">
+      <button
+        onclick="document.getElementById('modal-excluir-registro').classList.add('hidden')"
+        class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+      >
+        Cancelar
+      </button>
+
+      <%= form_with url: terapeuta_registros_clinico_path(@registro_clinico), method: :delete, local: true, class: "inline" do |f| %>
+        <%= f.submit "Confirmar Exclusão", class: "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Detalhes do Paciente -->
+  <div
+    id="modal-detalhes-paciente"
+    class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-[30rem] w-fit mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold text-gray-800">Perfil Completo do Paciente</h2>
+        <button
+          onclick="document.getElementById('modal-detalhes-paciente').classList.add('hidden')"
+          class="text-gray-400 hover:text-gray-600"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Informações Básicas -->
+        <div class="space-y-4">
+          <h3 class="text-md font-medium text-gray-900 border-b border-gray-200 pb-2">Informações Básicas</h3>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.nome %></p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Data de Nascimento</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.data_nascimento.strftime("%d/%m/%Y") %> (<%= @paciente.idade %> anos)</p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">CPF</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.cpf_formatado %></p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Telefone de Contato</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.telefone_formatado %></p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <p class="mt-1 text-sm text-gray-900"><%= @paciente.user.email %></p>
+          </div>
+          
+          <% if @paciente.endereco.present? %>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Endereço</label>
+              <p class="mt-1 text-sm text-gray-900"><%= @paciente.endereco %></p>
+            </div>
+          <% end %>
+        </div>
+  
+        <!-- Informações Médicas -->
+        <div class="space-y-4">
+          <h3 class="text-md font-medium text-gray-900 border-b border-gray-200 pb-2">Informações Médicas</h3>
+          
+          <% if @paciente.alergias.present? %>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Alergias</label>
+              <p class="mt-1 text-sm text-gray-900 bg-red-50 p-2 rounded border-l-4 border-red-400"><%= @paciente.alergias %></p>
+            </div>
+          <% end %>
+          
+          <% if @paciente.medicamentos_uso.present? %>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Medicamentos em Uso</label>
+              <p class="mt-1 text-sm text-gray-900 bg-blue-50 p-2 rounded border-l-4 border-blue-400"><%= @paciente.medicamentos_uso %></p>
+            </div>
+          <% end %>
+          
+          <% if @paciente.historico_familiar.present? %>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Histórico Familiar</label>
+              <p class="mt-1 text-sm text-gray-900 bg-yellow-50 p-2 rounded border-l-4 border-yellow-400"><%= @paciente.historico_familiar %></p>
+            </div>
+          <% end %>
+          
+          <% if @paciente.observacoes.present? %>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Observações Gerais</label>
+              <p class="mt-1 text-sm text-gray-900 bg-gray-50 p-2 rounded border-l-4 border-gray-400"><%= @paciente.observacoes %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  
+      <!-- Campos vazios -->
+      <% if @paciente.alergias.blank? && @paciente.medicamentos_uso.blank? && @paciente.historico_familiar.blank? && @paciente.observacoes.blank? %>
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <p class="text-sm text-gray-600 text-center">
+            <svg class="w-5 h-5 mx-auto mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Nenhuma informação médica adicional registrada para este paciente.
+          </p>
+        </div>
+      <% end %>
+      
+      <div class="mt-6 flex justify-end">
+        <button
+          onclick="document.getElementById('modal-detalhes-paciente').classList.add('hidden')"
+          class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div> 

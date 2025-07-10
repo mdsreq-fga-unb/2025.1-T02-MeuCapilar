@@ -13,7 +13,7 @@
           <div>
             <h2 class="text-xl font-semibold mb-2">Próximo Atendimento</h2>
             <p class="text-pink-100 mb-1">
-              <%= @proximo_atendimento.data.strftime("%A, %d de %B de %Y às %H:%M") %>
+              <%= l(@proximo_atendimento.data, format: :long) %>
             </p>
             <p class="text-pink-100">
               Serviço: <%= @proximo_atendimento.servico %>
@@ -110,7 +110,7 @@
                     </span>
                   </div>
                   <p class="text-sm text-gray-600 mb-1">
-                    <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %>
+                    <strong>Data:</strong> <%= l(atendimento.data, format: "%d/%m/%Y às %H:%M") %>
                   </p>
                   <p class="text-sm text-gray-600">
                     <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
@@ -141,7 +141,7 @@
                     </span>
                   </div>
                   <p class="text-sm text-gray-600 mb-1">
-                    <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y") %>
+                    <strong>Data:</strong> <%= l(atendimento.data, format: "%d/%m/%Y às %H:%M") %>
                   </p>
                   <p class="text-sm text-gray-600">
                     <strong>Terapeuta:</strong> <%= atendimento.terapeuta.nome %>
@@ -173,7 +173,7 @@
               <div class="bg-gray-50 rounded-lg p-4">
                 <div class="flex justify-between items-start mb-2">
                   <h3 class="font-medium text-gray-900">
-                    Registro de <%= registro.data_registro.strftime("%d/%m/%Y") %>
+                    Registro de <%= l(registro.data_registro, format: "%d/%m/%Y") %>
                   </h3>
                   <span class="text-sm text-gray-500">
                     <%= registro.terapeuta.nome %>

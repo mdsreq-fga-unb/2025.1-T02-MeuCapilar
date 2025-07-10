@@ -71,13 +71,13 @@
 
     <!-- Action Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-      <!-- Gerenciar Pacientes -->
+      <!-- Seus Pacientes -->
       <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Gerenciar Pacientes</h3>
-            <p class="text-sm text-gray-600 mb-4">Cadastre novos pacientes e gerencie informações</p>
-            <%= link_to "Ver Pacientes", terapeuta_pacientes_path, 
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Pacientes</h3>
+            <p class="text-sm text-gray-600 mb-4">Veja seus pacientes, cadastre novos e gerencie informações</p>
+            <%= link_to "Pacientes", terapeuta_pacientes_path, 
                 class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
           <div class="text-pink-600">
@@ -94,7 +94,7 @@
           <div>
             <h3 class="text-lg font-medium text-gray-900 mb-2">Atendimentos</h3>
             <p class="text-sm text-gray-600 mb-4">Veja atendimentos ou agende um novo para seus pacientes</p>
-            <%= link_to "Ver Atendimentos", terapeuta_atendimentos_path, 
+            <%= link_to "Atendimentos", terapeuta_atendimentos_path, 
                 class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
           <div class="text-pink-600">
@@ -110,8 +110,8 @@
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-lg font-medium text-gray-900 mb-2">Registros Clínicos</h3>
-            <p class="text-sm text-gray-600 mb-4">Visualize e crie novos registros clínicos</p>
-            <%= link_to "Ver Registros", "#", 
+            <p class="text-sm text-gray-600 mb-4">Visualize ou crie novos registros clínicos para seus pacientes</p>
+            <%= link_to "Registros", terapeuta_registros_clinicos_path, 
                 class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
           </div>
           <div class="text-pink-600">
