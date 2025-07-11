@@ -1,6 +1,6 @@
 # PRODUCT BACKLOG BUILDING (PBB) – TechFix
 
-<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVInqxgAE=/?embedMode=view_only_without_ui&moveToViewport=-16304,-538,44264,13272&embedId=500805429829" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+![Wireframe de Dashboard Inicial](../img/PBB.jpg)
 
 ## PRODUCT NAME
 
@@ -42,28 +42,45 @@ Com processos mais rápidos, feedback facilitado e maior previsibilidade, espera
 
 ## FEATURES (FUNCIONALIDADES DE ALTO NÍVEL)
 
-- Agenda inteligente com roteirização automática.
-- App mobile offline-first para check-in/out do técnico.
-- Chat integrado (cliente ↔ suporte ↔ técnico).
-- Painel de métricas (dashboard) em tempo real.
-- Módulo de faturamento com emissão de NF-e.
-- Integração CRM/ERP via API REST.
+- Login com autenticação segura (token JWT).
+
+- Sincronização de dados offline/online com fallback automático.
+
+- Visualização de agenda e ordens de serviço atribuídas.
+
+- Check-in/check-out georreferenciado em atendimentos.
+
+- Formulários dinâmicos para coleta de informações técnicas.
+
+- Upload de fotos e evidências da visita técnica.
+
+- Status de atendimento (em andamento, pendente, finalizado).
+
+- Assinatura digital do cliente no encerramento da OS.
 
 ---
 
 ## BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX
 
-**Redução de atrasos e maior previsibilidade**  
-Agenda inteligente com roteirização automática evita conflitos de agenda e garante atendimentos dentro do prazo.
+### 1. Redução de atrasos e maior previsibilidade
+- Roteirização automática otimiza os deslocamentos.  
+- Agenda inteligente evita conflitos e sobreposições.  
+- Técnicos chegam no horário e com informações atualizadas.
 
-**Eliminação de retrabalho e perda de dados**  
-App mobile offline garante registro de serviços sem papel e sem perda de dados.
+### 2. Eliminação de retrabalho e perda de dados
+- App mobile offline-first assegura registros mesmo sem conexão.  
+- Dados digitalizados eliminam o uso de papel e duplicidades.  
+- Formulários padronizados reduzem erros de preenchimento.
 
-**Comunicação clara e centralizada**  
-Chat integrado elimina ruídos e melhora a experiência de todos os envolvidos.
+### 3. Comunicação clara e centralizada
+- Chat integrado conecta cliente, suporte e técnico em um só canal.  
+- Redução de ruídos e retrabalho por falha de comunicação.  
+- Histórico de interações facilita acompanhamento e suporte.
 
-**Gestão orientada por dados em tempo real**  
-Painel de métricas atualizadas facilita decisões rápidas e estratégicas.
+### 4. Gestão orientada por dados em tempo real
+- Dashboard atualizado permite decisões baseadas em fatos.  
+- Métricas de desempenho ajudam a identificar gargalos.  
+- Supervisores acompanham o status das operações em tempo real.
 
 ---
 
@@ -72,14 +89,17 @@ Painel de métricas atualizadas facilita decisões rápidas e estratégicas.
 ### PBI‑01 – Cadastro de Técnicos (Alta)
 
 **Cenário: Cadastro de Técnicos**  
-Dado que o gestor acessa o painel de administração,  
-Quando ele preenche os dados do técnico (nome, especialidade, disponibilidade) e confirma o cadastro,  
-Então o técnico é incluído na escala e aparece na lista de técnicos disponíveis.
+Dado que o gestor acessa o painel de administração,
+Quando ele preenche os dados do técnico (nome: "João Silva", especialidade: "Manutenção de Rede", disponibilidade: "08h às 12h") e confirma o cadastro,
+Então o técnico é incluído na escala e aparece na lista de técnicos disponíveis, com as seguintes informações: nome, especialidade e disponibilidade.
 
 **Critérios de Aceitação:**
 - O gestor consegue adicionar técnicos com nome, especialidade e horários.
+
 - Técnicos aparecem disponíveis para escala após cadastro.
+
 - O sistema impede cadastro com campos obrigatórios vazios.
+
 - É possível editar ou excluir um técnico cadastrado.
 
 ---
@@ -87,14 +107,17 @@ Então o técnico é incluído na escala e aparece na lista de técnicos dispon�
 ### PBI‑02 – Consulta de Chamados do Dia (Alta)
 
 **Cenário: Consulta de Chamados do Dia**  
-Dado que o técnico está logado no app mobile,  
-Quando ele acessa a aba de chamados,  
-Então é exibida a lista de atendimentos do dia com detalhes como local, horário e tipo de serviço.
+Dado que o técnico "Carlos Lima" está logado no app mobile,
+Quando ele acessa a aba de chamados,
+Então são exibidos os atendimentos do dia, incluindo: cliente: "Empresa X", endereço: "Rua das Palmeiras, 123", horário: "09h30", tipo de serviço: "Instalação de Roteador".
 
 **Critérios de Aceitação:**
 - O técnico vê todos os chamados do dia organizados por ordem de atendimento.
+
 - Cada chamado exibe cliente, endereço, horário e tipo de serviço.
+
 - Chamados atualizam automaticamente em caso de alteração pelo gestor.
+
 - O técnico pode marcar chamados como "em andamento" ou "concluído".
 
 ---
@@ -102,14 +125,17 @@ Então é exibida a lista de atendimentos do dia com detalhes como local, horár
 ### PBI‑03 – Acompanhamento da Localização do Técnico (Alta)
 
 **Cenário: Acompanhamento da Localização do Técnico**  
-Dado que o técnico iniciou o deslocamento e ativou o check-in,  
-Quando o cliente acessa o chamado pelo app,  
-Então ele vê a localização atual do técnico no mapa com tempo estimado de chegada.
+Dado que o técnico "Marcos Tavares" iniciou o deslocamento e ativou o check-in às 14h,
+Quando o cliente "Ana Souza" acessa o chamado #5421 pelo app,
+Então ele vê a localização atual do técnico no mapa, em movimento, com o tempo estimado de chegada: 15 minutos.
 
 **Critérios de Aceitação:**
 - O cliente visualiza a posição do técnico no mapa após o check-in.
+
 - O app mostra o tempo estimado de chegada.
+
 - O cliente é notificado se houver atrasos significativos.
+
 - A localização é atualizada periodicamente.
 
 ---
@@ -117,14 +143,17 @@ Então ele vê a localização atual do técnico no mapa com tempo estimado de c
 ### PBI‑04 – Registro Offline de Serviço (Alta)
 
 **Cenário: Registro Offline de Serviço**  
-Dado que o técnico está sem conexão com a internet,  
-Quando ele realiza o check-in e o check-out pelo app,  
-Então os dados são armazenados localmente e sincronizados automaticamente quando houver conexão.
+Dado que o técnico "Eduardo Melo" está sem conexão com a internet,
+Quando ele realiza o check-in às 10h05 e o check-out às 10h42 pelo app,
+Então os dados são armazenados localmente e sincronizados automaticamente quando a conexão for restabelecida, incluindo data, hora e localização de cada ação.
 
 **Critérios de Aceitação:**
 - O app permite check-in/out mesmo offline.
+
 - Dados são armazenados localmente até a sincronização com a nuvem.
+
 - O registro inclui data, hora e localização.
+
 - O gestor pode ver os registros assim que sincronizados.
 
 ---
@@ -132,14 +161,17 @@ Então os dados são armazenados localmente e sincronizados automaticamente quan
 ### PBI‑05 – Geração de Relatório de Desempenho (Média)
 
 **Cenário: Geração de Relatório de Desempenho**  
-Dado que o gestor acessa a área de relatórios,  
-Quando ele seleciona o técnico e o período desejado,  
-Então o sistema exibe os dados de desempenho com opção de exportação em PDF.
+Dado que o gestor acessa a área de relatórios,
+Quando ele seleciona o técnico "Bruno Costa" e o período de "01 a 30 de junho de 2025",
+Então o sistema exibe os dados de desempenho: número de atendimentos (32), tempo médio por atendimento (38 minutos) e média de avaliação (4,6), com opção de exportação em PDF.
 
 **Critérios de Aceitação:**
 - O sistema gera relatórios filtrando por técnico e período.
+
 - O relatório inclui número de atendimentos, tempo médio e avaliações.
+
 - É possível exportar o relatório em PDF.
+
 - Dados são atualizados automaticamente a cada novo atendimento registrado.
 
 ---
@@ -147,14 +179,17 @@ Então o sistema exibe os dados de desempenho com opção de exportação em PDF
 ### PBI‑06 – Avaliação do Serviço (Média)
 
 **Cenário: Avaliação do Serviço**  
-Dado que o atendimento foi finalizado,  
-Quando o cliente acessa a avaliação via app ou e-mail,  
-Então ele pode atribuir uma nota e comentário, e o feedback é registrado no sistema.
+Dado que o atendimento do chamado #7854 foi finalizado às 16h12,
+Quando o cliente "Mariana Lopes" acessa a avaliação pelo link enviado por e-mail,
+Então ela pode atribuir uma nota de 4 estrelas e deixar o comentário "Atendimento rápido e educado", que são registrados no sistema com vínculo ao chamado e técnico.
 
 **Critérios de Aceitação:**
 - O cliente recebe um convite para avaliar o serviço após a finalização.
+
 - A avaliação inclui nota de 1 a 5 e campo opcional para comentário.
+
 - O sistema registra a avaliação com vínculo ao atendimento e técnico.
+
 - O gestor pode visualizar avaliações no painel.
 
 ---
@@ -162,29 +197,36 @@ Então ele pode atribuir uma nota e comentário, e o feedback é registrado no s
 ### PBI‑07 – Alerta de Atraso do Técnico (Média)
 
 **Cenário: Alerta de Atraso do Técnico**  
-Dado que o tempo estimado do técnico excede 15 minutos do horário previsto,  
-Quando o sistema detecta esse atraso,  
-Então um alerta é enviado automaticamente ao gestor com detalhes do chamado e do técnico.
+Dado que o técnico "Rafael Dias" tinha atendimento previsto para 11h00 no chamado #9123,
+Quando o sistema detecta que o tempo estimado de chegada excedeu 15 minutos (ETA: 11h20),
+Então é enviado um alerta automático ao gestor com os seguintes dados: técnico: "Rafael Dias", chamado: #9123, cliente: "Comercial Silva", motivo estimado: "trânsito intenso".
 
 **Critérios de Aceitação:**
 - O sistema calcula o tempo previsto de chegada de cada técnico.
+
 - Se houver atraso maior que 15 minutos, o gestor recebe uma notificação.
+
 - O alerta mostra o técnico, chamado e motivo estimado do atraso.
+
 - O gestor pode reagendar ou redistribuir o chamado com base no alerta.
+
 
 ---
 
 ### PBI‑08 – Anexar Fotos ao Laudo (Baixa)
 
 **Cenário: Anexar Fotos ao Laudo**  
-Dado que o técnico está finalizando o atendimento,  
-Quando ele acessa a opção de anexar imagens,  
-Então pode tirar fotos ou escolher da galeria para incluir no laudo técnico do chamado.
+Dado que o técnico "Daniel Rocha" está finalizando o chamado #6032,
+Quando ele acessa a opção de anexar imagens e tira uma foto do equipamento danificado às 13h47,
+Então a imagem é anexada ao laudo técnico com carimbo de data/hora e fica disponível no histórico de atendimento.
 
 **Critérios de Aceitação:**
 - O técnico pode tirar fotos diretamente do app ou selecionar da galeria.
+
 - As imagens são vinculadas ao chamado e salvas com data/hora.
+
 - É possível anexar até 5 fotos por chamado.
+
 - O gestor pode visualizar as fotos no histórico de atendimento.
 
 ---
@@ -192,14 +234,17 @@ Então pode tirar fotos ou escolher da galeria para incluir no laudo técnico do
 ### PBI‑09 – Exportação de Dados (Baixa)
 
 **Cenário: Exportação de Dados**  
-Dado que o gestor deseja realizar uma análise externa,  
-Quando ele seleciona os filtros de dados e clica em “Exportar CSV”,  
-Então o sistema gera um arquivo com os dados correspondentes para download.
+Dado que o gestor deseja analisar atendimentos feitos entre "01 e 10 de julho de 2025",
+Quando ele aplica os filtros por período e técnico: "Luciana Prado", e clica em "Exportar CSV",
+Então o sistema gera um arquivo com os seguintes dados: ID do chamado, cliente, técnico, data, status, tipo de serviço.
 
 **Critérios de Aceitação:**
 - O sistema oferece a opção de exportar dados filtrados por data, técnico e status.
+
 - O arquivo CSV pode ser baixado no painel do gestor.
+
 - As colunas incluem ID do chamado, cliente, técnico, datas e status.
+
 - Os dados são atualizados no momento da exportação.
 
 ---
@@ -207,17 +252,53 @@ Então o sistema gera um arquivo com os dados correspondentes para download.
 ### PBI‑10 – Emissão de NF-e Automática (Baixa)
 
 **Cenário: Emissão de NF-e Automática**  
-Dado que o cliente empresarial possui CNPJ e serviço finalizado,  
-Quando o chamado é encerrado com status "concluído",  
-Então o sistema emite automaticamente a nota fiscal e envia por e-mail.
+Dado que o cliente empresarial "LogTech S/A" possui CNPJ: 12.345.678/0001-99 e teve o chamado #7001 concluído às 17h40,
+Quando o sistema detecta o encerramento com status "concluído",
+Então ele gera automaticamente a NF-e e envia para o e-mail financeiro@logtech.com.br, com registro da emissão vinculado ao sistema da SEFAZ via API.
 
 **Critérios de Aceitação:**
 - O sistema gera a NF-e automaticamente após a conclusão do serviço.
+
 - A nota fiscal é enviada para o e-mail cadastrado do cliente.
+
 - O cliente pode consultar o histórico de NF-e emitidas pelo sistema.
+
 - A emissão é integrada a um sistema SEFAZ válido por meio de API.
 
-## CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX
+### US - Users Stories
+
+- **Eu, Gestor,** quero cadastrar técnicos (nome, especialidade, disponibilidade)  
+  **para** que possa montar a escala.
+
+- **Eu, Técnico,** quero ver meus chamados do dia no app  
+  **para** planejar meu trajeto.
+
+- **Eu, Cliente,** quero acompanhar em tempo real a localização do técnico  
+  **para** saber quando ele chegará.
+
+- **Eu, Técnico,** quero registrar início e fim do serviço (check-in/out) mesmo sem internet  
+  **para** não perder dados.
+
+- **Eu, Gestor,** quero gerar relatório de desempenho por técnico  
+  **para** identificar gargalos.
+
+- **Eu, Cliente,** quero avaliar o serviço após a conclusão  
+  **para** fornecer feedback.
+
+- **Eu, Gestor,** quero receber alertas automáticos se um técnico atrasar >15 min  
+  **para** agir rapidamente.
+
+- **Eu, Técnico,** quero anexar fotos do equipamento ao laudo  
+  **para** comprovar serviço.
+
+- **Eu, Gestor,** quero exportar dados em CSV  
+  **para** análises externas.
+
+- **Eu, Cliente Empresarial,** quero emitir NF‑e automaticamente  
+  **para** fins contábeis.
+
+
+### CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX
 
 ### 1. Valor para o Usuário
 
