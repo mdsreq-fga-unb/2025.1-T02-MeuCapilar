@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
-  <main class="max-w-5xl mx-auto py-8 sm:px-6 lg:px-8">
+  <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="px-4 py-6 sm:px-0 mb-8">
       <div class="flex items-center justify-between">
@@ -126,12 +126,38 @@
             </div>
           </div>
         <% end %>
+
+        <!-- Imagens do Registro -->
+        <% if @registro_clinico.tem_imagens? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">
+                Imagens do Registro 
+                <span class="text-sm font-normal text-gray-600">(<%= @registro_clinico.total_imagens %> <%= @registro_clinico.total_imagens == 1 ? 'imagem' : 'imagens' %>)</span>
+              </h3>
+            </div>
+            
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% @registro_clinico.imagens.each_with_index do |imagem, index| %>
+                  <div class="group relative">
+                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-200 group-hover:border-pink-300 transition-colors cursor-pointer"
+                         onclick="openImageModal('<%= url_for(imagem.variant(format: :png)) %>', '<%= index + 1 %>')">
+                      <%= image_tag(imagem.variant(format: :png), alt: "Imagem #{index + 1} do registro", class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-200") %>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 text-center font-medium">Imagem <%= index + 1 %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
 
       <!-- Sidebar -->
-      <div class="lg:col-span-1">
+      <div class="lg:col-span-1 space-y-6">
         <!-- Paciente Info -->
-        <div class="bg-white rounded-lg shadow mb-6">
+        <div class="bg-white rounded-lg shadow">
           <div class="px-6 py-4 border-b border-gray-200">
             <h2 class="text-lg font-medium text-gray-900">Informações do Paciente</h2>
           </div>
@@ -397,4 +423,650 @@
         </button>
       </div>
     </div>
-  </div> 
+  </div>
+
+<!-- Modal de Visualização de Imagem -->
+<div
+  id="modal-imagem"
+  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden p-2 sm:p-4"
+  onclick="closeImageModal()"
+>
+  <div class="bg-white rounded-lg shadow-2xl w-full h-full max-w-5xl max-h-[95vh] flex flex-col" onclick="event.stopPropagation()">
+    <!-- Header compacto -->
+    <div class="flex items-center justify-between p-3 border-b border-gray-200 bg-white rounded-t-lg flex-shrink-0">
+      <div class="flex items-center gap-3">
+        <h3 id="image-title" class="text-base font-medium text-gray-900 truncate">Imagem</h3>
+        <div id="edit-indicator" class="hidden">
+          <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800">
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+            </svg>
+            Modo Edição
+          </span>
+        </div>
+      </div>
+      <button
+        onclick="closeImageModal()"
+        class="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
+        title="Fechar (ESC)"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Área principal da imagem (sem ferramentas) -->
+    <div class="flex-1 bg-gray-50 overflow-hidden flex items-center justify-center relative p-4">
+      <div id="image-container" class="relative max-w-full max-h-full">
+        <img 
+          id="modal-image" 
+          src="" 
+          alt="Imagem do registro" 
+          class="max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 rounded shadow-sm"
+        >
+        <canvas 
+          id="edit-canvas" 
+          class="absolute top-0 left-0 cursor-crosshair hidden"
+          style="pointer-events: none;"
+        ></canvas>
+      </div>
+    </div>
+    
+    <!-- Footer compacto -->
+    <div class="bg-gray-50 border-t border-gray-200 p-3 rounded-b-lg flex-shrink-0">
+      <!-- Informações em layout compacto -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div class="text-xs text-gray-600 space-y-1">
+          <div class="flex flex-wrap gap-4">
+            <span><strong>Registro:</strong> <%= @registro_clinico.tipo_registro_humanizado %></span>
+            <span><strong>Data:</strong> <%= @registro_clinico.data_formatada %></span>
+          </div>
+          <div>
+            <strong>Paciente:</strong> <%= @registro_clinico.paciente.nome %>
+          </div>
+        </div>
+        
+        <!-- Botões de ação -->
+        <div class="flex flex-wrap gap-2 justify-end">
+          <button
+            onclick="toggleImageZoom()"
+            id="zoom-button"
+            class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+          >
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+            </svg>
+            Zoom
+          </button>
+          <button
+            onclick="toggleImageEditor()"
+            id="edit-button"
+            class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded border border-blue-300 text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors"
+          >
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+            </svg>
+            Editar
+          </button>
+          <button
+            onclick="downloadImage()"
+            class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded text-white bg-pink-600 hover:bg-pink-700 transition-colors"
+          >
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+            </svg>
+            Download
+          </button>
+          <button
+            onclick="closeImageModal()"
+            class="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+          >
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ferramentas de edição - Overlay separado -->
+<div id="edit-toolbar" class="fixed top-4 right-4 bg-white border border-gray-300 rounded-lg shadow-xl p-4 z-[70] hidden">
+  <div class="flex flex-col gap-3">
+    <div class="text-sm font-medium text-gray-700 border-b border-gray-200 pb-2">
+      🎨 Ferramentas de Edição
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <button
+        onclick="setEditTool('circle')"
+        id="circle-tool"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-red-50 hover:bg-red-100 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Círculo
+      </button>
+      
+      <button
+        onclick="setEditTool('arrow')"
+        id="arrow-tool"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-white hover:bg-red-50 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+        Seta
+      </button>
+      
+      <button
+        onclick="undoLastEdit()"
+        class="inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+        </svg>
+        Desfazer
+      </button>
+    </div>
+    
+    <div class="border-t border-gray-200 pt-2 flex flex-col gap-2">
+      <button
+        onclick="saveEditedImage()"
+        class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        Salvar
+      </button>
+      
+      <button
+        onclick="cancelImageEdit()"
+        class="inline-flex items-center justify-center px-3 py-2 text-sm font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentImageUrl = '';
+let isZoomed = false;
+let isEditing = false;
+let editTool = 'circle';
+let editCanvas = null;
+let editCtx = null;
+let editHistory = [];
+let isDrawing = false;
+let startX = 0;
+let startY = 0;
+let currentImageIndex = 0;
+
+function openImageModal(imageUrl, imageNumber) {
+  currentImageUrl = imageUrl;
+  currentImageIndex = imageNumber;
+  const modalImage = document.getElementById('modal-image');
+  const modal = document.getElementById('modal-imagem');
+  
+  modalImage.src = imageUrl;
+  document.getElementById('image-title').textContent = `Imagem ${imageNumber}`;
+  modal.classList.remove('hidden');
+  
+  // Reset states
+  isZoomed = false;
+  isEditing = false;
+  modalImage.style.transform = 'scale(1)';
+  modalImage.className = 'max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 rounded shadow-sm';
+  
+  // Reset buttons
+  resetZoomButton();
+  resetEditButton();
+  
+  // Hide edit toolbar and canvas
+  document.getElementById('edit-toolbar').classList.add('hidden');
+  document.getElementById('edit-canvas').classList.add('hidden');
+  document.getElementById('edit-indicator').classList.add('hidden');
+  
+  // Previne scroll do body quando modal está aberto
+  document.body.style.overflow = 'hidden';
+  
+  // Adiciona evento de clique na imagem para zoom (quando não estiver editando)
+  modalImage.onclick = function() {
+    if (!isEditing) {
+      toggleImageZoom();
+    }
+  };
+  
+  // Aguarda imagem carregar para configurar canvas
+  modalImage.onload = function() {
+    setupEditCanvas();
+  };
+}
+
+function closeImageModal() {
+  document.getElementById('modal-imagem').classList.add('hidden');
+  document.getElementById('edit-toolbar').classList.add('hidden');
+  
+  // Restaura scroll do body
+  document.body.style.overflow = 'auto';
+  
+  // Reset states
+  isZoomed = false;
+  isEditing = false;
+  editHistory = [];
+  
+  // Reset elements
+  const modalImage = document.getElementById('modal-image');
+  modalImage.style.transform = 'scale(1)';
+  modalImage.className = 'max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 rounded shadow-sm';
+  modalImage.onclick = null;
+  modalImage.onload = null;
+  
+  // Hide edit elements
+  document.getElementById('edit-canvas').classList.add('hidden');
+  document.getElementById('edit-indicator').classList.add('hidden');
+}
+
+function toggleImageZoom() {
+  if (isEditing) return; // Não permite zoom durante edição
+  
+  const modalImage = document.getElementById('modal-image');
+  const zoomButton = document.getElementById('zoom-button');
+  
+  if (!isZoomed) {
+    // Zoom in
+    modalImage.style.transform = 'scale(1.8)';
+    modalImage.className = 'object-contain cursor-zoom-out transition-transform duration-300 rounded shadow-sm';
+    isZoomed = true;
+    
+    zoomButton.innerHTML = `
+      <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 9h-3"></path>
+      </svg>
+      Zoom Out
+    `;
+  } else {
+    // Zoom out
+    modalImage.style.transform = 'scale(1)';
+    modalImage.className = 'max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 rounded shadow-sm';
+    isZoomed = false;
+    
+    resetZoomButton();
+  }
+}
+
+function resetZoomButton() {
+  const zoomButton = document.getElementById('zoom-button');
+  zoomButton.innerHTML = `
+    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+    </svg>
+    Zoom
+  `;
+}
+
+function toggleImageEditor() {
+  const modalImage = document.getElementById('modal-image');
+  const editButton = document.getElementById('edit-button');
+  const editToolbar = document.getElementById('edit-toolbar');
+  const editCanvas = document.getElementById('edit-canvas');
+  const editIndicator = document.getElementById('edit-indicator');
+  
+  if (!isEditing) {
+    // Ativar modo de edição
+    isEditing = true;
+    
+    // Forçar zoom out se estiver com zoom
+    if (isZoomed) {
+      toggleImageZoom();
+    }
+    
+    // Configurar canvas
+    setupEditCanvas();
+    
+    // Mostrar elementos de edição
+    editToolbar.classList.remove('hidden');
+    editCanvas.classList.remove('hidden');
+    editCanvas.style.pointerEvents = 'auto';
+    editIndicator.classList.remove('hidden');
+    
+    // Atualizar botão
+    editButton.innerHTML = `
+      <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      Sair da Edição
+    `;
+    editButton.className = 'inline-flex items-center px-3 py-1.5 text-xs font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors';
+    
+    // Desabilitar zoom durante edição
+    modalImage.onclick = null;
+    modalImage.style.cursor = 'default';
+    
+    // Definir ferramenta padrão
+    setEditTool('circle');
+    
+  } else {
+    // Sair do modo de edição sem salvar
+    cancelImageEdit();
+  }
+}
+
+function resetEditButton() {
+  const editButton = document.getElementById('edit-button');
+  editButton.innerHTML = `
+    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+    </svg>
+    Editar
+  `;
+  editButton.className = 'inline-flex items-center px-3 py-1.5 text-xs font-medium rounded border border-blue-300 text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors';
+}
+
+function setupEditCanvas() {
+  const modalImage = document.getElementById('modal-image');
+  const canvas = document.getElementById('edit-canvas');
+  
+  if (!modalImage.complete) return;
+  
+  editCanvas = canvas;
+  editCtx = canvas.getContext('2d');
+  
+  // Aguardar um pouco para a imagem se posicionar
+  setTimeout(() => {
+    // Obter dimensões reais da imagem renderizada
+    const imageRect = modalImage.getBoundingClientRect();
+    
+    // Configurar canvas para ter as mesmas dimensões da imagem natural
+    canvas.width = modalImage.naturalWidth;
+    canvas.height = modalImage.naturalHeight;
+    
+    // Posicionar canvas exatamente sobre a imagem sem afetar o layout
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '10';
+    
+    // Configurar eventos do canvas
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+    
+    // Limpar histórico
+    editHistory = [];
+    
+    // Salvar estado inicial
+    saveCanvasState();
+  }, 200);
+}
+
+function startDrawing(e) {
+  if (!isEditing) return;
+  
+  isDrawing = true;
+  const rect = editCanvas.getBoundingClientRect();
+  const modalImage = document.getElementById('modal-image');
+  
+  // Calcular a escala entre o canvas e a imagem exibida
+  const scaleX = editCanvas.width / rect.width;
+  const scaleY = editCanvas.height / rect.height;
+  
+  startX = (e.clientX - rect.left) * scaleX;
+  startY = (e.clientY - rect.top) * scaleY;
+}
+
+function draw(e) {
+  if (!isDrawing || !isEditing) return;
+  
+  const rect = editCanvas.getBoundingClientRect();
+  
+  // Calcular a escala entre o canvas e a imagem exibida
+  const scaleX = editCanvas.width / rect.width;
+  const scaleY = editCanvas.height / rect.height;
+  
+  const currentX = (e.clientX - rect.left) * scaleX;
+  const currentY = (e.clientY - rect.top) * scaleY;
+  
+  // Limpar canvas e redesenhar histórico
+  redrawCanvas();
+  
+  // Desenhar elemento atual
+  editCtx.strokeStyle = '#dc2626'; // Vermelho
+  editCtx.lineWidth = 6; // Linha mais grossa para melhor visibilidade
+  editCtx.lineCap = 'round';
+  
+  if (editTool === 'circle') {
+    drawCircle(startX, startY, currentX, currentY);
+  } else if (editTool === 'arrow') {
+    drawArrow(startX, startY, currentX, currentY);
+  }
+}
+
+function stopDrawing(e) {
+  if (!isDrawing || !isEditing) return;
+  
+  isDrawing = false;
+  
+  // Salvar estado atual
+  saveCanvasState();
+}
+
+function drawCircle(startX, startY, currentX, currentY) {
+  const radius = Math.sqrt(Math.pow(currentX - startX, 2) + Math.pow(currentY - startY, 2));
+  
+  editCtx.beginPath();
+  editCtx.arc(startX, startY, radius, 0, 2 * Math.PI);
+  editCtx.stroke();
+}
+
+function drawArrow(startX, startY, currentX, currentY) {
+  const headlen = 25; // Tamanho da ponta da seta
+  const dx = currentX - startX;
+  const dy = currentY - startY;
+  const angle = Math.atan2(dy, dx);
+  
+  // Desenhar linha principal
+  editCtx.beginPath();
+  editCtx.moveTo(startX, startY);
+  editCtx.lineTo(currentX, currentY);
+  editCtx.stroke();
+  
+  // Desenhar ponta da seta
+  editCtx.beginPath();
+  editCtx.moveTo(currentX, currentY);
+  editCtx.lineTo(currentX - headlen * Math.cos(angle - Math.PI / 6), currentY - headlen * Math.sin(angle - Math.PI / 6));
+  editCtx.moveTo(currentX, currentY);
+  editCtx.lineTo(currentX - headlen * Math.cos(angle + Math.PI / 6), currentY - headlen * Math.sin(angle + Math.PI / 6));
+  editCtx.stroke();
+}
+
+function setEditTool(tool) {
+  editTool = tool;
+  
+  // Atualizar botões
+  const circleBtn = document.getElementById('circle-tool');
+  const arrowBtn = document.getElementById('arrow-tool');
+  
+  if (tool === 'circle') {
+    circleBtn.className = 'inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-red-50 hover:bg-red-100 transition-colors';
+    arrowBtn.className = 'inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-white hover:bg-red-50 transition-colors';
+  } else {
+    arrowBtn.className = 'inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-red-50 hover:bg-red-100 transition-colors';
+    circleBtn.className = 'inline-flex items-center px-3 py-2 text-sm font-medium rounded border border-red-300 text-red-700 bg-white hover:bg-red-50 transition-colors';
+  }
+}
+
+function saveCanvasState() {
+  if (editCtx) {
+    editHistory.push(editCtx.getImageData(0, 0, editCanvas.width, editCanvas.height));
+  }
+}
+
+function undoLastEdit() {
+  if (editHistory.length > 1) {
+    editHistory.pop(); // Remove estado atual
+    const previousState = editHistory[editHistory.length - 1];
+    editCtx.putImageData(previousState, 0, 0);
+  } else if (editHistory.length === 1) {
+    // Limpar canvas completamente
+    editCtx.clearRect(0, 0, editCanvas.width, editCanvas.height);
+    editHistory = [];
+    saveCanvasState();
+  }
+}
+
+function redrawCanvas() {
+  if (editHistory.length > 0) {
+    const currentState = editHistory[editHistory.length - 1];
+    editCtx.putImageData(currentState, 0, 0);
+  }
+}
+
+function saveEditedImage() {
+  if (!editCanvas || !editCtx) {
+    alert('Erro: Canvas de edição não encontrado.');
+    return;
+  }
+
+  // Adicionar a dupla verificação
+  const confirmSave = confirm("Tem certeza que deseja salvar as alterações? A imagem original será substituída permanentemente.");
+
+  if (!confirmSave) {
+    return; // Usuário cancelou a ação
+  }
+
+  // Mostrar um indicador de carregamento
+  const saveButton = document.querySelector('#edit-toolbar button[onclick="saveEditedImage()"]');
+  saveButton.disabled = true;
+  saveButton.innerHTML = `
+    <svg class="w-4 h-4 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    Salvando...
+  `;
+
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  const modalImage = document.getElementById('modal-image');
+
+  tempCanvas.width = modalImage.naturalWidth;
+  tempCanvas.height = modalImage.naturalHeight;
+
+  // Desenhar a imagem original e as edições no canvas temporário
+  tempCtx.drawImage(modalImage, 0, 0);
+  tempCtx.drawImage(editCanvas, 0, 0);
+
+  const imageDataUrl = tempCanvas.toDataURL('image/png');
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+  fetch(`/terapeuta/registros_clinicos/<%= @registro_clinico.id %>/save_edited_image`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    body: JSON.stringify({
+      image_data: imageDataUrl,
+      image_index: currentImageIndex
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(data.message);
+      window.location.reload(); // Recarrega para mostrar a nova imagem
+    } else {
+      alert(`Erro ao salvar: ${data.message}`);
+      // Restaurar o botão de salvar
+      saveButton.disabled = false;
+      saveButton.innerHTML = `
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        Salvar
+      `;
+    }
+  })
+  .catch(error => {
+    console.error('Erro na requisição:', error);
+    alert('Ocorreu um erro de comunicação com o servidor.');
+    saveButton.disabled = false; // Restaura o botão em caso de erro de rede
+  });
+}
+
+function cancelImageEdit() {
+  isEditing = false;
+  
+  // Esconder elementos de edição
+  const editToolbar = document.getElementById('edit-toolbar');
+  const editCanvas = document.getElementById('edit-canvas');
+  const editIndicator = document.getElementById('edit-indicator');
+  
+  editToolbar.classList.add('hidden');
+  editCanvas.classList.add('hidden');
+  editCanvas.style.pointerEvents = 'none';
+  editIndicator.classList.add('hidden');
+  
+  // Limpar canvas
+  if (editCtx) {
+    editCtx.clearRect(0, 0, editCanvas.width, editCanvas.height);
+  }
+  
+  // Resetar botão
+  resetEditButton();
+  
+  // Reativar zoom
+  const modalImage = document.getElementById('modal-image');
+  modalImage.onclick = function() {
+    if (!isEditing) {
+      toggleImageZoom();
+    }
+  };
+  modalImage.style.cursor = 'zoom-in';
+  
+  // Limpar histórico
+  editHistory = [];
+}
+
+function downloadImage() {
+  if (currentImageUrl) {
+    const link = document.createElement('a');
+    link.href = currentImageUrl;
+    link.download = `registro_${<%= @registro_clinico.id %>}_imagem_${currentImageIndex}.bmp`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+// Fechar modal com tecla ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (isEditing) {
+      cancelImageEdit();
+    } else {
+      closeImageModal();
+    }
+  }
+});
+
+// Reposicionar canvas quando janela redimensionar
+window.addEventListener('resize', function() {
+  if (isEditing) {
+    setupEditCanvas();
+  }
+});
+</script> 

@@ -1,7 +1,10 @@
+require 'base64'
+require 'tempfile'
+
 class Terapeuta::RegistrosClinicosController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_terapeuta
-  before_action :set_registro_clinico, only: [:show, :edit, :update, :destroy]
+  before_action :set_registro_clinico, only: [:show, :edit, :update, :destroy, :save_edited_image]
   load_and_authorize_resource :registro_clinico, class: 'RegistroClinico'
 
   def index
@@ -97,6 +100,61 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
                 notice: 'Registro clínico excluído com sucesso!'
   end
 
+  def save_edited_image
+    begin
+      # Decodificar a imagem base64
+      image_data = params[:image_data]
+      image_index = params[:image_index].to_i
+      
+      # Remover o prefixo data:image/png;base64,
+      image_data = image_data.split(',')[1] if image_data.include?(',')
+      
+      # Decodificar base64
+      decoded_image = Base64.decode64(image_data)
+      
+      # Criar um arquivo temporário
+      temp_file = Tempfile.new(['edited_image', '.png'])
+      temp_file.binmode
+      temp_file.write(decoded_image)
+      temp_file.rewind
+      
+      # Criar um ActionDispatch::Http::UploadedFile
+      uploaded_file = ActionDispatch::Http::UploadedFile.new(
+        tempfile: temp_file,
+        filename: "imagem_editada_#{Time.current.to_i}.png",
+        type: 'image/png'
+      )
+      
+      # Encontrar e substituir a imagem específica
+      imagens_array = @registro_clinico.imagens.to_a
+      if image_index > 0 && image_index <= imagens_array.length
+        # Remover a imagem original (índice baseado em 1)
+        imagem_original = imagens_array[image_index - 1]
+        imagem_original.purge
+        
+        # Anexar a nova imagem editada
+        @registro_clinico.imagens.attach(uploaded_file)
+      else
+        raise "Índice de imagem inválido"
+      end
+      
+      temp_file.close
+      temp_file.unlink
+      
+      render json: { 
+        success: true, 
+        message: 'Imagem editada substituída com sucesso!',
+        total_images: @registro_clinico.imagens.count
+      }
+      
+    rescue StandardError => e
+      render json: { 
+        success: false, 
+        message: "Erro ao substituir imagem: #{e.message}" 
+      }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_registro_clinico
@@ -107,7 +165,8 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
     params.require(:registro_clinico).permit(
       :paciente_id, :atendimento_id, :tipo_registro,
       :queixa_principal, :diagnostico, :tratamento,
-      :plano_terapeutico, :observacoes, :proxima_consulta
+      :plano_terapeutico, :observacoes, :proxima_consulta,
+      imagens: []
     )
   end
 

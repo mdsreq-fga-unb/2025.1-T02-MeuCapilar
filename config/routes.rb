@@ -42,10 +42,14 @@ Rails.application.routes.draw do
   namespace :terapeuta do
     resources :pacientes do
       resources :atendimentos
-      resources :registros_clinicos
+      # A rota para registros_clinicos será definida no nível superior do namespace
     end
     resources :atendimentos, only: [:index, :show, :edit, :update, :destroy, :new, :create]
-    resources :registros_clinicos
+    resources :registros_clinicos do
+      member do
+        post :save_edited_image
+      end
+    end
   end
 
   namespace :paciente do

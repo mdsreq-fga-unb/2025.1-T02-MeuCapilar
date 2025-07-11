@@ -3,6 +3,9 @@ class RegistroClinico < ApplicationRecord
   belongs_to :terapeuta
   belongs_to :atendimento, optional: true
 
+  # Active Storage - Imagens
+  has_many_attached :imagens
+
   # Enums
   enum tipo_registro: {
     avaliacao_inicial: 'avaliacao_inicial',
@@ -18,6 +21,9 @@ class RegistroClinico < ApplicationRecord
   validates :diagnostico, length: { minimum: 10, message: "deve ter pelo menos 10 caracteres" }
   validates :tipo_registro, presence: true
   validates :queixa_principal, presence: true, length: { minimum: 5 }
+  
+  # Validações para imagens
+  validate :limite_imagens
 
   # Scopes
   scope :por_paciente, ->(paciente_id) { where(paciente_id: paciente_id) }
@@ -28,6 +34,7 @@ class RegistroClinico < ApplicationRecord
 
   # Callbacks
   before_validation :set_data_registro, on: :create
+  after_commit :convert_bmp_to_png, on: [:create, :update]
 
   # Métodos
   def tipo_registro_humanizado
@@ -57,9 +64,92 @@ class RegistroClinico < ApplicationRecord
     "#{tipo_registro_humanizado} - #{queixa_principal.truncate(50)}"
   end
 
+  def tem_imagens?
+    imagens.attached?
+  end
+
+  def total_imagens
+    imagens.count
+  end
+
   private
 
   def set_data_registro
     self.data_registro ||= Time.current
+  end
+
+  def limite_imagens
+    return unless imagens.attached?
+    
+    # Validar número máximo de imagens
+    if imagens.count > 10
+      errors.add(:imagens, 'não pode ter mais de 10 imagens')
+    end
+    
+    # Validar cada imagem individualmente
+    imagens.each_with_index do |imagem, index|
+      # Validar tipo de arquivo (BMP original ou PNG convertido)
+      unless ['image/bmp', 'image/png'].include?(imagem.content_type)
+        errors.add(:imagens, "imagem #{index + 1} deve ser um arquivo BMP ou PNG")
+      end
+      
+      # Validar tamanho do arquivo
+      if imagem.byte_size > 5.megabytes
+        errors.add(:imagens, "imagem #{index + 1} deve ter menos de 5MB")
+      end
+    end
+  end
+
+  def convert_bmp_to_png
+    return unless saved_change_to_attribute?(:id) || imagens.attached?
+    
+    # Evitar conversão dupla
+    return if @converting_images
+    @converting_images = true
+    
+    bmp_attachments = imagens.select { |img| img.content_type == 'image/bmp' }
+    return if bmp_attachments.empty?
+    
+    Rails.logger.info "Iniciando conversão de #{bmp_attachments.count} imagens BMP para PNG"
+    
+    bmp_attachments.each do |imagem|
+      begin
+        Rails.logger.info "Convertendo: #{imagem.filename}"
+        
+        # Usar image_processing com variant para conversão
+        variant = imagem.variant(format: :png)
+        variant.processed
+        
+        # Baixar dados e criar StringIO para ser rewindable
+        blob_data = variant.image.blob.download
+        string_io = StringIO.new(blob_data)
+        string_io.rewind
+        
+        # Criar novo attachment PNG
+        new_filename = imagem.filename.to_s.gsub(/\.bmp$/i, '.png')
+        
+        # Anexar o variant como nova imagem PNG
+        imagens.attach(
+          io: string_io,
+          filename: new_filename,
+          content_type: 'image/png'
+        )
+        
+        # Remover imagem BMP original
+        imagem.purge
+        
+        Rails.logger.info "Conversão concluída: #{new_filename}"
+        
+      rescue => e
+        Rails.logger.error "Erro ao converter #{imagem.filename}: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+      end
+    end
+    
+    @converting_images = false
+    Rails.logger.info "Conversão BMP->PNG finalizada"
+  rescue => e
+    @converting_images = false
+    Rails.logger.error "Erro geral na conversão: #{e.message}"
   end
 end
