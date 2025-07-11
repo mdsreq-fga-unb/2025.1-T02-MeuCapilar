@@ -85,7 +85,21 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
   end
 
   def update
-    if @registro_clinico.update(registro_clinico_params)
+    # Pega todos os parâmetros permitidos
+    all_params = registro_clinico_params
+    
+    # Separa os IDs das imagens a serem removidas do resto dos parâmetros
+    purged_ids = all_params.delete(:purged_image_ids)
+    
+    # Remove as imagens marcadas, se houver
+    if purged_ids.present?
+      ids_to_purge = purged_ids.reject(&:blank?)
+      images_to_purge = @registro_clinico.imagens.where(id: ids_to_purge)
+      images_to_purge.each(&:purge_later)
+    end
+
+    # Atualiza o registro apenas com os atributos válidos do modelo
+    if @registro_clinico.update(all_params)
       redirect_to terapeuta_registros_clinico_path(@registro_clinico),
                   notice: 'Registro clínico atualizado com sucesso!'
     else
@@ -148,9 +162,10 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
       }
       
     rescue StandardError => e
+      Rails.logger.error "Erro ao substituir imagem editada para o registro #{@registro_clinico.id}: #{e.message}\n#{e.backtrace.join("\n")}"
       render json: { 
         success: false, 
-        message: "Erro ao substituir imagem: #{e.message}" 
+        message: "Ocorreu um erro inesperado ao salvar a imagem. A equipe de desenvolvimento foi notificada." 
       }, status: :unprocessable_entity
     end
   end
@@ -162,12 +177,22 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
   end
 
   def registro_clinico_params
-    params.require(:registro_clinico).permit(
+    # Clona os parâmetros para poder modificá-los sem afetar o objeto original
+    p = params.require(:registro_clinico).permit(
       :paciente_id, :atendimento_id, :tipo_registro,
       :queixa_principal, :diagnostico, :tratamento,
       :plano_terapeutico, :observacoes, :proxima_consulta,
-      imagens: []
+      imagens: [],
+      purged_image_ids: []
     )
+
+    # Se o campo de imagens vier vazio (sem novos uploads), remova-o dos parâmetros
+    # para evitar que o Active Storage apague todos os anexos existentes.
+    if p[:imagens].is_a?(Array) && p[:imagens].reject(&:blank?).empty?
+      p.delete(:imagens)
+    end
+
+    p
   end
 
   def prepare_form_data

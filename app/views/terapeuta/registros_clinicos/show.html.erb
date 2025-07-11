@@ -1045,7 +1045,7 @@ function downloadImage() {
   if (currentImageUrl) {
     const link = document.createElement('a');
     link.href = currentImageUrl;
-    link.download = `registro_${<%= @registro_clinico.id %>}_imagem_${currentImageIndex}.bmp`;
+    link.download = `registro_${<%= @registro_clinico.id %>}_imagem_${currentImageIndex}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
