@@ -19,7 +19,7 @@ nav:
    - PBB e BDD: unidade3/PBB.md
    - USM: unidade3/USM.md
    - Lições Aprendidas: unidade1/licoesAprendidas.md
-   - Sprints:
+   - Atas e Gravações das Sprints:
       - Sprint 1:
         - Planning: sprints/sprint01/planning.md
         - Daily 1: sprints/sprint01/daily1.md
@@ -35,6 +35,9 @@ nav:
          - Planning: sprints/sprint03/planning.md
          - Review: sprints/sprint03/review.md
          - Retrospectiva: sprints/sprint03/retrospective.md
+   - Evidências de ESW e ER:
+      - Wireframes: evidencias/wireframes.md
+      - Projects: evidencias/projects.md
 
 theme:
    name: material 

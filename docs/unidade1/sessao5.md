@@ -35,7 +35,7 @@
       <td>09/06/2025</td>
       <td>Definição do MVP, DoR, DoD e criação de wireframes</td>
       <td>
-        - Wireframes de Agendamento e relatório (aguardando aprovação do MVP).<br>
+        - Wireframes de Agendamento e registros (aguardando aprovação do MVP).<br>
         - Integração do Banco e mudança nos requisitos
       </td>
       <td>Entrega do MVP para o Professor para Validação. Demonstração dos Wireframes para a Cliente</td>
@@ -45,11 +45,12 @@
       <td><strong>Sprint 3</strong></td>
       <td>10/06/2025</td>
       <td>23/06/2025</td>
-      <td><strong>Entrega Parcial 1 (Release): </strong> - Cadastro de Agendamentos e de clientes</td>
+      <td><strong>Entrega Parcial 1 (Release): </strong> - Cadastro de Agendamentos, clientes e login básico</td>
       <td>
-        - Funcionalidade de cadastro de cliente.<br>
-        - Tela e lógica de agendamento.<br>
-        - Validação de campos e integração inicial com o banco de dados.
+        - Épico 1.1 completo.
+        - US 1.2.1 , US 1.2.2 e US 1.2.4
+        - US 1.3.1, US 1.3.2 e US 1.3.3
+
       </td>
       <td>Cliente testa o cadastro e simula agendamentos</td>
       <td>Cauã</td>
@@ -58,13 +59,12 @@
       <td><strong>Sprint 4</strong></td>
       <td>24/06/2025</td>
       <td>07/07/2025</td>
-      <td><strong>Entrega Parcial 2 (Release):</strong> Geração de Relatórios</td>
+      <td><strong>Entrega Parcial 2 (Release):</strong>Histórico e consulta dos atendimentos e Login Completo</td>
       <td>
-        - Geração automática de relatórios com campos editáveis.<br>
-        - Upload de imagens organizadas por cliente.<br>
-        - Armazenamento seguro.
+        - Acesso e Login: US 1.3.4
+        - Épico 1.2 Completo.
       </td>
-      <td>Cliente valida a praticidade e organização dos relatórios.</td>
+      <td>Avaliação da navegação e funcionalidade do histórico.</td>
       <td>Pedro</td>
     </tr>
     <tr>
@@ -73,11 +73,9 @@
       <td>14/07/2025</td>
       <td><strong>Entrega Parcial 3 (Release):</strong> Histórico e consulta dos atendimentos</td>
       <td>
-        - Visualização do histórico de sessões por cliente.<br>
-        - Edição e reenvio de relatórios anteriores.<br>
-        - Integração com armazenamento externo (AWS/Firebase).
+        - Tema 2
       </td>
-      <td>Avaliação da navegação e funcionalidade do histórico.</td>
+      <td>Cliente valida a praticidade e organização dos registros.</td>
       <td>Wallyson</td>
     </tr>
     <tr>

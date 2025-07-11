@@ -11,6 +11,10 @@ Nosso backlog é mantido no <em>Github Projects</em>, onde especificamos <strong
   <li>Classificar o nível de granularidade: Tema, Épico ou User Story.</li>
 </ul>
 Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no desenvolvimento e alinhamento com os objetivos do projeto.
+[Acesse nosso Backlog no GitHub Projects](https://github.com/orgs/mdsreq-fga-unb/projects/63/views/1) 
+
+
+[Para ver alguns estados do nosso backlog durante o semestre clique aqui](../evidencias/projects.md##-comprovacao-do-uso-do-gitHub-projects)
 
 #### <strong>9.1.1 Objetivo Específico: Agendamento completo dos tratamentos capilares</strong>
 
@@ -214,20 +218,14 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
     <tr>
       <td>US 2.1.1</td>
       <td>MUST</td>
-      <td>Como terapeuta, quero gerar um relatório clínico baseado no registro do atendimento para documentar o caso do paciente.</td>
-      <td>- Permitir input de diagnóstico.<br>- Salvar e associar relatório ao paciente.</td>
+      <td>Como terapeuta, quero cadastrar um registro clínico com base no meu diagnóstico para documentar o atendimento.</td>
+      <td>- Permitir input de diagnóstico.<br>- Salvar e associar relatório ao paciente.<br>-  Após o salvamento, o relatório deve ser exibido na área de documentos ou histórico clínico do paciente.</td>
     </tr>
     <tr>
       <td>US 2.1.2</td>
       <td>MUST</td>
       <td>Como terapeuta, quero visualizar o histórico de registros clínicos do paciente para acompanhar sua evolução.</td>
-      <td>- Listar relatórios anteriores.<br>- Permitir visualizar detalhes de cada entrada.</td>
-    </tr>
-    <tr>
-      <td>US 2.1.3</td>
-      <td>MUST</td>
-      <td>Como terapeuta, quero visualizar o histórico de relatórios do paciente para acompanhar sua evolução.</td>
-      <td>- Permitir edição do conteúdo do relatório.</td>
+      <td>- Listar relatórios anteriores.<br> Permitir visualizar detalhes de cada entrada.</td>
     </tr>
   </tbody>
 </table>
@@ -246,9 +244,9 @@ Essa estrutura organiza e facilita a gestão do backlog, garantindo clareza no d
   <tbody>
     <tr>
       <td>US 2.2.1</td>
-      <td>SHOULD</td>
-      <td>Como terapeuta, quero entregar o relatório clínico digitalmente ao cliente pela plataforma para maior comodidade.</td>
-      <td>- Gerar PDF com relatórios filtrados ou completos.<br>- Opção de download <br> - Disponibilizar download para o paciente.</td>
+      <td>MUST</td>
+      <td>Como paciente, quero exportar meu relatório clínico digitalmente para ter acesso detalhado ao meu diagnóstico.</td>
+      <td>- Exportar PDF registro cliníco em formato de relatório.<br></td>
     </tr>
     <tr>
       <td>US 2.2.2</td>
@@ -324,12 +322,15 @@ Por fim, a pontuação total obtida — combinando critérios de negócio e esfo
     <tr><td>US 1.2.2</td><td>MUST</td><td>13</td><td>9/4</td></tr>
     <tr><td>US 1.2.3</td><td>SHOULD</td><td>7</td><td>4/3</td></tr>
     <tr><td>US 1.2.4</td><td>SHOULD</td><td>8</td><td>4/4</td></tr>
+    <tr><td>US 1.2.5</td><td>MUST</td><td>13</td><td>4/4</td></tr>
+    <tr><td>US 1.2.6</td><td>MUST</td><td>13</td><td>4/4</td></tr>
+    <tr><td>US 1.2.7</td><td>MUST</td><td>13</td><td>4/4</td></tr>
     <tr><td>US 1.3.1</td><td>MUST</td><td>13</td><td>4/4</td></tr>
     <tr><td>US 1.3.2</td><td>MUST</td><td>13</td><td>4/4</td></tr>
     <tr><td>US 1.3.3</td><td>MUST</td><td>13</td><td>4/4</td></tr>
+    <tr><td>US 1.3.4</td><td>MUST</td><td>13</td><td>4/4</td></tr>
     <tr><td>US 2.1.1</td><td>MUST</td><td>9</td><td>9/0</td></tr>
     <tr><td>US 2.1.2</td><td>MUST</td><td>12</td><td>9/3</td></tr>
-    <tr><td>US 2.1.3</td><td>MUST</td><td>9</td><td>9/0</td></tr>>
     <tr><td>US 2.2.1</td><td>SHOULD</td><td>8</td><td>4/4</td></tr>
     <tr><td>US 2.2.2</td><td>MUST</td><td>12</td><td>9/3</td></tr>
   </tbody>
@@ -364,6 +365,10 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 <ul>
   <li>US 1.2.1 (MUST)</li>
   <li>US 1.2.2 (MUST)</li>
+  <li>US 1.2.5 (MUST)</li>
+  <li>US 1.2.6 (MUST)</li>
+  <li>US 1.2.7 (MUST)</li>
+
 </ul>
 
 <strong>Épico 1.3:</strong> Autenticação e Acesso<br>
@@ -371,6 +376,7 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
   <li>US 1.3.1 (MUST)</li>
   <li>US 1.3.2 (MUST)</li>
   <li>US 1.3.3 (MUST)</li>
+  <li>US 1.3.4 (MUST)</li>
 </ul>
 
 <h3>Objetivo Específico:</h3>
@@ -378,7 +384,15 @@ Dessa forma, a priorização foi realizada de maneira estruturada, transparente 
 
 <strong>Tema 2:</strong> Registro e Documentação Clínica<br>
 
+<strong>Épico 2.1</strong><br>
+<ul>
+  <li>US 2.1.1 (MUST)</li>
+  <li>US 2.1.2 (MUST)</li>
+</ul>
+
+
 <strong>Épico 2.2:</strong> Compartilhamento e Exportação de Registros<br>
 <ul>
+  <li>US 2.2.1 (MUST)</li>
   <li>US 2.2.2 (MUST)</li>
 </ul>
