@@ -28,12 +28,4 @@ class User < ApplicationRecord
   def display_name
     profile&.nome || email
   end
-
-  def terapeuta?
-    has_role?(:terapeuta)
-  end
-
-  def paciente?
-    has_role?(:paciente)
-  end
 end

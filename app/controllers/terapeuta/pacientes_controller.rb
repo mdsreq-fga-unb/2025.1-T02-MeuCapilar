@@ -130,7 +130,7 @@ class Terapeuta::PacientesController < ApplicationController
 
   def ensure_terapeuta
     unless current_user.terapeuta?
-      redirect_to new_user_session_path, alert: 'Acesso restrito para terapeutas.'
+      redirect_to root_path, alert: 'Acesso restrito para terapeutas.'
     end
   end
 
