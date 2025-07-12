@@ -80,6 +80,70 @@
       </div>
     </div>
 
+    <!-- Filtros -->
+    <div class="bg-white rounded-lg shadow mb-8">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Filtros</h2>
+        <p class="text-sm text-gray-600 mt-1">Filtre os atendimentos para encontrar informações específicas</p>
+      </div>
+      
+      <%= form_with url: terapeuta_atendimentos_path, method: :get, local: true, class: "p-6" do |form| %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Filtro por Paciente -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Paciente</label>
+            <%= form.select :paciente_id, 
+                options_from_collection_for_select(@pacientes, :id, :nome, params[:paciente_id]),
+                { prompt: "Todos os pacientes" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+
+          <!-- Filtro por Data -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Data do Atendimento</label>
+            <%= form.date_field :data, 
+                value: params[:data],
+                class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" %>
+          </div>
+
+          <!-- Filtro por Serviço -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Serviço</label>
+            <%= form.select :servico, 
+                options_for_select(@servicos, params[:servico]),
+                { prompt: "Todos os serviços" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+
+          <!-- Filtro por Status -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <%= form.select :status, 
+                options_for_select(@status_options, params[:status]),
+                { prompt: "Todos os status" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+          <div class="text-sm text-gray-600">
+            <%= pluralize(@atendimentos.total_count, 'atendimento encontrado', 'atendimentos encontrados') %>
+            <% if params[:paciente_id].present? || params[:data].present? || params[:servico].present? || params[:status].present? %>
+              <span class="text-pink-600 font-medium">(modo histórico)</span>
+            <% else %>
+              <span class="text-blue-600 font-medium">(modo agenda)</span>
+            <% end %>
+          </div>
+          <div class="flex space-x-3">
+            <%= link_to "Limpar Filtros", terapeuta_atendimentos_path, 
+                class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+            <%= form.submit "Filtrar", 
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
     <!-- Atendimentos List -->
     <div class="bg-white rounded-lg shadow">
       <div class="px-6 py-4 border-b border-gray-200">
@@ -165,6 +229,9 @@
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition font-semibold shadow-sm text-xs" %>
                     <%= link_to "Editar", edit_terapeuta_atendimento_path(atendimento), 
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition font-semibold shadow-sm text-xs" %>
+                    <%= link_to "Criar Registro", new_terapeuta_registros_clinico_path(atendimento_id: atendimento.id), 
+                        class: "inline-flex items-center px-3 py-2 rounded-md text-white hover:bg-green-200 transition font-semibold shadow-sm text-xs",
+                        style: "background-color: #059669;" %>
                     <button
                       onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.remove('hidden')"
                       class="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition font-semibold shadow-sm text-xs"

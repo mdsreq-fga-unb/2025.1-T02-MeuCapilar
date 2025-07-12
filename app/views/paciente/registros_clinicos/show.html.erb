@@ -1,0 +1,343 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="px-4 py-6 sm:px-0 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Meu Registro Clínico</h1>
+          <p class="mt-2 text-gray-600">
+            <%= @registro_clinico.tipo_registro_humanizado %> • <%= @registro_clinico.data_formatada %>
+          </p>
+        </div>
+        <div class="flex space-x-3">
+          <%= link_to export_pdf_paciente_registros_clinico_path(@registro_clinico, format: :pdf),
+              class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+            </svg>
+            Baixar PDF
+          <% end %>
+          <%= link_to "Voltar", paciente_registros_clinicos_path,
+              class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Conteúdo Principal -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Informações Básicas -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Informações do Registro</h3>
+          </div>
+          <div class="p-6">
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Tipo de Registro</dt>
+                <dd class="mt-1">
+                  <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                    <%= @registro_clinico.tipo_registro_humanizado %>
+                  </span>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Data do Registro</dt>
+                <dd class="mt-1 text-sm text-gray-900"><%= @registro_clinico.data_formatada %></dd>
+              </div>
+              <% if @registro_clinico.proxima_consulta %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Próxima Consulta</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= @registro_clinico.proxima_consulta.strftime("%d/%m/%Y") %>
+                  </dd>
+                </div>
+              <% end %>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Terapeuta Responsável</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @terapeuta.nome %>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Queixa Principal -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Queixa Principal</h3>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-900 leading-relaxed">
+              <%= simple_format(@registro_clinico.queixa_principal) %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Diagnóstico/Avaliação -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Diagnóstico/Avaliação</h3>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-900 leading-relaxed">
+              <%= simple_format(@registro_clinico.diagnostico) %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Plano Terapêutico -->
+        <% if @registro_clinico.plano_terapeutico.present? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Plano Terapêutico</h3>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-900 leading-relaxed">
+                <%= simple_format(@registro_clinico.plano_terapeutico) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Observações -->
+        <% if @registro_clinico.observacoes.present? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Observações Gerais</h3>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-900 leading-relaxed">
+                <%= simple_format(@registro_clinico.observacoes) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Imagens do Registro -->
+        <% if @registro_clinico.tem_imagens? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">
+                Imagens do Registro 
+                <span class="text-sm font-normal text-gray-600">(<%= @registro_clinico.total_imagens %> <%= @registro_clinico.total_imagens == 1 ? 'imagem' : 'imagens' %>)</span>
+              </h3>
+            </div>
+            
+            <div class="p-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% @registro_clinico.imagens.each_with_index do |imagem, index| %>
+                  <div class="group relative">
+                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-200 group-hover:border-pink-300 transition-colors cursor-pointer"
+                         onclick="openImageModal('<%= url_for(imagem.variant(format: :png)) %>', '<%= index + 1 %>')">
+                      <%= image_tag(imagem.variant(format: :png), alt: "Imagem #{index + 1} do registro", class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-200") %>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 text-center font-medium">Imagem <%= index + 1 %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 space-y-6">
+        <!-- Informações da Terapeuta -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Terapeuta Responsável</h2>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <div class="flex-shrink-0 h-12 w-12">
+                <div class="h-12 w-12 rounded-full bg-pink-100 flex items-center justify-center">
+                  <span class="text-lg font-medium text-pink-800">
+                    <%= @terapeuta.nome.split.map(&:first).join %>
+                  </span>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900"><%= @terapeuta.nome %></h3>
+                <p class="text-sm text-gray-500"><%= @terapeuta.especialidade %></p>
+              </div>
+            </div>
+            
+            <dl class="space-y-3">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Telefone</dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= @terapeuta.telefone_formatado %>
+                </dd>
+              </div>
+              
+              <% if @terapeuta.user&.email.present? %>
+                <div>
+                  <dt class="text-sm font-medium text-gray-500">Email</dt>
+                  <dd class="mt-1 text-sm text-gray-900">
+                    <%= @terapeuta.user.email %>
+                  </dd>
+                </div>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Outros Registros -->
+        <% if @outros_registros.any? %>
+          <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900">Outros Registros</h3>
+            </div>
+            <div class="p-6">
+              <div class="space-y-3">
+                <% @outros_registros.each do |registro| %>
+                  <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div>
+                      <div class="text-sm font-medium text-gray-900">
+                        <%= registro.tipo_registro_humanizado %>
+                      </div>
+                      <div class="text-xs text-gray-500">
+                        <%= registro.data_formatada %>
+                      </div>
+                    </div>
+                    <%= link_to "Ver", paciente_registros_clinico_path(registro),
+                        class: "text-sm text-pink-600 hover:text-pink-900" %>
+                  </div>
+                <% end %>
+              </div>
+              <%= link_to "Ver Todos", paciente_registros_clinicos_path,
+                  class: "mt-4 inline-flex items-center text-sm text-pink-600 hover:text-pink-900" %>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- Ações -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900">Ações</h3>
+          </div>
+          <div class="p-6 space-y-3">
+            <%= link_to export_pdf_paciente_registros_clinico_path(@registro_clinico, format: :pdf),
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" do %>
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+              </svg>
+              Baixar Relatório PDF
+            <% end %>
+            <%= link_to "Ver Todos os Registros", paciente_registros_clinicos_path,
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal de Visualização de Imagem -->
+<div
+  id="modal-imagem"
+  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden p-2 sm:p-4"
+  onclick="closeImageModal()"
+>
+  <div class="bg-white rounded-lg shadow-2xl w-full h-full max-w-4xl max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white rounded-t-lg flex-shrink-0">
+      <h3 id="image-title" class="text-lg font-medium text-gray-900">Imagem</h3>
+      <button
+        onclick="closeImageModal()"
+        class="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
+        title="Fechar (ESC)"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Área da imagem -->
+    <div class="flex-1 bg-gray-50 overflow-hidden flex items-center justify-center relative p-4">
+      <img 
+        id="modal-image" 
+        src="" 
+        alt="Imagem do registro" 
+        class="max-w-full max-h-full object-contain rounded shadow-sm"
+      >
+    </div>
+    
+    <!-- Footer -->
+    <div class="bg-gray-50 border-t border-gray-200 p-4 rounded-b-lg flex-shrink-0">
+      <div class="flex items-center justify-between">
+        <div class="text-sm text-gray-600">
+          <div class="flex flex-wrap gap-4">
+            <span><strong>Registro:</strong> <%= @registro_clinico.tipo_registro_humanizado %></span>
+            <span><strong>Data:</strong> <%= @registro_clinico.data_formatada %></span>
+          </div>
+        </div>
+        
+        <div class="flex gap-2">
+          <button
+            onclick="downloadImage()"
+            class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded text-white bg-pink-600 hover:bg-pink-700 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+            </svg>
+            Download
+          </button>
+          <button
+            onclick="closeImageModal()"
+            class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentImageUrl = '';
+let currentImageIndex = 0;
+
+function openImageModal(imageUrl, imageNumber) {
+  currentImageUrl = imageUrl;
+  currentImageIndex = imageNumber;
+  const modalImage = document.getElementById('modal-image');
+  const modal = document.getElementById('modal-imagem');
+  
+  modalImage.src = imageUrl;
+  document.getElementById('image-title').textContent = `Imagem ${imageNumber}`;
+  modal.classList.remove('hidden');
+  
+  // Previne scroll do body quando modal está aberto
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+  document.getElementById('modal-imagem').classList.add('hidden');
+  
+  // Restaura scroll do body
+  document.body.style.overflow = 'auto';
+}
+
+function downloadImage() {
+  if (currentImageUrl) {
+    const link = document.createElement('a');
+    link.href = currentImageUrl;
+    link.download = `registro_<%= @registro_clinico.id %>_imagem_${currentImageIndex}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+// Fechar modal com tecla ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeImageModal();
+  }
+});
+</script> 

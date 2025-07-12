@@ -1,13 +1,16 @@
 require "test_helper"
 
 class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
-  def setup
+  include Devise::Test::IntegrationHelpers
+
+  setup do
     # Criar usuário terapeuta
     @terapeuta_user = User.create!(
       email: "terapeuta@test.com",
       password: "password123",
       user_type: "terapeuta",
-      status: true
+      status: true,
+      confirmed_at: Time.current
     )
     @terapeuta_user.add_role(:terapeuta)
     
@@ -24,7 +27,8 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
       email: "paciente@test.com",
       password: "password123",
       user_type: "paciente",
-      status: true
+      status: true,
+      confirmed_at: Time.current
     )
     @paciente_user.add_role(:paciente)
     
@@ -63,16 +67,20 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
     paciente_user = User.create!(
       email: "outro_paciente@test.com",
       password: "password123",
-      user_type: "paciente"
+      user_type: "paciente",
+      status: true,
+      confirmed_at: Time.current
     )
     paciente_user.add_role(:paciente)
+    # Garantir que não tem papel de terapeuta
+    paciente_user.remove_role(:terapeuta) if paciente_user.has_role?(:terapeuta)
     
     sign_out @terapeuta_user
     sign_in paciente_user
     
     get terapeuta_pacientes_path
-    assert_redirected_to root_path
-    assert_equal "Acesso negado. Apenas terapeutas podem cadastrar pacientes.", flash[:alert]
+    assert_redirected_to new_user_session_path
+    assert_equal "Acesso restrito para terapeutas.", flash[:alert]
   end
 
   # Testes do INDEX
@@ -115,7 +123,7 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
   end
 
   # Testes do CREATE
-  test "deve criar paciente com dados válidos" do
+  test "deve_criar_paciente_com_dados_válidos" do
     assert_difference('Paciente.count', 1) do
       assert_difference('User.count', 1) do
         post terapeuta_pacientes_path, params: {
@@ -136,7 +144,7 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
     
     paciente = Paciente.last
     assert_redirected_to terapeuta_paciente_path(paciente)
-    assert_equal "Paciente cadastrado com sucesso! Credenciais de acesso criadas.", flash[:notice]
+    assert_equal "Paciente cadastrado com sucesso! E-mail de confirmação enviado para que o paciente defina sua senha.", flash[:notice]
     
     # Verificar se o usuário foi criado corretamente
     user = paciente.user
@@ -213,7 +221,27 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
     assert_select "input[value=?]", @paciente.nome
   end
 
-  # Testes do UPDATE
+  test "deve atualizar email do paciente" do
+    email_original = @paciente_user.email
+    novo_email = "maria.nova@test.com"
+    
+    patch terapeuta_paciente_path(@paciente), params: {
+      paciente: {
+        nome: "Maria Santos Silva",
+        user_attributes: {
+          id: @paciente_user.id,
+          email: novo_email
+        }
+      }
+    }
+    
+    assert_redirected_to terapeuta_pacientes_path
+    assert_equal "Dados do paciente atualizados com sucesso.", flash[:notice]
+    
+    @paciente_user.reload
+    assert_equal novo_email, @paciente_user.email
+  end
+
   test "deve atualizar paciente com dados válidos" do
     patch terapeuta_paciente_path(@paciente), params: {
       paciente: {
@@ -221,6 +249,7 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
         telefone: "11999998888",
         endereco: "Rua Nova, 123",
         user_attributes: {
+          id: @paciente_user.id,
           email: "maria.nova@test.com"
         }
       }
@@ -234,8 +263,8 @@ class Terapeuta::PacientesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "11999998888", @paciente.telefone
     assert_equal "Rua Nova, 123", @paciente.endereco
     
-    @paciente_user.reload
-    assert_equal "maria.nova@test.com", @paciente_user.email
+    @paciente.user.reload
+    assert_equal "maria.nova@test.com", @paciente.user.email
   end
 
   test "não deve atualizar paciente com dados inválidos" do

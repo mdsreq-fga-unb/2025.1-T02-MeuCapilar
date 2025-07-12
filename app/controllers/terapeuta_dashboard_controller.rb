@@ -10,31 +10,27 @@ class TerapeutaDashboardController < ApplicationController
     
     # Estatísticas gerais
     @total_pacientes = Paciente.count
-    @total_registros = RegistroClinico.joins(:terapeuta).where(terapeuta: { user_id: current_user.id }).count
+    @total_registros = @terapeuta.registros_clinicos.count
     
     # Atendimentos
     hoje = Date.current
-    @atendimentos_hoje = Atendimento.joins(:terapeuta)
-                                   .where(terapeuta: { user_id: current_user.id })
+    @atendimentos_hoje = @terapeuta.atendimentos
                                    .where(data: hoje.beginning_of_day..hoje.end_of_day)
                                    .count
     
-    @proximos_atendimentos = Atendimento.joins(:terapeuta)
-                                       .where(terapeuta: { user_id: current_user.id })
+    @proximos_atendimentos = @terapeuta.atendimentos
                                        .where(data: hoje..(hoje + 7.days))
                                        .count
     
     # Listas para exibição
-    @atendimentos_hoje_lista = Atendimento.joins(:terapeuta)
+    @atendimentos_hoje_lista = @terapeuta.atendimentos
                                          .includes(:paciente)
-                                         .where(terapeuta: { user_id: current_user.id })
                                          .where(data: hoje.beginning_of_day..hoje.end_of_day)
                                          .order(:data)
                                          .limit(5)
     
-    @proximos_atendimentos_lista = Atendimento.joins(:terapeuta)
+    @proximos_atendimentos_lista = @terapeuta.atendimentos
                                              .includes(:paciente)
-                                             .where(terapeuta: { user_id: current_user.id })
                                              .where(data: (hoje + 1.day)..(hoje + 7.days))
                                              .order(:data)
                                              .limit(5)

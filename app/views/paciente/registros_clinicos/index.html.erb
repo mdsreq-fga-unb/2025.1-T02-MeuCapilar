@@ -1,0 +1,175 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="px-4 py-6 sm:px-0 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Meus Registros Clínicos</h1>
+          <p class="mt-2 text-gray-600">
+            Histórico completo dos seus registros clínicos
+          </p>
+        </div>
+        <div class="flex space-x-3">
+          <%= link_to "Voltar ao Dashboard", paciente_dashboard_path,
+              class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-md bg-pink-100">
+            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-500">Total de Registros</h3>
+            <p class="text-2xl font-semibold text-gray-900"><%= @registros_clinicos.count %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-md bg-blue-100">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-500">Este Mês</h3>
+            <p class="text-2xl font-semibold text-gray-900">
+              <%= @registros_clinicos.where(data_registro: Date.current.beginning_of_month..Date.current.end_of_month).count %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-md bg-green-100">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002-2v12a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-500">Com Imagens</h3>
+            <p class="text-2xl font-semibold text-gray-900">
+              <%= @registros_clinicos.joins(:imagens_attachments).distinct.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Registros -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Todos os Registros</h2>
+      </div>
+      
+      <% if @registros_clinicos.any? %>
+        <div class="p-6">
+          <div class="space-y-6">
+            <% @registros_clinicos.each do |registro| %>
+              <div class="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-lg font-medium text-gray-900">
+                        <%= registro.tipo_registro_humanizado %>
+                      </h3>
+                      <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                        <%= l(registro.data_registro, format: "%d/%m/%Y") %>
+                      </span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">
+                      <strong>Terapeuta:</strong> <%= registro.terapeuta.nome %>
+                    </p>
+                    <% if registro.proxima_consulta %>
+                      <p class="text-sm text-gray-600">
+                        <strong>Próxima Consulta:</strong> <%= l(registro.proxima_consulta, format: "%d/%m/%Y") %>
+                      </p>
+                    <% end %>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <% if registro.tem_imagens? %>
+                      <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 002-2v12a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <%= registro.total_imagens %> <%= registro.total_imagens == 1 ? 'imagem' : 'imagens' %>
+                      </span>
+                    <% end %>
+                    <%= link_to "Ver Detalhes", paciente_registros_clinico_path(registro),
+                        class: "inline-flex items-center px-3 py-2 border border-pink-300 text-sm font-medium rounded-md text-pink-700 bg-pink-50 hover:bg-pink-100 transition-colors" %>
+                  </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <% if registro.queixa_principal.present? %>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-700 mb-1">Queixa Principal</h4>
+                      <p class="text-sm text-gray-600 line-clamp-3">
+                        <%= truncate(registro.queixa_principal, length: 200) %>
+                      </p>
+                    </div>
+                  <% end %>
+                  
+                  <% if registro.diagnostico.present? %>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-700 mb-1">Diagnóstico</h4>
+                      <p class="text-sm text-gray-600 line-clamp-3">
+                        <%= truncate(registro.diagnostico, length: 200) %>
+                      </p>
+                    </div>
+                  <% end %>
+                  
+                  <% if registro.plano_terapeutico.present? %>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-700 mb-1">Plano Terapêutico</h4>
+                      <p class="text-sm text-gray-600 line-clamp-3">
+                        <%= truncate(registro.plano_terapeutico, length: 200) %>
+                      </p>
+                    </div>
+                  <% end %>
+                  
+                  <% if registro.observacoes.present? %>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-700 mb-1">Observações</h4>
+                      <p class="text-sm text-gray-600 line-clamp-3">
+                        <%= truncate(registro.observacoes, length: 200) %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          
+          <!-- Paginação -->
+          <% if false %>
+            <div class="mt-6 flex justify-center">
+              <%= paginate @registros_clinicos, theme: 'twitter_bootstrap_4' %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="p-12 text-center">
+          <div class="text-gray-400 mb-4">
+            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Nenhum registro encontrado</h3>
+          <p class="text-gray-600">
+            Você ainda não possui registros clínicos. Eles aparecerão aqui após suas consultas.
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </main>
+</div> 

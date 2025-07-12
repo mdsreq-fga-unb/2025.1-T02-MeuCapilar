@@ -91,10 +91,12 @@ class Terapeuta::PacientesController < ApplicationController
     @user = @paciente.user
 
     params[:paciente].delete(:cpf)
+
     if params[:paciente][:user_attributes]
       params[:paciente][:user_attributes].delete(:password)
       params[:paciente][:user_attributes].delete(:password_confirmation)
     end
+
     if params[:paciente][:user]
       params[:paciente][:user].delete(:password)
       params[:paciente][:user].delete(:password_confirmation)
@@ -131,7 +133,7 @@ class Terapeuta::PacientesController < ApplicationController
 
   def ensure_terapeuta
     unless current_user.terapeuta?
-      redirect_to root_path, alert: 'Acesso negado. Apenas terapeutas podem cadastrar pacientes.'
+      redirect_to root_path, alert: 'Acesso restrito para terapeutas.'
     end
   end
 
