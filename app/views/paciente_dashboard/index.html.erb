@@ -165,28 +165,41 @@
     <% if @registros_clinicos.any? %>
       <div class="mt-8 bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-medium text-gray-900">Registros Clínicos Recentes</h2>
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-medium text-gray-900">Registros Clínicos Recentes</h2>
+            <%= link_to "Ver Todos", paciente_registros_clinicos_path,
+                class: "text-sm text-pink-600 hover:text-pink-900" %>
+          </div>
         </div>
         <div class="p-6">
           <div class="space-y-4">
             <% @registros_clinicos.each do |registro| %>
               <div class="bg-gray-50 rounded-lg p-4">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="font-medium text-gray-900">
-                    Registro de <%= l(registro.data_registro, format: "%d/%m/%Y") %>
-                  </h3>
-                  <span class="text-sm text-gray-500">
-                    <%= registro.terapeuta.nome %>
-                  </span>
+                  <div class="flex-1">
+                    <h3 class="font-medium text-gray-900">
+                      <%= registro.tipo_registro_humanizado %> - <%= l(registro.data_registro, format: "%d/%m/%Y") %>
+                    </h3>
+                    <span class="text-sm text-gray-500">
+                      Terapeuta: <%= registro.terapeuta.nome %>
+                    </span>
+                  </div>
+                  <%= link_to "Ver Completo", paciente_registros_clinico_path(registro),
+                      class: "inline-flex items-center px-3 py-1.5 border border-pink-300 text-sm font-medium rounded-md text-pink-700 bg-pink-50 hover:bg-pink-100 transition-colors" %>
                 </div>
-                <% if registro.diagnostico.present? %>
+                <% if registro.queixa_principal.present? %>
                   <p class="text-sm text-gray-600 mb-2">
-                    <strong>Diagnóstico:</strong> <%= truncate(registro.diagnostico, length: 150) %>
+                    <strong>Queixa Principal:</strong> <%= truncate(registro.queixa_principal, length: 120) %>
                   </p>
                 <% end %>
-                <% if registro.tratamento.present? %>
+                <% if registro.diagnostico.present? %>
+                  <p class="text-sm text-gray-600 mb-2">
+                    <strong>Diagnóstico:</strong> <%= truncate(registro.diagnostico, length: 120) %>
+                  </p>
+                <% end %>
+                <% if registro.plano_terapeutico.present? %>
                   <p class="text-sm text-gray-600">
-                    <strong>Tratamento:</strong> <%= truncate(registro.tratamento, length: 150) %>
+                    <strong>Plano Terapêutico:</strong> <%= truncate(registro.plano_terapeutico, length: 120) %>
                   </p>
                 <% end %>
               </div>
@@ -203,12 +216,8 @@
         Para agendar novos atendimentos ou esclarecer dúvidas, entre em contato com sua terapeuta.
       </p>
       <div class="flex space-x-4">
-        <a href="#" class="bg-white hover:bg-gray-100 text-pink-600 px-4 py-2 rounded-md text-sm transition-all">
-          Contato
-        </a>
-        <a href="#" class="bg-white hover:bg-gray-100 text-pink-600 px-4 py-2 rounded-md text-sm transition-all">
-          Ver Todos os Atendimentos
-        </a>
+        <%= link_to "Meus Registros", paciente_registros_clinicos_path, 
+            class: "bg-white hover:bg-gray-100 text-pink-600 px-4 py-2 rounded-md text-sm transition-all" %>
       </div>
     </div>
   </main>
