@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :registros_clinicos do
       member do
         post :save_edited_image
+        get :export_pdf
       end
     end
   end

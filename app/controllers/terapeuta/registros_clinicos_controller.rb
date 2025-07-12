@@ -4,7 +4,7 @@ require 'tempfile'
 class Terapeuta::RegistrosClinicosController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_terapeuta
-  before_action :set_registro_clinico, only: [:show, :edit, :update, :destroy, :save_edited_image]
+  before_action :set_registro_clinico, only: [:show, :edit, :update, :destroy, :save_edited_image, :export_pdf]
   load_and_authorize_resource :registro_clinico, class: 'RegistroClinico'
 
   def index
@@ -112,6 +112,31 @@ class Terapeuta::RegistrosClinicosController < ApplicationController
     @registro_clinico.destroy
     redirect_to terapeuta_registros_clinicos_path,
                 notice: 'Registro clínico excluído com sucesso!'
+  end
+
+  def export_pdf
+    begin
+      pdf_service = RegistroClinicoPdfService.new(@registro_clinico)
+      pdf_content = pdf_service.generate.render
+      
+      filename = "registro_clinico_#{@registro_clinico.id}_#{@registro_clinico.paciente.nome.gsub(/\s+/, '_')}_#{Date.current.strftime('%d%m%Y')}.pdf"
+      
+      respond_to do |format|
+        format.pdf do
+          send_data pdf_content,
+                    filename: filename,
+                    type: 'application/pdf',
+                    disposition: 'attachment'
+        end
+      end
+      
+    rescue => e
+      Rails.logger.error "Erro ao gerar PDF: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+      
+      redirect_to terapeuta_registros_clinico_path(@registro_clinico),
+                  alert: 'Erro ao gerar relatório PDF. Tente novamente.'
+    end
   end
 
   def save_edited_image
