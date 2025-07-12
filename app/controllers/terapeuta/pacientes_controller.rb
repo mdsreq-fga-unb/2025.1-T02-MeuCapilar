@@ -90,20 +90,23 @@ class Terapeuta::PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     @user = @paciente.user
 
-    # Extrair email do usuário dos parâmetros
-    user_email = nil
-    if params[:paciente][:user_attributes] && params[:paciente][:user_attributes][:email].present?
-      user_email = params[:paciente][:user_attributes][:email]
-      params[:paciente].delete(:user_attributes)
+    params[:paciente].delete(:cpf)
+
+    if params[:paciente][:user_attributes]
+      params[:paciente][:user_attributes].delete(:password)
+      params[:paciente][:user_attributes].delete(:password_confirmation)
     end
 
-    params[:paciente].delete(:cpf)
+    if params[:paciente][:user]
+      params[:paciente][:user].delete(:password)
+      params[:paciente][:user].delete(:password_confirmation)
+    end
 
     Paciente.transaction do
       if @paciente.update(paciente_params)
-        # Atualizar email do usuário se fornecido
-        if user_email.present?
-          @user.update_column(:email, user_email)
+        if user_params.present?
+          @user.email = user_params[:email] if user_params[:email].present?
+          @user.save!
         end
         redirect_to terapeuta_pacientes_path, notice: 'Dados do paciente atualizados com sucesso.'
       else
