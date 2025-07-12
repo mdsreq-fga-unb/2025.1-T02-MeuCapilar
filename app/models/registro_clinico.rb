@@ -113,12 +113,8 @@ class RegistroClinico < ApplicationRecord
     bmp_attachments = imagens.select { |img| img.content_type == 'image/bmp' }
     return if bmp_attachments.empty?
     
-    Rails.logger.debug "Iniciando conversão de #{bmp_attachments.count} imagens BMP para PNG para o Registro ##{self.id}"
-    
     bmp_attachments.each do |imagem|
       begin
-        Rails.logger.debug "Convertendo: #{imagem.filename}"
-        
         # Usar image_processing com variant para conversão
         variant = imagem.variant(format: :png)
         variant.processed
@@ -141,8 +137,6 @@ class RegistroClinico < ApplicationRecord
         # Remover imagem BMP original
         imagem.purge
         
-        Rails.logger.debug "Conversão concluída: #{new_filename}"
-        
       rescue => e
         Rails.logger.error "Erro ao converter #{imagem.filename} para o Registro ##{self.id}: #{e.message}"
         Rails.logger.error e.backtrace.join("\n")
@@ -150,7 +144,6 @@ class RegistroClinico < ApplicationRecord
     end
     
     @converting_images = false
-    Rails.logger.debug "Conversão BMP->PNG finalizada para o Registro ##{self.id}"
   rescue => e
     @converting_images = false
     Rails.logger.error "Erro geral na conversão para o Registro ##{self.id}: #{e.message}"
