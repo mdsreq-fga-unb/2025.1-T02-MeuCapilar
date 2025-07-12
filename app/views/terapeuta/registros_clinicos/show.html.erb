@@ -10,6 +10,13 @@
           </p>
         </div>
         <div class="flex space-x-3">
+          <%= link_to export_pdf_terapeuta_registros_clinico_path(@registro_clinico, format: :pdf),
+              class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700" do %>
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+            </svg>
+            Exportar PDF
+          <% end %>
           <%= link_to "Editar", edit_terapeuta_registros_clinico_path(@registro_clinico),
               class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700" %>
           <%= link_to "Voltar", terapeuta_registros_clinicos_path,
@@ -257,6 +264,13 @@
             <h3 class="text-lg font-medium text-gray-900">Ações</h3>
           </div>
           <div class="p-6 space-y-3">
+            <%= link_to export_pdf_terapeuta_registros_clinico_path(@registro_clinico, format: :pdf),
+                class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" do %>
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"></path>
+              </svg>
+              Exportar Relatório PDF
+            <% end %>
             <%= link_to "Novo Registro para este Paciente", 
                 new_terapeuta_registros_clinico_path(paciente_id: @paciente.id),
                 class: "w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>

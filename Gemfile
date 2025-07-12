@@ -11,6 +11,10 @@ gem 'dotenv-rails'
 gem 'activestorage'
 gem 'activestorage-validator'
 
+# Gem para geração de PDFs
+gem 'prawn'
+gem 'prawn-table'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
