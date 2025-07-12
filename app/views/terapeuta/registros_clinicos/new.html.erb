@@ -142,6 +142,35 @@
           <p class="mt-2 text-sm text-gray-500">Informações complementares ou observações importantes.</p>
         </div>
 
+        <!-- Upload de Imagens -->
+        <div class="mb-6">
+          <%= form.label :imagens, "Imagens do Registro (Opcional)", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-pink-400 transition-colors">
+            <div class="space-y-1 text-center">
+              <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="flex text-sm text-gray-600">
+                <%= form.file_field :imagens, 
+                    multiple: true, 
+                    accept: ".bmp",
+                    class: "sr-only",
+                    id: "file-upload",
+                    onchange: "updateFileList(this)" %>
+                <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-pink-600 hover:text-pink-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500">
+                  <span>Carregar imagens</span>
+                </label>
+                <p class="pl-3">ou arraste e solte</p>
+              </div>
+              <p class="text-xs text-gray-500">Apenas arquivos BMP até 5MB cada (máximo 10 imagens)</p>
+            </div>
+          </div>
+          <div id="file-list" class="mt-3 hidden">
+            <p class="text-sm font-medium text-gray-700 mb-2">Arquivos selecionados:</p>
+            <ul id="selected-files" class="text-sm text-gray-600 space-y-1"></ul>
+          </div>
+        </div>
+
         <!-- Botões -->
         <div class="border-t border-gray-200 pt-6">
           <div class="flex justify-end space-x-3">
@@ -155,3 +184,45 @@
     </div>
   </main>
 </div> 
+
+<script>
+function updateFileList(input) {
+  const fileList = document.getElementById('file-list');
+  const selectedFiles = document.getElementById('selected-files');
+  
+  if (input.files.length > 0) {
+    fileList.classList.remove('hidden');
+    selectedFiles.innerHTML = '';
+    
+    Array.from(input.files).forEach((file, index) => {
+      const li = document.createElement('li');
+      li.className = 'flex justify-between items-center py-1';
+      
+      const fileName = document.createElement('span');
+      fileName.textContent = `${index + 1}. ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+      
+      const fileType = document.createElement('span');
+      if (file.type === 'image/bmp' || file.name.toLowerCase().endsWith('.bmp')) {
+        fileType.textContent = '✓ BMP';
+        fileType.className = 'text-green-600 text-xs';
+      } else {
+        fileType.textContent = '✗ Formato inválido';
+        fileType.className = 'text-red-600 text-xs';
+      }
+      
+      li.appendChild(fileName);
+      li.appendChild(fileType);
+      selectedFiles.appendChild(li);
+    });
+    
+    if (input.files.length > 10) {
+      const warning = document.createElement('li');
+      warning.textContent = '⚠️ Máximo de 10 imagens permitido';
+      warning.className = 'text-red-600 text-xs font-medium';
+      selectedFiles.appendChild(warning);
+    }
+  } else {
+    fileList.classList.add('hidden');
+  }
+}
+</script> 
