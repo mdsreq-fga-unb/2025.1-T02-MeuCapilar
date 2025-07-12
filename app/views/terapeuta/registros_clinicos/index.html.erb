@@ -87,13 +87,13 @@
                   Tipo
                 </th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Queixa Principal
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Data
                 </th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Atendimento
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Imagens
                 </th>
                 <th class="relative px-6 py-3">
                   <span class="sr-only">Ações</span>
@@ -124,11 +124,6 @@
                       <%= registro.tipo_registro_humanizado %>
                     </span>
                   </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm text-gray-900">
-                      <%= truncate(registro.queixa_principal, length: 60) %>
-                    </div>
-                  </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <%= registro.data_formatada %>
                   </td>
@@ -138,6 +133,18 @@
                           class: "text-pink-600 hover:text-pink-900 text-xs" %>
                     <% else %>
                       <span class="text-gray-400">Independente</span>
+                    <% end %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <% if registro.tem_imagens? %>
+                      <div class="flex items-center">
+                        <svg class="w-4 h-4 text-green-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-green-600 font-medium"><%= registro.total_imagens %></span>
+                      </div>
+                    <% else %>
+                      <span class="text-gray-400">-</span>
                     <% end %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -174,8 +181,7 @@
               <div class="mb-4 p-3 bg-gray-50 rounded-lg">
                 <p class="text-sm text-gray-600 text-left">
                   <strong>Tipo:</strong> <%= registro.tipo_registro_humanizado %><br>
-                  <strong>Data:</strong> <%= registro.data_formatada %><br>
-                  <strong>Queixa:</strong> <%= truncate(registro.queixa_principal, length: 60) %>
+                  <strong>Data:</strong> <%= registro.data_formatada %>
                 </p>
               </div>
               <p class="mb-4 text-sm text-red-600">

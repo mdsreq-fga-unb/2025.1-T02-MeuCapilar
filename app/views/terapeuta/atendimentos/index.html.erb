@@ -229,6 +229,9 @@
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition font-semibold shadow-sm text-xs" %>
                     <%= link_to "Editar", edit_terapeuta_atendimento_path(atendimento), 
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition font-semibold shadow-sm text-xs" %>
+                    <%= link_to "Criar Registro", new_terapeuta_registros_clinico_path(atendimento_id: atendimento.id), 
+                        class: "inline-flex items-center px-3 py-2 rounded-md text-white hover:bg-green-200 transition font-semibold shadow-sm text-xs",
+                        style: "background-color: #059669;" %>
                     <button
                       onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.remove('hidden')"
                       class="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition font-semibold shadow-sm text-xs"
