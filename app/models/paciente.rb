@@ -1,6 +1,6 @@
 class Paciente < ApplicationRecord
   belongs_to :user
-  accepts_nested_attributes_for :user, update_only: true
+  accepts_nested_attributes_for :user, update_only: true, allow_destroy: false
   
   # Associações
   has_many :atendimentos, dependent: :destroy
