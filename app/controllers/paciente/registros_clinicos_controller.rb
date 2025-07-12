@@ -3,11 +3,6 @@ class Paciente::RegistrosClinicosController < ApplicationController
   before_action :set_registro_clinico, only: [:show, :export_pdf]
   
   def index
-    Rails.logger.info "=== DEBUG: Acessando index de registros clínicos do paciente ==="
-    Rails.logger.info "Current user: #{current_user&.id}"
-    Rails.logger.info "User roles: #{current_user&.roles&.pluck(:name)}"
-    Rails.logger.info "User paciente: #{current_user&.paciente&.id}"
-    
     authorize! :read, RegistroClinico
     
     @paciente = current_user.paciente
@@ -55,13 +50,7 @@ class Paciente::RegistrosClinicosController < ApplicationController
   private
   
   def ensure_paciente
-    Rails.logger.info "=== DEBUG: Verificando se é paciente ==="
-    Rails.logger.info "Current user: #{current_user&.id}"
-    Rails.logger.info "User roles: #{current_user&.roles&.pluck(:name)}"
-    Rails.logger.info "Has role paciente: #{current_user&.has_role?(:paciente)}"
-    
     unless current_user&.has_role?(:paciente)
-      Rails.logger.error "=== ERRO: Usuário não é paciente ==="
       redirect_to root_path, alert: 'Acesso restrito para pacientes.'
     end
   end
