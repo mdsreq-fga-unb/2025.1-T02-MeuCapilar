@@ -112,9 +112,14 @@ class Terapeuta::AtendimentosController < ApplicationController
   end
 
   def destroy
-    @atendimento.destroy
-    redirect_to terapeuta_atendimentos_path, 
-                notice: 'Atendimento cancelado com sucesso!'
+    begin
+      @atendimento.destroy
+      redirect_to terapeuta_atendimentos_path, 
+                  notice: 'Atendimento cancelado com sucesso!'
+    rescue ActiveRecord::InvalidForeignKey => e
+      redirect_to terapeuta_atendimentos_path, 
+                  alert: 'Não é possível excluir este atendimento pois possui registros clínicos vinculados.'
+    end
   end
 
   private
