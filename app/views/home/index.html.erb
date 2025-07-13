@@ -3,12 +3,20 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
-          <span class="text-2xl font-bold text-pink-600">MeuCapilar</span>
+          <%= link_to root_path, class: "text-2xl font-bold text-pink-600" do %>
+            MeuCapilar
+          <% end %>
         </div>
         <div class="flex items-center space-x-4">
-          <a href="#" class="text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-          <a href="#" class="text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
-          <a href="#" class="text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium">Contato</a>
+          <%= link_to root_path, class: "text-pink-600 hover:text-pink-700 px-3 py-2 rounded-md text-sm font-medium font-semibold" do %>
+            Home
+          <% end %>
+          <%= link_to sobre_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" do %>
+            Sobre
+          <% end %>
+          <%= link_to contato_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" do %>
+            Contato
+          <% end %>
           <%= link_to terapeuta_login_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" do %>
             Login como Terapeuta
           <% end %>
