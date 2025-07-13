@@ -27,19 +27,40 @@
 - <p>Interface intuitiva que facilitará a usabilidade do cliente/administrador.</p>
 
 
-## **2.3 Tecnologias a Serem Utilizadas**
+## 2.3 Tecnologias a Serem Utilizadas
 
-<p style="text-align: justify;">A proposta do projeto consiste no desenvolvimento de uma aplicação web, com foco em alta interação e acessibilidade para os usuários, independentemente do dispositivo utilizado. A solução será construída utilizando as seguintes tecnologias:</p>
-<ul>
-    <li><strong>Frontend:</strong> React.js / HTML e CSS</li>
-    <li><strong>Backend:</strong> Ruby on Rails</li>
-    <li><strong>SGDB:</strong> PostgreSQL</li>
-    <li><strong>Interface Gráfica do Banco:</strong> DBeaver</li>
-    <li><strong>Armazenamento de Imagens:</strong> Firebase Storage</li>
-    <li><strong>Geração de PDF:</strong> Biblioteca como PDFMake</li>
-    <li><strong>Integração com IA:</strong> API da OpenAI (ChatGPT)</li>
-    <li><strong>Autenticação:</strong> Firebase Auth</li>
-</ul>
+O projeto visa desenvolver uma aplicação web com alta interatividade e acessibilidade, garantindo uma experiência fluida para os usuários em qualquer dispositivo. As tecnologias escolhidas para a construção da solução são:
+
+- **Frontend:**  
+  HTML, Tailwind CSS e JavaScript, proporcionando uma interface de usuário dinâmica e responsiva.
+
+- **Backend:**  
+  Ruby on Rails, oferecendo uma estrutura robusta e eficiente para o desenvolvimento de aplicações web.
+
+- **SGBD:**  
+  PostgreSQL, um sistema de gerenciamento de banco de dados relacional poderoso e escalável.
+
+- **Interface Gráfica do Banco:**  
+  DBeaver, uma ferramenta universal para gerenciamento de bancos de dados.
+
+- **Armazenamento de Imagens:**  
+  Cloudinary, para armazenamento e manipulação de imagens na nuvem, garantindo alta disponibilidade e desempenho.
+
+- **Geração de PDF:**  
+  Gem Prawn, utilizada para a criação de documentos PDF personalizados.
+
+- **Integração com IA:**  
+  API da OpenAI (ChatGPT), permitindo funcionalidades avançadas de inteligência artificial.
+
+- **Autenticação:**  
+  Gem Devise, fornecendo um sistema de autenticação seguro e fácil de integrar.
+
+- **Autorização:**  
+  Gem CanCan, para controle de acesso e autorização de usuários.
+
+- **Hospedagem e Deploy:**  
+  Fly.io, uma plataforma para implantação e hospedagem de aplicações web, garantindo escalabilidade e confiabilidade.
+
 
 ## **2.4 Pesquisa de Mercado e Análise Competitiva**
 
