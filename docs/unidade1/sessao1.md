@@ -10,6 +10,9 @@
 | 14/04/2025 | 0.4    | Revisão e adaptação de pontos destacados pelo professor.  | Ian , José e Pedro    |
 | 19/05/2025 | 0.5    | Alterando pages para fechamento das Issues  | Pedro    |
 | 26/05/2025 | 1.0    | Adição dos tópicos da entrega da unidade 2 | Equipe inteira    |
+| 12/07/2025 | alguma_versão    | Adição de mais evidências de ER e ESW, relacionadas ao Projects e o Backlog | Ian Costa    |
+| 13/07/2025 | alguma_versão    | Adição do Histórico de Cronogramas,Adição da disposição da entrega 4 na gitpage | Ian Costa    |
+
 
 
 ## 1.1 Introdução ao Negócio e Contexto 
