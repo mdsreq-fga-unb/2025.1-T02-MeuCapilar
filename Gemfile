@@ -11,6 +11,10 @@ gem 'dotenv-rails'
 gem 'activestorage'
 gem 'activestorage-validator'
 
+# Gem para geração de PDFs
+gem 'prawn'
+gem 'prawn-table'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -48,7 +52,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 # Gems para autenticação e autorização
 gem 'devise'

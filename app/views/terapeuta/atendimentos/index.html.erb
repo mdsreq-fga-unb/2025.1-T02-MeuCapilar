@@ -80,6 +80,70 @@
       </div>
     </div>
 
+    <!-- Filtros -->
+    <div class="bg-white rounded-lg shadow mb-8">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Filtros</h2>
+        <p class="text-sm text-gray-600 mt-1">Filtre os atendimentos para encontrar informações específicas</p>
+      </div>
+      
+      <%= form_with url: terapeuta_atendimentos_path, method: :get, local: true, class: "p-6" do |form| %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Filtro por Paciente -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Paciente</label>
+            <%= form.select :paciente_id, 
+                options_from_collection_for_select(@pacientes, :id, :nome, params[:paciente_id]),
+                { prompt: "Todos os pacientes" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+
+          <!-- Filtro por Data -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Data do Atendimento</label>
+            <%= form.date_field :data, 
+                value: params[:data],
+                class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" %>
+          </div>
+
+          <!-- Filtro por Serviço -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Serviço</label>
+            <%= form.select :servico, 
+                options_for_select(@servicos, params[:servico]),
+                { prompt: "Todos os serviços" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+
+          <!-- Filtro por Status -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <%= form.select :status, 
+                options_for_select(@status_options, params[:status]),
+                { prompt: "Todos os status" },
+                { class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500" } %>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+          <div class="text-sm text-gray-600">
+            <%= pluralize(@atendimentos.total_count, 'atendimento encontrado', 'atendimentos encontrados') %>
+            <% if params[:paciente_id].present? || params[:data].present? || params[:servico].present? || params[:status].present? %>
+              <span class="text-pink-600 font-medium">(modo histórico)</span>
+            <% else %>
+              <span class="text-blue-600 font-medium">(modo agenda)</span>
+            <% end %>
+          </div>
+          <div class="flex space-x-3">
+            <%= link_to "Limpar Filtros", terapeuta_atendimentos_path, 
+                class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+            <%= form.submit "Filtrar", 
+                class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
     <!-- Atendimentos List -->
     <div class="bg-white rounded-lg shadow">
       <div class="px-6 py-4 border-b border-gray-200">
@@ -165,51 +229,103 @@
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition font-semibold shadow-sm text-xs" %>
                     <%= link_to "Editar", edit_terapeuta_atendimento_path(atendimento), 
                         class: "inline-flex items-center px-3 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition font-semibold shadow-sm text-xs" %>
-                    <button
-                      onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.remove('hidden')"
-                      class="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition font-semibold shadow-sm text-xs"
-                    >
-                      Excluir
-                    </button>
+                    <%= link_to "Criar Registro", new_terapeuta_registros_clinico_path(atendimento_id: atendimento.id), 
+                        class: "inline-flex items-center px-3 py-2 rounded-md text-white hover:bg-green-200 transition font-semibold shadow-sm text-xs",
+                        style: "background-color: #059669;" %>
+                    <% if atendimento.pode_ser_excluido? %>
+                      <button
+                        onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.remove('hidden')"
+                        class="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition font-semibold shadow-sm text-xs"
+                      >
+                        Excluir
+                      </button>
+                    <% else %>
+                      <button
+                        type="button"
+                        class="inline-flex items-center px-3 py-2 rounded-md bg-gray-400 text-white hover:bg-gray-500 transition font-semibold shadow-sm text-xs cursor-not-allowed"
+                        onclick="document.getElementById('modal-nao-excluir-<%= atendimento.id %>').classList.remove('hidden')"
+                        aria-label="Não é possível excluir este atendimento"
+                      >
+                        Excluir
+                      </button>
+                    <% end %>
                   </div>
 
                   <!-- Modal de Confirmação de Exclusão -->
-                  <div
-                    id="modal-excluir-<%= atendimento.id %>"
-                    class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden"
-                  >
-                    <div class="bg-white p-6 rounded-lg shadow-lg max-w-[30rem] w-fit mx-4">
-                      <h2 class="text-lg font-semibold text-gray-800 mb-4">Confirmar Cancelamento</h2>
-                      <p class="mb-4 text-gray-700">
-                        Tem certeza que deseja cancelar o atendimento de <strong><%= atendimento.paciente.nome %></strong>?
-                      </p>
-                      <div class="mb-4 p-3 bg-gray-50 rounded-lg">
-                        <p class="text-sm text-gray-600">
-                          <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %><br>
-                          <strong>Serviço:</strong> <%= atendimento.servico %><br>
-                          <strong>Status:</strong> <%= atendimento.status.humanize %>
+                  <% if atendimento.pode_ser_excluido? %>
+                    <div
+                      id="modal-excluir-<%= atendimento.id %>"
+                      class="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 hidden"
+                    >
+                      <div class="bg-white p-6 rounded-lg shadow-lg max-w-[30rem] w-fit mx-4">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4">Confirmar Cancelamento</h2>
+                        <p class="mb-4 text-gray-700">
+                          Tem certeza que deseja cancelar o atendimento de <strong><%= atendimento.paciente.nome %></strong>?
                         </p>
-                      </div>
-                      <p class="mb-4 text-sm text-red-600">
-                        ⚠️ Esta ação não pode ser desfeita.
-                      </p>
+                        <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+                          <p class="text-sm text-gray-600">
+                            <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %><br>
+                            <strong>Serviço:</strong> <%= atendimento.servico %><br>
+                            <strong>Status:</strong> <%= atendimento.status.humanize %>
+                          </p>
+                        </div>
+                        <p class="mb-4 text-sm text-red-600">
+                          ⚠️ Esta ação não pode ser desfeita.
+                        </p>
 
-                      <div class="flex justify-end gap-3">
-                        <button
-                          onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.add('hidden')"
-                          class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-                        >
-                          Cancelar
-                        </button>
+                        <div class="flex justify-end gap-3">
+                          <button
+                            onclick="document.getElementById('modal-excluir-<%= atendimento.id %>').classList.add('hidden')"
+                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                          >
+                            Cancelar
+                          </button>
 
-                        <%= button_to 'Confirmar Cancelamento',
-                            terapeuta_atendimento_path(atendimento),
-                            method: :delete,
-                            form_class: "inline",
-                            class: "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700" %>
+                          <%= button_to 'Confirmar Cancelamento',
+                              terapeuta_atendimento_path(atendimento),
+                              method: :delete,
+                              form_class: "inline",
+                              class: "px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700" %>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% else %>
+                    <!-- Modal de Não Pode Excluir -->
+                    <div
+                      id="modal-nao-excluir-<%= atendimento.id %>"
+                      class="fixed inset-0 z-50 flex justify-center items-center bg-white/30 backdrop-blur-sm"
+                    >
+                      <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 break-words whitespace-normal" style="word-break: break-word; white-space: normal;">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4">Não é possível excluir</h2>
+                        <p class="mb-4 text-gray-700">
+                          O atendimento de <strong><%= atendimento.paciente.nome %></strong> não pode ser excluído porque possui registros clínicos vinculados.
+                        </p>
+                        <div class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                          <p class="text-sm text-yellow-800 text-left">
+                            <strong>Data:</strong> <%= atendimento.data.strftime("%d/%m/%Y às %H:%M") %><br>
+                            <strong>Serviço:</strong> <%= atendimento.servico %><br>
+                            <strong>Status:</strong> <%= atendimento.status.humanize %><br>
+                            <strong>Registros vinculados:</strong> <%= atendimento.registros_clinicos.count %>
+                          </p>
+                        </div>
+                        <p class="mb-4 text-sm text-gray-600">
+                          Para excluir este atendimento, você deve primeiro remover todos os registros clínicos associados a ele.
+                        </p>
+
+                        <div class="flex justify-end gap-3">
+                          <button
+                            onclick="document.getElementById('modal-nao-excluir-<%= atendimento.id %>').classList.add('hidden')"
+                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                          >
+                            Entendi
+                          </button>
+                          <%= link_to "Ver Registros",
+                              terapeuta_registros_clinicos_path(paciente_id: atendimento.paciente_id),
+                              class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

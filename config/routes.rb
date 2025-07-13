@@ -35,23 +35,31 @@ Rails.application.routes.draw do
   get '/paciente/profile/new', to: 'paciente_profiles#new', as: 'new_paciente_profile'
   post '/paciente/profile', to: 'paciente_profiles#create', as: 'paciente_profiles'
 
-  # Rotas para deletar paciente
-  get '/paciente/:id', to: 'terapeuta/pacientes#destroy', as: 'delete_paciente'
-
   # Namespaces organizados para futuras implementações
   namespace :terapeuta do
     resources :pacientes do
       resources :atendimentos
-      resources :registros_clinicos
+      # A rota para registros_clinicos será definida no nível superior do namespace
     end
     resources :atendimentos, only: [:index, :show, :edit, :update, :destroy, :new, :create]
-    resources :registros_clinicos, only: [:index, :show, :edit, :update, :destroy, :new]
+    resources :registros_clinicos do
+      member do
+        post :save_edited_image
+        get :export_pdf
+      end
+    end
   end
 
   namespace :paciente do
-    resources :atendimentos, only: [:index, :show]
-    resources :registros_clinicos, only: [:index, :show]
+    resources :registros_clinicos, only: [:index, :show] do
+      member do
+        get :export_pdf
+      end
+    end
   end
+
+  # Rotas para deletar paciente (deixe por último!)
+  get '/paciente/:id', to: 'terapeuta/pacientes#destroy', as: 'delete_paciente'
 
   # Root
   root "home#index"

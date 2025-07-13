@@ -5,10 +5,43 @@ class Terapeuta::AtendimentosController < ApplicationController
   load_and_authorize_resource :atendimento, class: 'Atendimento'
 
   def index
+    # Base query - todos os atendimentos do terapeuta
     @atendimentos = current_user.terapeuta.atendimentos
                                .includes(:paciente)
-                               .order(data: :asc)
-                               .page(params[:page]).per(15)
+
+    # Aplicar filtros se fornecidos
+    if params[:paciente_id].present?
+      @atendimentos = @atendimentos.where(paciente_id: params[:paciente_id])
+    end
+
+    if params[:data].present?
+      data = Date.parse(params[:data])
+      @atendimentos = @atendimentos.where(data: data.beginning_of_day..data.end_of_day)
+    end
+
+    if params[:servico].present?
+      @atendimentos = @atendimentos.where('servico ILIKE ?', "%#{params[:servico]}%")
+    end
+
+    if params[:status].present?
+      @atendimentos = @atendimentos.where(status: params[:status])
+    end
+
+    # Ordenação: se há filtros ativos, ordenar por mais recentes primeiro (histórico)
+    # se não há filtros, manter ordenação original (agenda)
+    if params[:paciente_id].present? || params[:data].present? || params[:servico].present? || params[:status].present?
+      @atendimentos = @atendimentos.order(data: :desc) # Histórico: mais recentes primeiro
+    else
+      @atendimentos = @atendimentos.order(data: :asc)  # Agenda: próximos primeiro
+    end
+
+    # Paginação
+    @atendimentos = @atendimentos.page(params[:page]).per(15)
+
+    # Dados para os filtros
+    @pacientes = current_user.terapeuta.pacientes.order(:nome)
+    @servicos = current_user.terapeuta.atendimentos.distinct.pluck(:servico).compact.sort
+    @status_options = Atendimento.statuses.keys.map { |s| [s.humanize, s] }
   end
 
   def show
@@ -79,9 +112,14 @@ class Terapeuta::AtendimentosController < ApplicationController
   end
 
   def destroy
-    @atendimento.destroy
-    redirect_to terapeuta_atendimentos_path, 
-                notice: 'Atendimento cancelado com sucesso!'
+    begin
+      @atendimento.destroy
+      redirect_to terapeuta_atendimentos_path, 
+                  notice: 'Atendimento cancelado com sucesso!'
+    rescue ActiveRecord::InvalidForeignKey => e
+      redirect_to terapeuta_atendimentos_path, 
+                  alert: 'Não é possível excluir este atendimento pois possui registros clínicos vinculados.'
+    end
   end
 
   private

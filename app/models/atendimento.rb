@@ -1,6 +1,7 @@
 class Atendimento < ApplicationRecord
   belongs_to :paciente
   belongs_to :terapeuta
+  has_many :registros_clinicos, class_name: 'RegistroClinico', dependent: :restrict_with_error
 
   # Enums
   enum status: { 
@@ -21,6 +22,15 @@ class Atendimento < ApplicationRecord
   scope :por_data, ->(data) { where(data: data.beginning_of_day..data.end_of_day) }
   scope :proximos, -> { where('data >= ?', Time.current) }
   scope :passados, -> { where('data < ?', Time.current) }
+
+  # Métodos
+  def tem_registros_clinicos?
+    registros_clinicos.exists?
+  end
+
+  def pode_ser_excluido?
+    !tem_registros_clinicos?
+  end
 
   private
 
