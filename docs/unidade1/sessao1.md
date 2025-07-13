@@ -3,19 +3,24 @@
 ## Historico de Versão 
 | Data       | Versão | Descrição                                             | Autor      |
 |------------|--------|-------------------------------------------------------|------------|
-| 05/04/2025 | 0.0    | Criação dos tópicos 1 e 2.  | José    |
-| 05/04/2025 | 0.1    | Revisão e formatação dos tópicos 1 e 2.  |   Ian      |
-| 07/04/2025 | 0.2    | Revisão e adaptação dos pontos destacados pelo feedback do professor.  | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
-| 12/04/2025 | 0.3    | Revisão e adaptação dos pontos destacados pelo feedback do professor.  | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
-| 14/04/2025 | 0.4    | Revisão e adaptação de pontos destacados pelo professor.  | Ian , José e Pedro    |
-| 19/05/2025 | 0.5    | Alterando pages para fechamento das Issues  | Pedro    |
-| 26/05/2025 | 1.0    | Adição dos tópicos da entrega da unidade 2 | Equipe inteira    |
-| 12/07/2025 | alguma_versão    | Adição de mais evidências de ER e ESW, relacionadas ao Projects e o Backlog | Ian Costa    |
-| 13/07/2025 | alguma_versão    | Adição do Histórico de Cronogramas,Adição da disposição da entrega 4 na gitpage | Ian Costa    |
+| 05/04/2025 | 1.0    | Criação dos tópicos 1 e 2.  | José    |
+| 05/04/2025 | 1.1    | Revisão e formatação dos tópicos 1 e 2.  |   Ian      |
+| 07/04/2025 | 1.2    | Revisão e adaptação dos pontos destacados pelo feedback do professor.  | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
+| 12/04/2025 | 1.3    | Revisão e adaptação dos pontos destacados pelo feedback do professor.  | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
+| 14/04/2025 | 1.4    | Revisão e adaptação de pontos destacados pelo professor.  | Ian , José e Pedro    |
+| 19/05/2025 | 2.0    | Alterando pages para fechamento das Issues  | Pedro    |
+| 26/05/2025 | 2.1    | Adição dos tópicos da entrega da unidade 2 | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
+| 09/06/2025 | 3.0    | Adição do checklist de priorização. | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
+| 11/06/2025 | 3.1   | Atualização na estrutura do MoSCoW. | Cauã, José, Ian, Wallyson, Pedro e Miguel    |
+| 11/06/2025 | 3.2    | Reestruturação dos critérios de priorização. | Ian Costa    |
+| 19/06/2025 | 3.3    | Ajustes de textos. | José    |
+| 23/06/2025 | 3.4    | Mudanças bruscas no cronograma, adição de novas US e RF. | Ian, Cauã    |
+| 24/06/2025 | 3.5    | Adição da documentação da atividade de PBB. | Pedro    |
+| 10/07/2025 | 4.0    | Ajustes do cronograma, MVP, critérios de aceitação por cima, adição de mais evidências, wireframes e print do projects, link auxiliar do projects para comprovação | Ian Costa    |
+| 12/07/2025 | 4.1    | Adição de mais evidências de ER e ESW, relacionadas ao Projects e o Backlog | Ian Costa    |
+| 13/07/2025 | 4.3    | Adição do Histórico de Cronogramas, Adição da disposição da entrega 4 na gitpage | Ian Costa    |
 
-
-
-## 1.1 Introdução ao Negócio e Contexto 
+## 1.1 Introdução ao Negócio e Contexto
 
 <p style="text-align: justify;">O <strong>Studio Flávia Rabello</strong> é um salão consolidado e uma referência na área da beleza e bem-estar, localizado em um prédio de três andares. Dentro desse ambiente, destaca-se um setor dedicado exclusivamente à terapia capilar, liderado pela fundadora do salão. Essa área específica tem demonstrado crescimento significativo nos últimos anos, reconhecida principalmente pelos atendimentos personalizados, utilização de tecnologias avançadas de imagem e realização de diagnósticos detalhados do couro cabeludo.</p>
 <p style="text-align: justify;">A estrutura do salão é dividida por especialidades, com ambientes planejados para garantir conforto, privacidade e eficiência no atendimento. Entre os principais setores estão: beleza (cabelos, unhas, maquiagem e estética facial e corporal), bem-estar (terapias integrativas) e a área de <strong>terapia capilar</strong>, que tem ganhado destaque por seu crescimento contínuo e abordagem diferenciada.</p>
