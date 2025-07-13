@@ -18,6 +18,9 @@ nav:
       - 9.Product Backlog: unidade2/sessao9.md
    - PBB e BDD: unidade3/PBB.md
    - USM: unidade3/USM.md
+   - Casos de Uso:
+      - Verify Contexto e Diagrama de Caso de Uso: unidade4/diagrama.md
+      - Especificação 1: unidade4/esp_analisar_conteudo_manualmente.md
    - Lições Aprendidas: unidade1/licoesAprendidas.md
    - Atas e Gravações das Sprints:
       - Sprint 1:
