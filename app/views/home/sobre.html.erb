@@ -1,0 +1,77 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <%= link_to root_path, class: "text-2xl font-bold text-pink-600" do %>
+            MeuCapilar
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= link_to root_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" do %>
+            Home
+          <% end %>
+          <%= link_to sobre_path, class: "text-pink-600 hover:text-pink-700 px-3 py-2 rounded-md text-sm font-medium font-semibold" do %>
+            Sobre
+          <% end %>
+          <%= link_to contato_path, class: "text-gray-700 hover:text-pink-600 px-3 py-2 rounded-md text-sm font-medium" do %>
+            Contato
+          <% end %>
+          <%= link_to terapeuta_login_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700" do %>
+            Login como Terapeuta
+          <% end %>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header da página -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          Sobre o <span class="text-pink-600">MeuCapilar</span>
+        </h1>
+        <p class="mt-4 text-xl text-gray-600">
+          Transformando o cuidado capilar através da tecnologia
+        </p>
+      </div>
+
+      <!-- Seção Quem Somos -->
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Quem Somos?</h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          O MeuCapilar nasceu da necessidade de modernizar e otimizar o atendimento em clínicas de terapia capilar. Nossa plataforma foi desenvolvida para conectar terapeutas e pacientes de forma eficiente, proporcionando um acompanhamento personalizado e profissional do tratamento capilar.
+        
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Somos um grupo da disciplina de Requisitos de Software, oferecida pela Universidade de Brasília e ministrada pelo Professor Dr. George Marsicano. A disciplina tem como foco principal a compreensão detalhada das necessidades de um sistema de software, buscando garantir que todos os envolvidos no projeto compartilhem uma visão clara e alinhada desde as etapas iniciais do desenvolvimento.
+        </p>
+      </div>
+
+      <!-- Seção Tecnologias Utilizadas -->
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Tecnologias Utilizadas</h2>
+        <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
+          <li>Ruby on Rails 7.1</li>
+          <li>PostgreSQL (banco de dados)</li>
+          <li>Tailwind CSS (estilização)</li>
+          <li>Docker & Docker Compose (containerização)</li>
+          <li>Devise (autenticação)</li>
+        </ul>
+      </div>
+
+      <!-- Seção Equipe -->
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Nossa Equipe</h2>
+        <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
+          <li>Cauã Araujo</li>
+          <li>José Rabelo</li>
+          <li>Ian Costa</li>
+          <li>Miguel Pires</li>
+          <li>Wallyson Souza</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</div>
