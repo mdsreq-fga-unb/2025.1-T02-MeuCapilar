@@ -146,6 +146,3 @@ FE03.1 – O sistema redireciona para login, mantendo rascunho temporário.
 | **RN04** | Cada nova auditoria substitui a anterior no cálculo de reputação.                             |
 
 ---
-
-**Pronto!**  
-Se quiser **iterar** ou revisar colaborativamente, posso criar um documento editável em canvas — é só pedir.
