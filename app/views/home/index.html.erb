@@ -140,8 +140,12 @@
           <div>
             <h3 class="text-sm font-semibold text-gray-300 uppercase tracking-wider">Empresa</h3>
             <ul class="mt-4 space-y-2">
-              <li><a href="#" class="text-gray-400 hover:text-white">Sobre nós</a></li>
-              <li><a href="#" class="text-gray-400 hover:text-white">Contato</a></li>
+              <li><%= link_to sobre_path, class: "text-gray-400 hover:text-white" do %>
+                Sobre
+              <% end %></li>
+              <li><%= link_to contato_path, class: "text-gray-400 hover:text-white" do %>
+                Contato
+              <% end %></li>
               <li><a href="#" class="text-gray-400 hover:text-white">Privacidade</a></li>
             </ul>
           </div>
