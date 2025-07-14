@@ -63,4 +63,8 @@ Rails.application.routes.draw do
 
   # Root
   root "home#index"
+  
+  # Páginas estáticas
+  get '/sobre', to: 'home#sobre', as: 'sobre'
+  get '/contato', to: 'home#contato', as: 'contato'
 end
