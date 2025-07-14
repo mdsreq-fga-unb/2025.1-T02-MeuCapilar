@@ -203,3 +203,13 @@ Por ser flexível e iterativa, a técnica se adapta bem a **metodologias ágeis*
 - Como organizador, quero visualizar total de ingressos vendidos versus check-ins realizados.
 - Como organizador, quero comparar receita e custo para saber o lucro líquido.
 - Como investidor, quero visualizar ROI percentual para decidir aporte
+
+## Imagens do User Story Map (Miro)
+
+Aqui estão as imagens do User Story Map, inseridas como figuras:
+
+![Imagem USM parte 1](../imagens/USMparte1.png)
+
+![Imagem USM parte 2](../imagens/USMparte2.png)
+
+![Imagem USM parte 3](../imagens/USMparte3.png)
