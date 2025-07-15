@@ -14,7 +14,6 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Gestão do Paciente -->
     <tr>
       <td rowspan="7">Gestão do Paciente</td>
       <td>RF1.1</td>
