@@ -5,6 +5,15 @@
 ## Quem Somos?
 Somos um grupo da disciplina de Requisitos de Software, oferecida pela Universidade de Brasília e ministrada pelo Professor Dr. George Marsicano. A disciplina tem como foco principal a compreensão detalhada das necessidades de um sistema de software, buscando garantir que todos os envolvidos no projeto compartilhem uma visão clara e alinhada desde as etapas iniciais do desenvolvimento.
 
+## Reunião de Aceite da Cliente
+
+<center>
+<video width="560" height="315" controls preload="auto">
+  <source src="video/aceite.mp4" type="video/mp4">
+  Reunião de Aceite com a Flávia Rabello
+</video>
+</center>
+
 ## Equipe
 
 <center>

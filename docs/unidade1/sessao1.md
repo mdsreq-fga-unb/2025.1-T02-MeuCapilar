@@ -18,7 +18,8 @@
 | 24/06/2025 | 3.5    | Adição da documentação da atividade de PBB. | Pedro    |
 | 10/07/2025 | 4.0    | Ajustes do cronograma, MVP, critérios de aceitação por cima, adição de mais evidências, wireframes e print do projects, link auxiliar do projects para comprovação | Ian Costa    |
 | 12/07/2025 | 4.1    | Adição de mais evidências de ER e ESW, relacionadas ao Projects e o Backlog | Ian Costa    |
-| 13/07/2025 | 4.3    | Adição do Histórico de Cronogramas, Adição da disposição da entrega 4 na gitpage | Ian Costa    |
+| 13/07/2025 | 4.2    | Adição do Histórico de Cronogramas, Adição da disposição da entrega 4 na gitpage | Ian Costa    |
+| 14/07/2025 | 4.3    | Adição das credenciais de acesso ao site e modelagem do banco de dados | Ian Costa    |
 
 ## 1.1 Introdução ao Negócio e Contexto
 

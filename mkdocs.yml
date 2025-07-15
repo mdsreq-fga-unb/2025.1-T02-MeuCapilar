@@ -43,9 +43,18 @@ nav:
          - Planning: sprints/sprint03/planning.md
          - Review: sprints/sprint03/review.md
          - Retrospectiva: sprints/sprint03/retrospective.md
+      - Sprint 4:
+         - Planning: sprints/sprint04/planning.md
+         - Retrospective: sprints/sprint04/retrospective.md
+         - Review: sprints/sprint04/review.md
+      - Sprint 5:
+         - Planning: sprints/sprint05/planning.md
+         - Review: sprints/sprint05/review.md
    - Evidências de ESW e ER:
       - Wireframes: evidencias/wireframes.md
       - Projects: evidencias/projects.md
+   - Tutorial de Acesso:
+      - Acesso: unidade4/Tutorial.md
 
 theme:
    name: material 
