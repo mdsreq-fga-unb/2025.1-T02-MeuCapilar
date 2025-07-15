@@ -1,4 +1,4 @@
-# **Lições Aprendidas Unidade 1**
+# **Lições Aprendidas**
 
 ## **6.1 Unidade 1**
 
@@ -37,3 +37,9 @@ Durante este módulo, enfrentamos alguns atrasos e conflitos de horário nas <em
 <p>
 Essas mudanças permitiram recuperar o atraso e estabelecer um fluxo de trabalho mais previsível para as próximas etapas do projeto.
 </p>
+
+## **6.4 Unidade 4**
+
+<p style="text-align: justify;">Durante a última entrega, recebemos diversos feedbacks da cliente, que conseguimos ajustar de forma eficaz. Apesar dos desafios e da carga de trabalho intensa ao longo do projeto, conseguimos manter o progresso e atingir os objetivos propostos. A colaboração entre os membros da equipe foi essencial para superar os obstáculos e garantir o sucesso da entrega. O desenvolvimento esteve fortemente orientado à conclusão do MVP.</p>
+
+<p>Além disso, aplicamos com mais consciência as lições aprendidas em unidades anteriores, o que teve impacto direto nesta etapa. Conseguimos evitar atrasos, melhorar a comunicação entre os membros e promover uma divisão de tarefas mais eficiente.</p>
