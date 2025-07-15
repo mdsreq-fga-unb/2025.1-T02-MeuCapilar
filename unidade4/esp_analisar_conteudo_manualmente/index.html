@@ -1,0 +1,2377 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../diagrama/">
+      
+      
+        <link rel="next" href="../esp_auditar_conteudos/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Especificação 1 - Meu Capilar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#verify" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Meu Capilar" class="md-header__button md-logo" aria-label="Meu Capilar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meu Capilar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Especificação 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-T02-MeuCapilar
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Meu Capilar" class="md-nav__button md-logo" aria-label="Meu Capilar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meu Capilar
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-T02-MeuCapilar
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão do produto e projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão do produto e projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1.Cenário atual do cliente e do negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.Solução proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3.Estrategias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4.Engenharia de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Cronogramas e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7.Lista de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.DoR e DoD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9.Product Backlog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3/PBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PBB e BDD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade3/USM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Casos de Uso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Casos de Uso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Verify Contexto e Diagrama de Caso de Uso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Especificação 1
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 1
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#verify-combate-a-desinformacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify – Combate à Desinformação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#especificacao-de-caso-de-uso-analisar-conteudo-manualmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Especificação de Caso de Uso: Analisar Conteúdo Manualmente
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versao-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versão 2.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Versão 2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historico-da-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico da Revisão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Índice
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-breve-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Breve Descrição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fluxo-basico-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Fluxo Básico de Eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fluxos-alternativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fluxos Alternativos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fluxos Alternativos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fa01-relatorio-requer-informacoes-adicionais-fb06" class="md-nav__link">
+    <span class="md-ellipsis">
+      FA01: Relatório Requer Informações Adicionais (FB06)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fluxos-de-excecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Fluxos de Exceção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fluxos de Exceção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fe01-conteudo-nao-encontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      FE01: Conteúdo Não Encontrado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pre-condicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Pré-Condições
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pos-condicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Pós-Condições
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pontos-de-extensao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Pontos de Extensão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-requisitos-especiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Requisitos Especiais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-informacoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Informações Adicionais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Regras de Negócio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rn01-exibicao-de-conteudos-sinalizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN01: Exibição de Conteúdos Sinalizados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn02-detalhes-do-conteudo-para-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN02: Detalhes do Conteúdo para Revisão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn03-relatorio-de-analise-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN03: Relatório de Análise Manual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn04-notificacao-ao-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN04: Notificação ao Usuário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esp_auditar_conteudos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esp_supervisionar_interacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esp_avaliar_impacto_da_plataforma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esp_enviar_conteudo_suspeito_para_analise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esp_especificacao_acessar_conteudos_educacionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/licoesAprendidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas e Gravações das Sprints
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Atas e Gravações das Sprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/daily1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/daily2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/daily1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint05/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint05/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Evidências de ESW e ER
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Evidências de ESW e ER
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/wireframes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wireframes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/modelagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorial de Acesso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial de Acesso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acesso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#verify-combate-a-desinformacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify – Combate à Desinformação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#especificacao-de-caso-de-uso-analisar-conteudo-manualmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Especificação de Caso de Uso: Analisar Conteúdo Manualmente
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versao-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versão 2.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Versão 2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historico-da-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico da Revisão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Índice
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-breve-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Breve Descrição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fluxo-basico-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Fluxo Básico de Eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fluxos-alternativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fluxos Alternativos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fluxos Alternativos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fa01-relatorio-requer-informacoes-adicionais-fb06" class="md-nav__link">
+    <span class="md-ellipsis">
+      FA01: Relatório Requer Informações Adicionais (FB06)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fluxos-de-excecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Fluxos de Exceção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fluxos de Exceção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fe01-conteudo-nao-encontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      FE01: Conteúdo Não Encontrado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pre-condicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Pré-Condições
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pos-condicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Pós-Condições
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pontos-de-extensao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Pontos de Extensão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-requisitos-especiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Requisitos Especiais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-informacoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Informações Adicionais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Regras de Negócio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rn01-exibicao-de-conteudos-sinalizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN01: Exibição de Conteúdos Sinalizados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn02-detalhes-do-conteudo-para-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN02: Detalhes do Conteúdo para Revisão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn03-relatorio-de-analise-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN03: Relatório de Análise Manual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rn04-notificacao-ao-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      RN04: Notificação ao Usuário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="verify">Verify</h1>
+<h2 id="verify-combate-a-desinformacao">Verify – Combate à Desinformação</h2>
+<h2 id="especificacao-de-caso-de-uso-analisar-conteudo-manualmente">Especificação de Caso de Uso: Analisar Conteúdo Manualmente</h2>
+<h2 id="versao-20">Versão 2.0</h2>
+<h3 id="historico-da-revisao">Histórico da Revisão</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08/Jul/2025</td>
+<td>1.0</td>
+<td>Criação inicial da especificação</td>
+<td>Ian Costa</td>
+</tr>
+<tr>
+<td>12/Jul/2025</td>
+<td>2.0</td>
+<td>Ajuste Conforme Feedback</td>
+<td>Ian Costa</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="indice">Índice</h3>
+<ol>
+<li>Breve Descrição</li>
+<li>Fluxo Básico de Eventos</li>
+<li>Fluxos Alternativos
+3.1 FA01: Relatório Requer Informações Adicionais</li>
+<li>Fluxos de Exceção
+4.1 FE01: Conteúdo Não Encontrado</li>
+<li>Pré-Condições</li>
+<li>Pós-Condições</li>
+<li>Pontos de Extensão</li>
+<li>Requisitos Especiais</li>
+<li>Informações Adicionais</li>
+<li>Regras de Negócio
+10.1 RN01: Exibição de Conteúdos Sinalizados
+10.2 RN02: Detalhes do Conteúdo para Revisão
+10.3 RN03: Relatório de Análise Manual
+10.4 RN04: Notificação ao Usuário</li>
+</ol>
+<hr />
+<h2 id="1-breve-descricao">1. Breve Descrição</h2>
+<p>Este caso de uso descreve o processo pelo qual um moderador do sistema Verify realiza a análise manual de conteúdos sinalizados como potencialmente enganosos. O objetivo é revisar as evidências geradas pela IA, consultar fontes confiáveis e emitir uma classificação oficial sobre a veracidade do conteúdo.</p>
+<h2 id="2-fluxo-basico-de-eventos">2. Fluxo Básico de Eventos</h2>
+<p>FB01: O moderador acessa o painel de controle do sistema. (RN01)</p>
+<p>FB02: O sistema exibe uma lista de conteúdos sinalizados pela IA como suspeitos. (RN01)</p>
+<p>FB03: O moderador seleciona um conteúdo para revisão. (RN02) (FE01)</p>
+<p>FB04: O sistema exibe as evidências levantadas pela IA, incluindo:</p>
+<ul>
+<li>Fonte original do conteúdo</li>
+<li>Elementos de linguagem suspeita</li>
+<li>Comparações com o banco de dados de desinformações</li>
+</ul>
+<p>FB05: O moderador realiza investigações adicionais, utilizando:</p>
+<ul>
+<li>Fontes externas confiáveis (ex: agências de checagem, base jornalística)</li>
+<li>Ferramentas internas (ex: verificador de imagens e vídeos)</li>
+</ul>
+<p>FB06: O moderador preenche um relatório de análise manual contendo: (FA01)(RN03)</p>
+<ul>
+<li>Classificação do conteúdo (Confiável, Enganoso, Parcialmente verdadeiro, Indeterminado)</li>
+<li>Justificativa da decisão</li>
+<li>Referências utilizadas</li>
+</ul>
+<p>FB07: O sistema salva o relatório, envia notificação ao usuário que reportou o conteúdo e atualiza o banco de dados do Verify. (RN04)</p>
+<h2 id="3-fluxos-alternativos">3. Fluxos Alternativos</h2>
+<h3 id="fa01-relatorio-requer-informacoes-adicionais-fb06">FA01: Relatório Requer Informações Adicionais (FB06)</h3>
+<p>FA01.1: O moderador preenche o relatório de análise manual, mas o sistema identifica a necessidade de informações adicionais (ex: campos obrigatórios não preenchidos, referências inválidas).</p>
+<p>FA01.2: O sistema exibe uma mensagem de erro indicando as informações faltantes ou inválidas.</p>
+<p>FA01.3: O moderador corrige as informações e tenta salvar o relatório novamente.</p>
+<h2 id="4-fluxos-de-excecao">4. Fluxos de Exceção</h2>
+<h3 id="fe01-conteudo-nao-encontrado">FE01: Conteúdo Não Encontrado</h3>
+<p>FE01.1: O moderador seleciona um conteúdo para revisão, mas o sistema não consegue localizar o conteúdo no banco de dados.</p>
+<p>FE01.2: O sistema exibe uma mensagem de erro informando que o conteúdo não foi encontrado.</p>
+<p>FE01.3: O moderador pode optar por retornar à lista de conteúdos sinalizados ou iniciar uma nova busca.</p>
+<h2 id="5-pre-condicoes">5. Pré-Condições</h2>
+<ul>
+<li>O moderador deve estar logado no sistema Verify.</li>
+</ul>
+<h2 id="6-pos-condicoes">6. Pós-Condições</h2>
+<ul>
+<li>O relatório de análise manual é salvo no sistema.</li>
+<li>O usuário que reportou o conteúdo é notificado.</li>
+<li>O banco de dados do Verify é atualizado com a classificação do conteúdo.</li>
+</ul>
+<h2 id="7-pontos-de-extensao">7. Pontos de Extensão</h2>
+<ul>
+<li><strong>Ponto de Extensão 1: Integração com Novas Fontes de Verificação</strong></li>
+<li><strong>Localização:</strong> Passo 5 do Fluxo Básico (O moderador realiza investigações adicionais).</li>
+<li><strong>Descrição:</strong> Permite a integração de novas ferramentas ou bases de dados externas para auxiliar na investigação do moderador, sem alterar o fluxo principal.</li>
+<li><strong>Ponto de Extensão 2: Geração Automática de Relatório Parcial</strong></li>
+<li><strong>Localização:</strong> Passo 6 do Fluxo Básico (O moderador preenche um relatório de análise manual).</li>
+<li><strong>Descrição:</strong> Possibilita que o sistema pré-preencha partes do relatório com base nas evidências da IA, agilizando o processo para o moderador.</li>
+</ul>
+<h2 id="8-requisitos-especiais">8. Requisitos Especiais</h2>
+<ul>
+<li><strong>RE01: Desempenho:</strong> O sistema deve ser capaz de processar e exibir listas de conteúdos sinalizados e relatórios de análise em tempo real, garantindo uma resposta rápida para o moderador.</li>
+<li><strong>RE02: Segurança:</strong> O acesso ao painel de controle do moderador e às ferramentas de análise avançadas deve ser restrito e protegido por autenticação robusta.</li>
+<li><strong>RE03: Usabilidade:</strong> A interface do usuário para o preenchimento do relatório de análise manual deve ser intuitiva e de fácil utilização, minimizando erros e agilizando o processo.</li>
+<li><strong>RE04: Integração:</strong> O sistema deve ser capaz de integrar-se com fontes externas confiáveis (ex: APIs de agências de checagem) para consulta de informações durante a investigação.</li>
+<li><strong>RE05: Escalabilidade:</strong> O sistema deve ser capaz de lidar com um volume crescente de conteúdos sinalizados e usuários, mantendo a performance e a disponibilidade.</li>
+</ul>
+<h2 id="9-informacoes-adicionais">9. Informações Adicionais</h2>
+<ul>
+<li><strong>Contexto do Sistema:</strong> O "Verify" é uma plataforma digital criada para combater a desinformação, utilizando inteligência artificial, redes colaborativas e ferramentas de verificação. Ele visa identificar e mitigar a propagação de informações falsas, capacitando usuários, organizações e moderadores.</li>
+<li><strong>Objetivos de Negócio:</strong></li>
+<li>Promover um ecossistema digital mais confiável e seguro, reduzindo a disseminação de desinformação.</li>
+<li>Detectar e sinalizar desinformação com eficiência.</li>
+<li>Facilitar a educação digital.</li>
+<li>Incentivar a colaboração no combate à desinformação.</li>
+<li>Fornecer relatórios estratégicos sobre padrões de desinformação.</li>
+<li>Expandir integrações com plataformas digitais.</li>
+<li><strong>Objetivos do Aplicativo:</strong></li>
+<li>Verificação automática e manual de conteúdos.</li>
+<li>Monitoramento em tempo real.</li>
+<li>Apoio à educação e conscientização.</li>
+<li>Funcionalidade offline.</li>
+<li>Gamificação e engajamento.</li>
+<li>Integração com assistentes virtuais.</li>
+<li>Relatórios de impacto.</li>
+<li><strong>Processo de Negócio para Moderadores:</strong> O fluxo de trabalho dos moderadores começa com a notificação de conteúdos sinalizados pela IA. Eles utilizam ferramentas avançadas para análise detalhada, incluindo acesso a bases de dados confiáveis e ferramentas para análise de imagens e vídeos. Após a revisão, geram um relatório detalhado classificando o conteúdo e contribuem para o banco de dados do "Verify" com novos padrões de desinformação.</li>
+</ul>
+<h2 id="10-regras-de-negocio">10. Regras de Negócio</h2>
+<h3 id="rn01-exibicao-de-conteudos-sinalizados">RN01: Exibição de Conteúdos Sinalizados</h3>
+<ul>
+<li>A lista de conteúdos sinalizados pela IA deve exibir as seguintes informações para cada item:</li>
+<li>Título do conteúdo</li>
+<li>Data de sinalização</li>
+<li>Nível de suspeita (alto, médio, baixo)</li>
+<li>Status da análise (pendente, em análise, concluída)</li>
+</ul>
+<h3 id="rn02-detalhes-do-conteudo-para-revisao">RN02: Detalhes do Conteúdo para Revisão</h3>
+<ul>
+<li>Ao selecionar um conteúdo para revisão, o sistema deve exibir as seguintes evidências levantadas pela IA:</li>
+<li>Fonte original do conteúdo (URL ou identificador)</li>
+<li>Trechos de linguagem suspeita destacados</li>
+<li>Comparações com o banco de dados de desinformações (links para itens relacionados)</li>
+</ul>
+<h3 id="rn03-relatorio-de-analise-manual">RN03: Relatório de Análise Manual</h3>
+<ul>
+<li>O relatório de análise manual deve conter os seguintes campos obrigatórios:</li>
+<li>Classificação do conteúdo (Confiável, Enganoso, Parcialmente verdadeiro, Indeterminado)</li>
+<li>Justificativa da decisão (campo de texto livre)</li>
+<li>Referências utilizadas (lista de URLs ou descrições)</li>
+</ul>
+<h3 id="rn04-notificacao-ao-usuario">RN04: Notificação ao Usuário</h3>
+<ul>
+<li>Após a conclusão da análise, o sistema deve enviar uma notificação ao usuário que reportou o conteúdo, informando a classificação final e um link para o relatório de análise.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

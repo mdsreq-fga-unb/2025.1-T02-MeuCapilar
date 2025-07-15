@@ -1,0 +1,2756 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../unidade2/sessao9/">
+      
+      
+        <link rel="next" href="../USM/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>PBB e BDD - Meu Capilar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#product-backlog-building-pbb-techfix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Meu Capilar" class="md-header__button md-logo" aria-label="Meu Capilar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meu Capilar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PBB e BDD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-T02-MeuCapilar
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Meu Capilar" class="md-nav__button md-logo" aria-label="Meu Capilar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meu Capilar
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T02-MeuCapilar" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-T02-MeuCapilar
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão do produto e projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão do produto e projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1.Cenário atual do cliente e do negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.Solução proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3.Estrategias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4.Engenharia de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Cronogramas e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/sessao6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7.Lista de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.DoR e DoD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade2/sessao9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9.Product Backlog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    PBB e BDD
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    PBB e BDD
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#product-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRODUCT NAME
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROBLEMAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expectativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXPECTATIVAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PERSONAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features-funcionalidades-de-alto-nivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURES (FUNCIONALIDADES DE ALTO NÍVEL)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beneficios-gerados-pela-solucao-techfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-reducao-de-atrasos-e-maior-previsibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Redução de atrasos e maior previsibilidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-eliminacao-de-retrabalho-e-perda-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Eliminação de retrabalho e perda de dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-comunicacao-clara-e-centralizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comunicação clara e centralizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-gestao-orientada-por-dados-em-tempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Gestão orientada por dados em tempo real
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior-driven-development-bdd-criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior-Driven Development (BDD) – Critérios de Aceitação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior-Driven Development (BDD) – Critérios de Aceitação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbi01-cadastro-de-tecnicos-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑01 – Cadastro de Técnicos (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi02-consulta-de-chamados-do-dia-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑02 – Consulta de Chamados do Dia (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi03-acompanhamento-da-localizacao-do-tecnico-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑03 – Acompanhamento da Localização do Técnico (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi04-registro-offline-de-servico-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑04 – Registro Offline de Serviço (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi05-geracao-de-relatorio-de-desempenho-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑05 – Geração de Relatório de Desempenho (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi06-avaliacao-do-servico-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑06 – Avaliação do Serviço (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi07-alerta-de-atraso-do-tecnico-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑07 – Alerta de Atraso do Técnico (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi08-anexar-fotos-ao-laudo-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑08 – Anexar Fotos ao Laudo (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi09-exportacao-de-dados-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑09 – Exportação de Dados (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi10-emissao-de-nf-e-automatica-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑10 – Emissão de NF-e Automática (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us-users-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      US - Users Stories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-priorizacao-projeto-techfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-valor-para-o-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Valor para o Usuário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-urgencia-necessidade-imediata" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Urgência / Necessidade Imediata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clareza-e-prontidao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Clareza e Prontidão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-esforco-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Esforço Estimado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-formula-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Fórmula de Priorização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Casos de Uso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Casos de Uso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/diagrama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Verify Contexto e Diagrama de Caso de Uso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_analisar_conteudo_manualmente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_auditar_conteudos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_supervisionar_interacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_avaliar_impacto_da_plataforma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_enviar_conteudo_suspeito_para_analise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/esp_especificacao_acessar_conteudos_educacionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Especificação 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade1/licoesAprendidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas e Gravações das Sprints
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Atas e Gravações das Sprints
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/daily1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/daily2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint01/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/daily1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daily 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint02/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint03/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/retrospective/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Retrospective
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint04/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Sprint 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sprint 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint05/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sprints/sprint05/review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Evidências de ESW e ER
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Evidências de ESW e ER
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/wireframes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wireframes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidencias/modelagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorial de Acesso
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial de Acesso
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unidade4/Tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acesso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#product-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRODUCT NAME
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROBLEMAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expectativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXPECTATIVAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PERSONAS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features-funcionalidades-de-alto-nivel" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURES (FUNCIONALIDADES DE ALTO NÍVEL)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beneficios-gerados-pela-solucao-techfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-reducao-de-atrasos-e-maior-previsibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Redução de atrasos e maior previsibilidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-eliminacao-de-retrabalho-e-perda-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Eliminação de retrabalho e perda de dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-comunicacao-clara-e-centralizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comunicação clara e centralizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-gestao-orientada-por-dados-em-tempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Gestão orientada por dados em tempo real
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior-driven-development-bdd-criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior-Driven Development (BDD) – Critérios de Aceitação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior-Driven Development (BDD) – Critérios de Aceitação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbi01-cadastro-de-tecnicos-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑01 – Cadastro de Técnicos (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi02-consulta-de-chamados-do-dia-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑02 – Consulta de Chamados do Dia (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi03-acompanhamento-da-localizacao-do-tecnico-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑03 – Acompanhamento da Localização do Técnico (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi04-registro-offline-de-servico-alta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑04 – Registro Offline de Serviço (Alta)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi05-geracao-de-relatorio-de-desempenho-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑05 – Geração de Relatório de Desempenho (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi06-avaliacao-do-servico-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑06 – Avaliação do Serviço (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi07-alerta-de-atraso-do-tecnico-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑07 – Alerta de Atraso do Técnico (Média)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi08-anexar-fotos-ao-laudo-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑08 – Anexar Fotos ao Laudo (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi09-exportacao-de-dados-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑09 – Exportação de Dados (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pbi10-emissao-de-nf-e-automatica-baixa" class="md-nav__link">
+    <span class="md-ellipsis">
+      PBI‑10 – Emissão de NF-e Automática (Baixa)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us-users-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      US - Users Stories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-priorizacao-projeto-techfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-valor-para-o-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Valor para o Usuário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-urgencia-necessidade-imediata" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Urgência / Necessidade Imediata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clareza-e-prontidao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Clareza e Prontidão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-esforco-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Esforço Estimado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-formula-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Fórmula de Priorização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="product-backlog-building-pbb-techfix">PRODUCT BACKLOG BUILDING (PBB) – TechFix</h1>
+<p><img alt="Wireframe de Dashboard Inicial" src="../../img/PBB.jpg" /></p>
+<h2 id="product-name">PRODUCT NAME</h2>
+<p><strong>TechFix Service Hub</strong> – plataforma web e mobile para gestão de chamados de assistência técnica de equipamentos eletrônicos.</p>
+<h2 id="problemas">PROBLEMAS</h2>
+<ul>
+<li>Atrasos e falta de previsibilidade na chegada dos técnicos devido a conflitos de agenda.</li>
+<li>Registros manuais de serviços geram retrabalho e perda de dados cruciais.</li>
+<li>Comunicação fragmentada entre cliente, atendente e técnico causa confusão sobre status do chamado.</li>
+<li>Relatórios inconsistentes dificultam decisões operacionais pela gestão.</li>
+</ul>
+<h2 id="expectativas">EXPECTATIVAS</h2>
+<p><strong>Redução no tempo e aumento da eficiência operacional</strong><br />
+A plataforma deve reduzir em até 30% o tempo médio de atendimento, otimizando a roteirização dos técnicos e eliminando retrabalhos com registros manuais.</p>
+<p><strong>Comunicação centralizada e transparente</strong><br />
+Ao integrar chat e rastreamento em tempo real, a solução trará mais clareza para clientes e maior coordenação entre suporte e técnicos.</p>
+<p><strong>Decisões baseadas em dados confiáveis</strong><br />
+Relatórios automáticos e dashboards em tempo real permitirão que gestores acompanhem KPIs com precisão e agilidade.</p>
+<p><strong>Melhoria na experiência e satisfação do cliente</strong><br />
+Com processos mais rápidos, feedback facilitado e maior previsibilidade, espera-se alcançar um CSAT ≥ 4,5/5.</p>
+<hr />
+<h2 id="personas">PERSONAS</h2>
+<table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Descrição</th>
+<th>Necessidade-chave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Técnico de Campo</td>
+<td>Profissional que realiza reparos em campo.</td>
+<td>Roteiro otimizado e informações claras do chamado no app mobile.</td>
+</tr>
+<tr>
+<td>Gestor de Operações</td>
+<td>Responsável por acompanhar KPIs e alocar técnicos.</td>
+<td>Visão em tempo real dos atendimentos e relatórios automáticos.</td>
+</tr>
+<tr>
+<td>Cliente Empresarial</td>
+<td>Empresa que contrata manutenção recorrente.</td>
+<td>Agendamento rápido e transparência no status.</td>
+</tr>
+<tr>
+<td>Cliente Residencial</td>
+<td>Consumidora que solicita reparo pontual.</td>
+<td>Acompanhamento do técnico e feedback simplificado.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="features-funcionalidades-de-alto-nivel">FEATURES (FUNCIONALIDADES DE ALTO NÍVEL)</h2>
+<ul>
+<li>
+<p>Login com autenticação segura (token JWT).</p>
+</li>
+<li>
+<p>Sincronização de dados offline/online com fallback automático.</p>
+</li>
+<li>
+<p>Visualização de agenda e ordens de serviço atribuídas.</p>
+</li>
+<li>
+<p>Check-in/check-out georreferenciado em atendimentos.</p>
+</li>
+<li>
+<p>Formulários dinâmicos para coleta de informações técnicas.</p>
+</li>
+<li>
+<p>Upload de fotos e evidências da visita técnica.</p>
+</li>
+<li>
+<p>Status de atendimento (em andamento, pendente, finalizado).</p>
+</li>
+<li>
+<p>Assinatura digital do cliente no encerramento da OS.</p>
+</li>
+</ul>
+<hr />
+<h2 id="beneficios-gerados-pela-solucao-techfix">BENEFÍCIOS GERADOS PELA SOLUÇÃO TECHFIX</h2>
+<h3 id="1-reducao-de-atrasos-e-maior-previsibilidade">1. Redução de atrasos e maior previsibilidade</h3>
+<ul>
+<li>Roteirização automática otimiza os deslocamentos.  </li>
+<li>Agenda inteligente evita conflitos e sobreposições.  </li>
+<li>Técnicos chegam no horário e com informações atualizadas.</li>
+</ul>
+<h3 id="2-eliminacao-de-retrabalho-e-perda-de-dados">2. Eliminação de retrabalho e perda de dados</h3>
+<ul>
+<li>App mobile offline-first assegura registros mesmo sem conexão.  </li>
+<li>Dados digitalizados eliminam o uso de papel e duplicidades.  </li>
+<li>Formulários padronizados reduzem erros de preenchimento.</li>
+</ul>
+<h3 id="3-comunicacao-clara-e-centralizada">3. Comunicação clara e centralizada</h3>
+<ul>
+<li>Chat integrado conecta cliente, suporte e técnico em um só canal.  </li>
+<li>Redução de ruídos e retrabalho por falha de comunicação.  </li>
+<li>Histórico de interações facilita acompanhamento e suporte.</li>
+</ul>
+<h3 id="4-gestao-orientada-por-dados-em-tempo-real">4. Gestão orientada por dados em tempo real</h3>
+<ul>
+<li>Dashboard atualizado permite decisões baseadas em fatos.  </li>
+<li>Métricas de desempenho ajudam a identificar gargalos.  </li>
+<li>Supervisores acompanham o status das operações em tempo real.</li>
+</ul>
+<hr />
+<h2 id="behavior-driven-development-bdd-criterios-de-aceitacao">Behavior-Driven Development (BDD) – Critérios de Aceitação</h2>
+<h3 id="pbi01-cadastro-de-tecnicos-alta">PBI‑01 – Cadastro de Técnicos (Alta)</h3>
+<p><strong>Cenário: Cadastro de Técnicos</strong><br />
+Dado que o gestor acessa o painel de administração,
+Quando ele preenche os dados do técnico (nome: "João Silva", especialidade: "Manutenção de Rede", disponibilidade: "08h às 12h") e confirma o cadastro,
+Então o técnico é incluído na escala e aparece na lista de técnicos disponíveis, com as seguintes informações: nome, especialidade e disponibilidade.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O gestor consegue adicionar técnicos com nome, especialidade e horários.</p>
+<ul>
+<li>
+<p>Técnicos aparecem disponíveis para escala após cadastro.</p>
+</li>
+<li>
+<p>O sistema impede cadastro com campos obrigatórios vazios.</p>
+</li>
+<li>
+<p>É possível editar ou excluir um técnico cadastrado.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi02-consulta-de-chamados-do-dia-alta">PBI‑02 – Consulta de Chamados do Dia (Alta)</h3>
+<p><strong>Cenário: Consulta de Chamados do Dia</strong><br />
+Dado que o técnico "Carlos Lima" está logado no app mobile,
+Quando ele acessa a aba de chamados,
+Então são exibidos os atendimentos do dia, incluindo: cliente: "Empresa X", endereço: "Rua das Palmeiras, 123", horário: "09h30", tipo de serviço: "Instalação de Roteador".</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O técnico vê todos os chamados do dia organizados por ordem de atendimento.</p>
+<ul>
+<li>
+<p>Cada chamado exibe cliente, endereço, horário e tipo de serviço.</p>
+</li>
+<li>
+<p>Chamados atualizam automaticamente em caso de alteração pelo gestor.</p>
+</li>
+<li>
+<p>O técnico pode marcar chamados como "em andamento" ou "concluído".</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi03-acompanhamento-da-localizacao-do-tecnico-alta">PBI‑03 – Acompanhamento da Localização do Técnico (Alta)</h3>
+<p><strong>Cenário: Acompanhamento da Localização do Técnico</strong><br />
+Dado que o técnico "Marcos Tavares" iniciou o deslocamento e ativou o check-in às 14h,
+Quando o cliente "Ana Souza" acessa o chamado #5421 pelo app,
+Então ele vê a localização atual do técnico no mapa, em movimento, com o tempo estimado de chegada: 15 minutos.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O cliente visualiza a posição do técnico no mapa após o check-in.</p>
+<ul>
+<li>
+<p>O app mostra o tempo estimado de chegada.</p>
+</li>
+<li>
+<p>O cliente é notificado se houver atrasos significativos.</p>
+</li>
+<li>
+<p>A localização é atualizada periodicamente.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi04-registro-offline-de-servico-alta">PBI‑04 – Registro Offline de Serviço (Alta)</h3>
+<p><strong>Cenário: Registro Offline de Serviço</strong><br />
+Dado que o técnico "Eduardo Melo" está sem conexão com a internet,
+Quando ele realiza o check-in às 10h05 e o check-out às 10h42 pelo app,
+Então os dados são armazenados localmente e sincronizados automaticamente quando a conexão for restabelecida, incluindo data, hora e localização de cada ação.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O app permite check-in/out mesmo offline.</p>
+<ul>
+<li>
+<p>Dados são armazenados localmente até a sincronização com a nuvem.</p>
+</li>
+<li>
+<p>O registro inclui data, hora e localização.</p>
+</li>
+<li>
+<p>O gestor pode ver os registros assim que sincronizados.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi05-geracao-de-relatorio-de-desempenho-media">PBI‑05 – Geração de Relatório de Desempenho (Média)</h3>
+<p><strong>Cenário: Geração de Relatório de Desempenho</strong><br />
+Dado que o gestor acessa a área de relatórios,
+Quando ele seleciona o técnico "Bruno Costa" e o período de "01 a 30 de junho de 2025",
+Então o sistema exibe os dados de desempenho: número de atendimentos (32), tempo médio por atendimento (38 minutos) e média de avaliação (4,6), com opção de exportação em PDF.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O sistema gera relatórios filtrando por técnico e período.</p>
+<ul>
+<li>
+<p>O relatório inclui número de atendimentos, tempo médio e avaliações.</p>
+</li>
+<li>
+<p>É possível exportar o relatório em PDF.</p>
+</li>
+<li>
+<p>Dados são atualizados automaticamente a cada novo atendimento registrado.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi06-avaliacao-do-servico-media">PBI‑06 – Avaliação do Serviço (Média)</h3>
+<p><strong>Cenário: Avaliação do Serviço</strong><br />
+Dado que o atendimento do chamado #7854 foi finalizado às 16h12,
+Quando o cliente "Mariana Lopes" acessa a avaliação pelo link enviado por e-mail,
+Então ela pode atribuir uma nota de 4 estrelas e deixar o comentário "Atendimento rápido e educado", que são registrados no sistema com vínculo ao chamado e técnico.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O cliente recebe um convite para avaliar o serviço após a finalização.</p>
+<ul>
+<li>
+<p>A avaliação inclui nota de 1 a 5 e campo opcional para comentário.</p>
+</li>
+<li>
+<p>O sistema registra a avaliação com vínculo ao atendimento e técnico.</p>
+</li>
+<li>
+<p>O gestor pode visualizar avaliações no painel.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi07-alerta-de-atraso-do-tecnico-media">PBI‑07 – Alerta de Atraso do Técnico (Média)</h3>
+<p><strong>Cenário: Alerta de Atraso do Técnico</strong><br />
+Dado que o técnico "Rafael Dias" tinha atendimento previsto para 11h00 no chamado #9123,
+Quando o sistema detecta que o tempo estimado de chegada excedeu 15 minutos (ETA: 11h20),
+Então é enviado um alerta automático ao gestor com os seguintes dados: técnico: "Rafael Dias", chamado: #9123, cliente: "Comercial Silva", motivo estimado: "trânsito intenso".</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O sistema calcula o tempo previsto de chegada de cada técnico.</p>
+<ul>
+<li>
+<p>Se houver atraso maior que 15 minutos, o gestor recebe uma notificação.</p>
+</li>
+<li>
+<p>O alerta mostra o técnico, chamado e motivo estimado do atraso.</p>
+</li>
+<li>
+<p>O gestor pode reagendar ou redistribuir o chamado com base no alerta.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi08-anexar-fotos-ao-laudo-baixa">PBI‑08 – Anexar Fotos ao Laudo (Baixa)</h3>
+<p><strong>Cenário: Anexar Fotos ao Laudo</strong><br />
+Dado que o técnico "Daniel Rocha" está finalizando o chamado #6032,
+Quando ele acessa a opção de anexar imagens e tira uma foto do equipamento danificado às 13h47,
+Então a imagem é anexada ao laudo técnico com carimbo de data/hora e fica disponível no histórico de atendimento.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O técnico pode tirar fotos diretamente do app ou selecionar da galeria.</p>
+<ul>
+<li>
+<p>As imagens são vinculadas ao chamado e salvas com data/hora.</p>
+</li>
+<li>
+<p>É possível anexar até 5 fotos por chamado.</p>
+</li>
+<li>
+<p>O gestor pode visualizar as fotos no histórico de atendimento.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi09-exportacao-de-dados-baixa">PBI‑09 – Exportação de Dados (Baixa)</h3>
+<p><strong>Cenário: Exportação de Dados</strong><br />
+Dado que o gestor deseja analisar atendimentos feitos entre "01 e 10 de julho de 2025",
+Quando ele aplica os filtros por período e técnico: "Luciana Prado", e clica em "Exportar CSV",
+Então o sistema gera um arquivo com os seguintes dados: ID do chamado, cliente, técnico, data, status, tipo de serviço.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O sistema oferece a opção de exportar dados filtrados por data, técnico e status.</p>
+<ul>
+<li>
+<p>O arquivo CSV pode ser baixado no painel do gestor.</p>
+</li>
+<li>
+<p>As colunas incluem ID do chamado, cliente, técnico, datas e status.</p>
+</li>
+<li>
+<p>Os dados são atualizados no momento da exportação.</p>
+</li>
+</ul>
+<hr />
+<h3 id="pbi10-emissao-de-nf-e-automatica-baixa">PBI‑10 – Emissão de NF-e Automática (Baixa)</h3>
+<p><strong>Cenário: Emissão de NF-e Automática</strong><br />
+Dado que o cliente empresarial "LogTech S/A" possui CNPJ: 12.345.678/0001-99 e teve o chamado #7001 concluído às 17h40,
+Quando o sistema detecta o encerramento com status "concluído",
+Então ele gera automaticamente a NF-e e envia para o e-mail financeiro@logtech.com.br, com registro da emissão vinculado ao sistema da SEFAZ via API.</p>
+<p><strong>Critérios de Aceitação:</strong>
+- O sistema gera a NF-e automaticamente após a conclusão do serviço.</p>
+<ul>
+<li>
+<p>A nota fiscal é enviada para o e-mail cadastrado do cliente.</p>
+</li>
+<li>
+<p>O cliente pode consultar o histórico de NF-e emitidas pelo sistema.</p>
+</li>
+<li>
+<p>A emissão é integrada a um sistema SEFAZ válido por meio de API.</p>
+</li>
+</ul>
+<h3 id="us-users-stories">US - Users Stories</h3>
+<ul>
+<li>
+<p><strong>Eu, Gestor,</strong> quero cadastrar técnicos (nome, especialidade, disponibilidade)<br />
+<strong>para</strong> que possa montar a escala.</p>
+</li>
+<li>
+<p><strong>Eu, Técnico,</strong> quero ver meus chamados do dia no app<br />
+<strong>para</strong> planejar meu trajeto.</p>
+</li>
+<li>
+<p><strong>Eu, Cliente,</strong> quero acompanhar em tempo real a localização do técnico<br />
+<strong>para</strong> saber quando ele chegará.</p>
+</li>
+<li>
+<p><strong>Eu, Técnico,</strong> quero registrar início e fim do serviço (check-in/out) mesmo sem internet<br />
+<strong>para</strong> não perder dados.</p>
+</li>
+<li>
+<p><strong>Eu, Gestor,</strong> quero gerar relatório de desempenho por técnico<br />
+<strong>para</strong> identificar gargalos.</p>
+</li>
+<li>
+<p><strong>Eu, Cliente,</strong> quero avaliar o serviço após a conclusão<br />
+<strong>para</strong> fornecer feedback.</p>
+</li>
+<li>
+<p><strong>Eu, Gestor,</strong> quero receber alertas automáticos se um técnico atrasar &gt;15 min<br />
+<strong>para</strong> agir rapidamente.</p>
+</li>
+<li>
+<p><strong>Eu, Técnico,</strong> quero anexar fotos do equipamento ao laudo<br />
+<strong>para</strong> comprovar serviço.</p>
+</li>
+<li>
+<p><strong>Eu, Gestor,</strong> quero exportar dados em CSV<br />
+<strong>para</strong> análises externas.</p>
+</li>
+<li>
+<p><strong>Eu, Cliente Empresarial,</strong> quero emitir NF‑e automaticamente<br />
+<strong>para</strong> fins contábeis.</p>
+</li>
+</ul>
+<h3 id="criterios-de-priorizacao-projeto-techfix">CRITÉRIOS DE PRIORIZAÇÃO – PROJETO TECHFIX</h3>
+<h3 id="1-valor-para-o-usuario">1. Valor para o Usuário</h3>
+<table>
+<thead>
+<tr>
+<th>Nota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>Impacto crítico (essencial)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Importante (melhora muito a experiência)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Desejável (não essencial)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-urgencia-necessidade-imediata">2. Urgência / Necessidade Imediata</h3>
+<table>
+<thead>
+<tr>
+<th>Nota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>Bloqueia entregas ou tem prazo definido</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Necessária a curto prazo</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Pode esperar sem grandes impactos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-clareza-e-prontidao">3. Clareza e Prontidão</h3>
+<table>
+<thead>
+<tr>
+<th>Nota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>Totalmente clara</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Requer ajustes</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Pouco definida</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-esforco-estimado">4. Esforço Estimado</h3>
+<table>
+<thead>
+<tr>
+<th>Nota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Baixo esforço</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Médio esforço</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Alto esforço</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-formula-de-priorizacao">5. Fórmula de Priorização</h3>
+<p><strong>Prioridade = (Valor + Urgência + Clareza) – Esforço</strong></p>
+<p><strong>Classificação Final:</strong></p>
+<ul>
+<li>Alta Prioridade: 11 a 15  </li>
+<li>Média Prioridade: 8 a 10  </li>
+<li>Baixa Prioridade: 7 ou menos</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
