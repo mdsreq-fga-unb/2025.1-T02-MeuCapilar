@@ -101,6 +101,8 @@ Video da nossa apresentação da unidade 3.
 
 ## Vídeo da Unidade IV 
 
+<embed src="./img/slides.pdf" width="100%" height="600px" type="application/pdf">
+
 Video da nossa apresentação da unidade 3.
 <center>
 <video width="560" height="315" controls preload="auto">
